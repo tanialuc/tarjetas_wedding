@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteles de Asiento - Tania & Manuel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Georgia', serif;
         }
         
         body {
@@ -29,6 +29,34 @@
             font-weight: normal;
             letter-spacing: 2px;
             font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-selector {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .font-option {
+            padding: 8px 16px;
+            border: 1px solid #d4c2a7;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .font-option:hover {
+            background: #f5f0e9;
+        }
+        
+        .font-option.active {
+            background: #8b6b4c;
+            color: white;
+            border-color: #8b6b4c;
         }
         
         .cards-container {
@@ -40,7 +68,7 @@
         }
         
         .seat-card {
-            width: 700px;
+            width: 600px;
             height: 300px;
             display: flex;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -51,7 +79,7 @@
         }
         
         .flower-side {
-            flex: 0 0 300px;
+            flex: 0 0 400px;
             background-color: #faf7f2;
             position: relative;
             overflow: hidden;
@@ -66,7 +94,7 @@
         
         .name-container {
             position: absolute;
-            top: 35%; /* Más cerca de la parte superior */
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 90%;
@@ -83,6 +111,34 @@
             overflow-wrap: break-word;
             margin: 0;
             text-align: center;
+            font-family: 'Playfair Display', serif; /* Fuente por defecto */
+        }
+        
+        /* Estilos de fuentes elegantes */
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+        
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem; /* Un poco más grande para script */
+        }
+        
+        .font-greatvibes {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+        }
+        
+        .font-parisienne {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.2rem;
+        }
+        
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3rem;
         }
         
         .name-side {
@@ -115,6 +171,7 @@
             font-size: 1rem;
             transition: background-color 0.3s;
             white-space: nowrap;
+            font-family: 'Georgia', serif;
         }
         
         button:hover {
@@ -128,12 +185,13 @@
             font-size: 1rem;
             width: 250px;
             max-width: 100%;
+            font-family: 'Georgia', serif;
         }
         
         @media (max-width: 750px) {
             .seat-card {
                 width: 100%;
-                max-width: 500px;
+                max-width: 400px;
                 height: 200px;
             }
             
@@ -142,10 +200,18 @@
             }
             
             .name-container {
-                top: 40%; /* Ajuste para móviles */
+                top: 40%;
             }
             
             .guest-name {
+                font-size: 2.2rem;
+            }
+            
+            .font-dancing, .font-greatvibes, .font-parisienne {
+                font-size: 2.4rem;
+            }
+            
+            .font-cormorant {
                 font-size: 2.2rem;
             }
             
@@ -160,10 +226,18 @@
             }
             
             .name-container {
-                top: 45%; /* Más alto en móviles pequeños */
+                top: 45%;
             }
             
             .guest-name {
+                font-size: 1.8rem;
+            }
+            
+            .font-dancing, .font-greatvibes, .font-parisienne {
+                font-size: 2rem;
+            }
+            
+            .font-cormorant {
                 font-size: 1.8rem;
             }
             
@@ -185,7 +259,7 @@
                 background: white;
             }
             
-            .controls {
+            .controls, .font-selector {
                 display: none;
             }
             
@@ -205,6 +279,14 @@
 <body>
     <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
     
+    <div class="font-selector">
+        <div class="font-option active" onclick="changeFont('playfair')">Playfair Display</div>
+        <div class="font-option" onclick="changeFont('dancing')">Dancing Script</div>
+        <div class="font-option" onclick="changeFont('greatvibes')">Great Vibes</div>
+        <div class="font-option" onclick="changeFont('parisienne')">Parisienne</div>
+        <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
+    </div>
+    
     <div class="cards-container" id="cardsContainer">
         <!-- Los carteles se generarán automáticamente -->
     </div>
@@ -220,6 +302,25 @@
     <script>
         // URL de la imagen en tu repositorio de GitHub
         const floralImageUrl = 'flores-izquierda.png';
+        let currentFont = 'playfair';
+        
+        // Función para cambiar la fuente
+        function changeFont(fontName) {
+            currentFont = fontName;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.font-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Actualizar fuentes en los nombres
+            const guestNames = document.querySelectorAll('.guest-name');
+            guestNames.forEach(name => {
+                name.className = 'guest-name'; // Reset classes
+                name.classList.add('font-' + fontName);
+            });
+        }
         
         // Función para crear un cartel
         function createSeatCard(name) {
@@ -228,7 +329,7 @@
                     <div class="flower-side">
                         <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
                         <div class="name-container">
-                            <h2 class="guest-name">${name}</h2>
+                            <h2 class="guest-name font-${currentFont}">${name}</h2>
                         </div>
                     </div>
                     <div class="name-side">
