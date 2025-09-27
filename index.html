@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas de Lugar - Boda Tania & Manuel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+        
+        :root {
+            --color-dorado: #b48e5c;
+            --color-beige: #fdf8f5;
+            --color-cafe: #8B4513;
+            --color-texto: #333333;
+            --color-blanco: #ffffff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: #f5f0eb;
+            color: var(--color-texto);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .titulo-principal {
+            color: var(--color-cafe);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitulo {
+            color: var(--color-dorado);
+            font-size: 1.2em;
+        }
+        
+        .controles {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .botones {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .boton {
+            background: var(--color-dorado);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Source Sans Pro', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .boton:hover {
+            background: var(--color-cafe);
+            transform: translateY(-2px);
+        }
+        
+        .grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tarjeta {
+            background: white;
+            border: 2px solid var(--color-dorado);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .encabezado-tarjeta {
+            border-bottom: 1px dashed var(--color-dorado);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .nombres-novios-tarjeta {
+            color: var(--color-cafe);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .fecha-tarjeta {
+            color: var(--color-dorado);
+            font-size: 0.9em;
+        }
+        
+        .nombre-invitado {
+            font-size: 1.4em;
+            color: var(--color-cafe);
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mensaje-agradecimiento {
+            border-top: 1px dashed var(--color-dorado);
+            padding-top: 20px;
+            margin-top: 20px;
+            min-height: 100px;
+            font-style: italic;
+            color: #666;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .placeholder-nota {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        
+        /* Estilos para impresión */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .header, .controles {
+                display: none;
+            }
+            
+            .grid-tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .tarjeta {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin: 0;
+                padding: 20px;
+            }
+        }
+        
+        .instrucciones {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="titulo-principal">Tarjetas de Lugar</h1>
+            <p class="subtitulo">Boda Tania & Manuel - 7 de Marzo 2026</p>
+        </div>
+        
+        <div class="controles">
+            <div class="botones">
+                <button class="boton" onclick="generarTarjetas()">Generar Todas las Tarjetas</button>
+                <button class="boton" onclick="imprimirTarjetas()">Imprimir Tarjetas</button>
+                <button class="boton" onclick="descargarJSON()">Descargar Lista</button>
+            </div>
+            <p><strong>Instrucciones:</strong> Genera las tarjetas, imprímelas y escribe tu mensaje personalizado a mano en cada una.</p>
+        </div>
+        
+        <div class="instrucciones">
+            <h3>💡 Consejos para imprimir:</h3>
+            <ul>
+                <li>Usa papel grueso o cartulina para mejor calidad</li>
+                <li>Configura la impresora en modo "alta calidad"</li>
+                <li>Recomendado: Papel de 200-250 g/m²</li>
+                <li>Puedes usar papel perlado o con textura para elegancia</li>
+            </ul>
+        </div>
+        
+        <div class="grid-tarjetas" id="grid-tarjetas">
+            <!-- Las tarjetas se generarán aquí -->
+        </div>
+    </div>
+
+    <script>
+        // Datos de los invitados (puedes cargarlos desde un JSON externo también)
+        const invitados = [
+            { nombre: "Jovito Rodríguez y Rosa Alba Rodríguez", mesa: "" },
+            { nombre: "Rosaura Rodríguez, Camila Rodríguez, Valeria Rodríguez", mesa: "" },
+            { nombre: "Jakeline Rodríguez, Diego Rojas, Vicente Rojas", mesa: "" },
+            { nombre: "Marisol Rodríguez", mesa: "" },
+            { nombre: "Stepanie Rodríguez y David Alvaro", mesa: "" },
+            { nombre: "Manuel Moraga y Ligia Salazar", mesa: "" },
+            { nombre: "Seily Moraga", mesa: "" },
+            { nombre: "Maureen Moraga", mesa: "" },
+            { nombre: "Ana Julia Moraga y Miguel", mesa: "" },
+            { nombre: "Daniel Barrantes", mesa: "" },
+            { nombre: "Daniel Murillo", mesa: "" },
+            { nombre: "Marlon Villalobos", mesa: "" },
+            { nombre: "Andres Marin", mesa: "" },
+            { nombre: "Marco Boniche", mesa: "" },
+            { nombre: "Jeffrey Torres", mesa: "" },
+            { nombre: "Gustavo Torres", mesa: "" },
+            { nombre: "Marie Barquero", mesa: "" },
+            { nombre: "Viviana Cheves", mesa: "" },
+            { nombre: "Bryan Zuñiga", mesa: "" },
+            { nombre: "José Salas", mesa: "" },
+            { nombre: "Marlon Dailey", mesa: "" }
+        ];
+
+        function generarTarjetas() {
+            const grid = document.getElementById('grid-tarjetas');
+            grid.innerHTML = '';
+            
+            invitados.forEach(invitado => {
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta';
+                tarjeta.innerHTML = `
+                    <div class="encabezado-tarjeta">
+                        <div class="nombres-novios-tarjeta">Tania & Manuel</div>
+                        <div class="fecha-tarjeta">7 de Marzo 2026</div>
+                    </div>
+                    
+                    <div class="nombre-invitado">${invitado.nombre}</div>
+                    
+                    <div class="mensaje-agradecimiento">
+                        <div class="placeholder-nota">Escribe aquí tu mensaje personalizado...</div>
+                    </div>
+                `;
+                grid.appendChild(tarjeta);
+            });
+        }
+
+        function imprimirTarjetas() {
+            window.print();
+        }
+
+        function descargarJSON() {
+            const dataStr = JSON.stringify(invitados, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'lista-invitados-mesa.json';
+            link.click();
+        }
+
+        // Generar tarjetas automáticamente al cargar la página
+        document.addEventListener('DOMContentLoaded', generarTarjetas);
+    </script>
+</body>
+</html>
