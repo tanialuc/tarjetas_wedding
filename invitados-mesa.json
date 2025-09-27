@@ -1,176 +1,89 @@
 [
   {
-    "nombre": "Jovito Rodríguez",
-    "posicion": "Cabecera",
-    "tipo": "Padre de la novia",
-    "lado": "izquierda"
+    "nombre": "Jovito Rodríguez"
   },
   {
-    "nombre": "Rosa Alba Rodríguez",
-    "posicion": "Cabecera", 
-    "tipo": "Madre de la novia",
-    "lado": "izquierda"
+    "nombre": "Rosa Alba Rodríguez"
   },
   {
-    "nombre": "Manuel Moraga M",
-    "posicion": "Cabecera",
-    "tipo": "Padre del novio",
-    "lado": "derecha"
+    "nombre": "Rosaura Rodríguez"
   },
   {
-    "nombre": "Ligia Salazar",
-    "posicion": "Cabecera",
-    "tipo": "Madre del novio",
-    "lado": "derecha"
+    "nombre": "Camila Rodríguez"
   },
   {
-    "nombre": "Rosaura Rodríguez",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Valeria Rodríguez"
   },
   {
-    "nombre": "Camila Rodríguez",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Jakeline Rodríguez"
   },
   {
-    "nombre": "Valeria Rodríguez",
-    "posicion": "Centro", 
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Diego Rojas"
   },
   {
-    "nombre": "Jakeline Rodríguez",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Vicente Rojas"
   },
   {
-    "nombre": "Diego Rojas",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Marisol Rodríguez"
   },
   {
-    "nombre": "Vicente Rojas", 
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Stepanie Rodríguez"
   },
   {
-    "nombre": "Marisol Rodríguez",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "David Alvaro"
   },
   {
-    "nombre": "Stepanie Rodríguez",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Manuel Moraga M"
   },
   {
-    "nombre": "David Alvaro",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "izquierda"
+    "nombre": "Ligia Salazar"
   },
   {
-    "nombre": "Seily Moraga",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "derecha"
+    "nombre": "Seily Moraga"
   },
   {
-    "nombre": "Maureen Moraga",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "derecha"
+    "nombre": "Maureen Moraga"
   },
   {
-    "nombre": "Ana Julia Moraga",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "derecha"
+    "nombre": "Ana Julia Moraga"
   },
   {
-    "nombre": "Miguel",
-    "posicion": "Centro",
-    "tipo": "Familia",
-    "lado": "derecha"
+    "nombre": "Miguel"
   },
   {
-    "nombre": "Daniel Barrantes",
-    "posicion": "Cabecera",
-    "tipo": "Padrino",
-    "lado": "derecha"
+    "nombre": "Daniel Barrantes"
   },
   {
-    "nombre": "Daniel Murillo",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Daniel Murillo"
   },
   {
-    "nombre": "Marlon Villalobos",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Marlon Villalobos"
   },
   {
-    "nombre": "Andrés Marin",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Andrés Marin"
   },
   {
-    "nombre": "Marco Boniche",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Marco Boniche"
   },
   {
-    "nombre": "Jeffrey Torres",
-    "posicion": "Final",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Jeffrey Torres"
   },
   {
-    "nombre": "Gustavo Torres",
-    "posicion": "Final",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Gustavo Torres"
   },
   {
-    "nombre": "Marie Barquero",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "izquierda"
+    "nombre": "Marie Barquero"
   },
   {
-    "nombre": "Viviana Chevez",
-    "posicion": "Centro",
-    "tipo": "Amigos",
-    "lado": "izquierda"
+    "nombre": "Viviana Chevez"
   },
   {
-    "nombre": "Bryan Zuñiga",
-    "posicion": "Final",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Bryan Zuñiga"
   },
   {
-    "nombre": "José Salas",
-    "posicion": "Final",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "José Salas"
   },
   {
-    "nombre": "Marlon Dailey",
-    "posicion": "Final",
-    "tipo": "Amigos",
-    "lado": "derecha"
+    "nombre": "Marlon Dailey"
   }
 ]
