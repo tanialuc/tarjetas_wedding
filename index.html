@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjetas de Lugar - Boda Tania & Manuel</title>
+    <title>Tarjetas de Lugar - Mesa Única - Boda Tania & Manuel</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
         
@@ -27,34 +27,71 @@
             color: var(--color-texto);
             padding: 20px;
             line-height: 1.6;
+            background-image: url('flores-izquierda.png');
+            background-size: 300px auto;
+            background-repeat: repeat-y;
+            background-position: left center;
+            background-attachment: fixed;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             padding: 30px;
-            background: white;
+            background: linear-gradient(135deg, var(--color-cafe), var(--color-dorado));
+            color: white;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--color-dorado);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('flores-izquierda.png');
+            background-size: 400px auto;
+            background-position: right center;
+            opacity: 0.1;
+            pointer-events: none;
         }
         
         .titulo-principal {
-            color: var(--color-cafe);
             font-size: 2.8em;
             margin-bottom: 10px;
             font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            position: relative;
         }
         
         .subtitulo {
-            color: var(--color-dorado);
             font-size: 1.3em;
+            opacity: 0.9;
             font-style: italic;
+            position: relative;
+        }
+        
+        .info-mesa-unica {
+            background: var(--color-beige);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed var(--color-dorado);
+            font-weight: 600;
+            color: var(--color-cafe);
         }
         
         .controles {
@@ -89,64 +126,64 @@
         .boton:hover {
             background: var(--color-cafe);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .boton-secundario {
-            background: #6c757d;
-        }
-        
-        .boton-secundario:hover {
-            background: #545b62;
-        }
-        
-        .estadisticas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .estadistica {
-            background: var(--color-beige);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--color-dorado);
         }
         
         .grid-tarjetas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         .tarjeta {
             background: white;
             border: 3px solid var(--color-dorado);
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 30px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             page-break-inside: avoid;
             break-inside: avoid;
-            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
-        .tarjeta:hover {
-            transform: translateY(-5px);
+        .tarjeta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-image: url('flores-izquierda.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .tarjeta.izquierda {
+            border-left: 5px solid #b48e5c;
+        }
+        
+        .tarjeta.derecha {
+            border-right: 5px solid #8B4513;
         }
         
         .encabezado-tarjeta {
             border-bottom: 2px dashed var(--color-dorado);
             padding-bottom: 20px;
             margin-bottom: 20px;
+            position: relative;
         }
         
         .nombres-novios-tarjeta {
             color: var(--color-cafe);
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin-bottom: 8px;
             font-family: 'Playfair Display', serif;
             font-weight: 600;
@@ -159,26 +196,53 @@
         }
         
         .nombre-invitado {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: var(--color-cafe);
             margin: 25px 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-            line-height: 1.3;
         }
         
-        .info-mesa {
+        .info-posicion {
             background: var(--color-beige);
-            padding: 10px;
-            border-radius: 6px;
+            padding: 12px;
+            border-radius: 8px;
             margin: 15px 0;
             font-weight: 600;
             color: var(--color-cafe);
             border: 1px solid var(--color-dorado);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lado-mesa {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .lado-izquierda {
+            background: #e8d4b9;
+            color: var(--color-cafe);
+        }
+        
+        .lado-derecha {
+            background: var(--color-cafe);
+            color: white;
+        }
+        
+        .tipo-invitado {
+            font-style: italic;
+            color: var(--color-dorado);
+            margin-top: 5px;
         }
         
         .mensaje-agradecimiento {
@@ -190,29 +254,29 @@
             color: #666;
             font-family: 'Source Sans Pro', sans-serif;
             text-align: left;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
         
         .placeholder-nota {
             color: #999;
             font-size: 0.95em;
             line-height: 1.5;
-        }
-        
-        .tipo-invitado {
-            display: inline-block;
-            background: var(--color-dorado);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-top: 10px;
-            font-weight: 600;
+            width: 100%;
         }
         
         /* Estilos para impresión */
         @media print {
             body {
                 background: white;
+                padding: 10px;
+                background-image: none;
+            }
+            
+            .container {
+                background: white;
+                box-shadow: none;
                 padding: 0;
             }
             
@@ -222,7 +286,7 @@
             
             .grid-tarjetas {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                gap: 20px;
             }
             
             .tarjeta {
@@ -230,12 +294,12 @@
                 border: 2px solid #ddd;
                 margin: 0;
                 padding: 25px;
+                min-height: 380px;
                 page-break-inside: avoid;
-                break-inside: avoid;
             }
             
-            .tarjeta:hover {
-                transform: none;
+            .tarjeta::before {
+                opacity: 0.05;
             }
         }
         
@@ -253,6 +317,7 @@
             padding: 40px;
             font-size: 1.2em;
             color: var(--color-cafe);
+            grid-column: 1 / -1;
         }
         
         .error {
@@ -263,6 +328,7 @@
             text-align: center;
             margin: 20px 0;
             border-left: 4px solid #d63031;
+            grid-column: 1 / -1;
         }
         
         @media (max-width: 768px) {
@@ -270,12 +336,13 @@
                 grid-template-columns: 1fr;
             }
             
-            .botones {
-                flex-direction: column;
+            body {
+                background-size: 200px auto;
+                padding: 10px;
             }
             
-            .boton {
-                width: 100%;
+            .container {
+                padding: 20px;
             }
         }
     </style>
@@ -284,84 +351,78 @@
     <div class="container">
         <div class="header">
             <h1 class="titulo-principal">Tarjetas de Lugar</h1>
-            <p class="subtitulo">Boda Tania & Manuel · 7 de Marzo 2026 · Hotel Los Lagos, La Fortuna</p>
+            <p class="subtitulo">Boda Tania & Manuel · 7 de Marzo 2026</p>
+            <div class="info-mesa-unica">
+                🎪 Mesa Única Alargada · Hotel Los Lagos, La Fortuna
+            </div>
         </div>
         
         <div class="controles">
             <div class="botones">
                 <button class="boton" onclick="generarTarjetas()">🎴 Generar Tarjetas</button>
-                <button class="boton" onclick="imprimirTarjetas()">🖨️ Imprimir Tarjetas</button>
-                <button class="boton boton-secundario" onclick="mostrarEstadisticas()">📊 Ver Estadísticas</button>
+                <button class="boton" onclick="imprimirTarjetas()">🖨️ Imprimir</button>
+                <button class="boton" onclick="organizarPorLado()">🔄 Organizar por Lado</button>
             </div>
-            
-            <div class="estadisticas" id="estadisticas" style="display: none;">
-                <div class="estadistica">
-                    <div>Total Invitados</div>
-                    <div id="total-invitados">0</div>
-                </div>
-                <div class="estadistica">
-                    <div>Total Mesas</div>
-                    <div id="total-mesas">0</div>
-                </div>
-                <div class="estadistica">
-                    <div>Familia</div>
-                    <div id="total-familia">0</div>
-                </div>
-                <div class="estadistica">
-                    <div>Amigos</div>
-                    <div id="total-amigos">0</div>
-                </div>
-            </div>
+            <p><strong>Instrucciones:</strong> Cada tarjeta indica la posición en la mesa alargada (izquierda/derecha)</p>
         </div>
         
         <div class="instrucciones">
-            <h3>💡 Instrucciones de Uso:</h3>
-            <ul>
-                <li><strong>Generar Tarjetas:</strong> Crea todas las tarjetas automáticamente</li>
-                <li><strong>Imprimir:</strong> Configura la impresora en modo horizontal y alta calidad</li>
-                <li><strong>Papel recomendado:</strong> Cartulina de 200-250 g/m²</li>
-                <li><strong>Notas personalizadas:</strong> Escribe tu mensaje a mano en el espacio designado</li>
-            </ul>
+            <h3>💡 Distribución de la Mesa Alargada:</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                <div>
+                    <h4>👈 Lado Izquierdo</h4>
+                    <ul>
+                        <li>Familia de la novia</li>
+                        <li>Amigas de la novia</li>
+                        <li>Borde color dorado claro</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>👉 Lado Derecho</h4>
+                    <ul>
+                        <li>Familia del novio</li>
+                        <li>Amigos del novio</li>
+                        <li>Padrinos</li>
+                        <li>Borde color café</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
         <div class="grid-tarjetas" id="grid-tarjetas">
-            <div class="loading">Cargando invitados...</div>
+            <div class="loading">Cargando lista de invitados...</div>
         </div>
     </div>
 
     <script>
         let invitados = [];
 
-        // Cargar datos del JSON externo
         async function cargarInvitados() {
             try {
                 const response = await fetch('invitados-mesa.json');
-                if (!response.ok) {
-                    throw new Error('Error al cargar los datos de invitados');
-                }
+                if (!response.ok) throw new Error('Error al cargar los datos');
                 invitados = await response.json();
                 return invitados;
             } catch (error) {
-                console.error('Error:', error);
                 document.getElementById('grid-tarjetas').innerHTML = 
-                    '<div class="error">Error al cargar la lista de invitados. Verifica que el archivo invitados-mesa.json exista.</div>';
+                    '<div class="error">Error al cargar la lista de invitados.</div>';
                 return [];
             }
         }
 
         function generarTarjetas() {
             const grid = document.getElementById('grid-tarjetas');
-            
             if (invitados.length === 0) {
-                grid.innerHTML = '<div class="error">No hay datos de invitados cargados.</div>';
+                grid.innerHTML = '<div class="error">No hay datos de invitados.</div>';
                 return;
             }
             
             grid.innerHTML = '';
             
-            invitados.forEach((invitado, index) => {
+            invitados.forEach(invitado => {
                 const tarjeta = document.createElement('div');
-                tarjeta.className = 'tarjeta';
+                tarjeta.className = `tarjeta ${invitado.lado}`;
+                
                 tarjeta.innerHTML = `
                     <div class="encabezado-tarjeta">
                         <div class="nombres-novios-tarjeta">Tania & Manuel</div>
@@ -370,16 +431,17 @@
                     
                     <div class="nombre-invitado">${invitado.nombre}</div>
                     
-                    <div class="info-mesa">
-                        📍 ${invitado.mesa}
-                        <div class="tipo-invitado">${invitado.tipo || 'Invitado'}</div>
+                    <div class="info-posicion">
+                        <span>📍 ${invitado.posicion}</span>
+                        <span class="lado-mesa lado-${invitado.lado}">${invitado.lado === 'izquierda' ? '👈 Izquierda' : '👉 Derecha'}</span>
                     </div>
+                    <div class="tipo-invitado">${invitado.tipo}</div>
                     
                     <div class="mensaje-agradecimiento">
                         <div class="placeholder-nota">
                             Querido/a ${invitado.nombre.split(' ')[0]},<br><br>
                             Gracias por acompañarnos en este día tan especial. Tu presencia significa mucho para nosotros.<br><br>
-                            Con todo nuestro cariño,<br>
+                            Con cariño,<br>
                             Tania y Manuel 💕
                         </div>
                     </div>
@@ -388,38 +450,28 @@
             });
         }
 
+        function organizarPorLado() {
+            const grid = document.getElementById('grid-tarjetas');
+            const tarjetas = Array.from(grid.children);
+            
+            tarjetas.sort((a, b) => {
+                const ladoA = a.classList.contains('izquierda') ? 0 : 1;
+                const ladoB = b.classList.contains('izquierda') ? 0 : 1;
+                return ladoA - ladoB;
+            });
+            
+            grid.innerHTML = '';
+            tarjetas.forEach(tarjeta => grid.appendChild(tarjeta));
+        }
+
         function imprimirTarjetas() {
             window.print();
         }
 
-        function mostrarEstadisticas() {
-            const estadisticasDiv = document.getElementById('estadisticas');
-            const isVisible = estadisticasDiv.style.display !== 'none';
-            
-            if (!isVisible && invitados.length > 0) {
-                // Calcular estadísticas
-                const mesasUnicas = [...new Set(invitados.map(i => i.mesa))];
-                const familia = invitados.filter(i => i.tipo === 'Familia').length;
-                const amigos = invitados.filter(i => i.tipo === 'Amigos').length;
-                const padrinos = invitados.filter(i => i.tipo === 'Padrino').length;
-                
-                document.getElementById('total-invitados').textContent = invitados.length;
-                document.getElementById('total-mesas').textContent = mesasUnicas.length;
-                document.getElementById('total-familia').textContent = familia;
-                document.getElementById('total-amigos').textContent = amigos + padrinos;
-                
-                estadisticasDiv.style.display = 'grid';
-            } else {
-                estadisticasDiv.style.display = 'none';
-            }
-        }
-
-        // Inicializar al cargar la página
+        // Inicializar
         document.addEventListener('DOMContentLoaded', async function() {
             await cargarInvitados();
-            if (invitados.length > 0) {
-                generarTarjetas();
-            }
+            generarTarjetas();
         });
     </script>
 </body>
