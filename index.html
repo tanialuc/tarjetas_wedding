@@ -56,7 +56,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Alineación en la parte superior */
             overflow: hidden;
         }
         
@@ -67,44 +67,34 @@
             opacity: 0.15;
         }
         
-        .name-overlay {
+        .name-top {
             position: absolute;
-            top: 0;
+            top: 40px; /* Posición desde la parte superior */
             left: 0;
-            width: 500px;
-            height: 100%;
+            width: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 0 20px;
             text-align: center;
         }
         
-        .guest-name-floral {
+        .guest-name {
             color: #8b6b4c;
             font-weight: normal;
             letter-spacing: 1px;
-            line-height: 1.1;
-            font-size: 2.2rem;
+            line-height: 1.2;
+            font-size: 2.5rem;
             word-wrap: break-word;
             overflow-wrap: break-word;
             margin: 0;
             text-align: center;
-        }
-        
-        .placeholder-text {
-            color: #ff0000;
-            font-size: 1rem;
-            margin-top: 10px;
-            font-style: italic;
-            opacity: 0.7;
+            width: 100%;
         }
         
         .name-side {
             flex: 1;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -171,13 +161,12 @@
                 flex: 0 0 150px;
             }
             
-            .name-overlay {
-                width: 100%;
-                height: 150px;
+            .name-top {
+                top: 20px;
             }
             
-            .guest-name-floral {
-                font-size: 1.8rem;
+            .guest-name {
+                font-size: 2rem;
             }
             
             .guest-name-main {
@@ -198,12 +187,12 @@
                 flex: 0 0 120px;
             }
             
-            .name-overlay {
-                height: 120px;
+            .name-top {
+                top: 15px;
             }
             
-            .guest-name-floral {
-                font-size: 1.6rem;
+            .guest-name {
+                font-size: 1.8rem;
             }
             
             .guest-name-main {
@@ -239,12 +228,8 @@
                 margin-bottom: 20px;
             }
             
-            .placeholder-text {
-                display: none;
-            }
-            
-            .guest-name-floral {
-                font-size: 2rem;
+            .guest-name {
+                font-size: 2.2rem;
             }
             
             .guest-name-main {
@@ -274,16 +259,12 @@
         
         // Función para crear un cartel
         function createSeatCard(name) {
-            // Dividir el nombre para la versión floral
-            const floralName = formatNameForFloral(name);
-            
             return `
                 <div class="seat-card">
                     <div class="flower-side">
                         <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
-                        <div class="name-overlay">
-                            <h2 class="guest-name-floral">${floralName}</h2>
-                            <div class="placeholder-text">colocar</div>
+                        <div class="name-top">
+                            <h2 class="guest-name">${name}</h2>
                         </div>
                     </div>
                     <div class="name-side">
@@ -291,33 +272,6 @@
                     </div>
                 </div>
             `;
-        }
-        
-        // Función para formatear el nombre para la sección floral
-        function formatNameForFloral(name) {
-            const words = name.split(' ');
-            
-            if (words.length === 1) {
-                // Si es un solo nombre, dividirlo si es muy largo
-                if (name.length > 10) {
-                    const mid = Math.ceil(name.length / 2);
-                    return name.substring(0, mid) + '<br>' + name.substring(mid);
-                }
-                return name;
-            }
-            
-            if (words.length === 2) {
-                return words[0] + '<br>' + words[1];
-            }
-            
-            // Para 3 o más palabras
-            if (words.length >= 3) {
-                const firstPart = words.slice(0, Math.ceil(words.length/2)).join(' ');
-                const secondPart = words.slice(Math.ceil(words.length/2)).join(' ');
-                return firstPart + '<br>' + secondPart;
-            }
-            
-            return name;
         }
         
         // Cargar invitados de ejemplo
