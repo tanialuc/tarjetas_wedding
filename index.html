@@ -3,336 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjetas de Lugar - Boda Tania & Manuel</title>
+    <title>Tania & Manuel - Invitación de Boda</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
-        
-        :root {
-            --color-dorado: #b48e5c;
-            --color-beige: #fdf8f5;
-            --color-cafe: #8B4513;
-            --color-texto: #333333;
-            --color-blanco: #ffffff;
-        }
-        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
         }
         
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: #f5f0eb;
-            color: var(--color-texto);
-            padding: 20px;
+            background-color: #f9f5f0;
+            color: #333;
             line-height: 1.6;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .titulo-principal {
-            color: var(--color-cafe);
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-        }
-        
-        .subtitulo {
-            color: var(--color-dorado);
-            font-size: 1.4em;
-            font-style: italic;
-        }
-        
-        .controles {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .boton {
-            background: var(--color-dorado);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            margin: 0 10px;
-        }
-        
-        .boton:hover {
-            background: var(--color-cafe);
-            transform: translateY(-2px);
-        }
-        
-        .grid-tarjetas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .tarjeta {
-            background: white;
-            border: 2px solid var(--color-dorado);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            page-break-inside: avoid;
-            break-inside: avoid;
-            position: relative;
-            overflow: hidden;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .tarjeta::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('flores-izquierda.png');
-            background-size: 200px auto;
-            background-position: right bottom;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-        
-        .encabezado-tarjeta {
-            border-bottom: 1px solid var(--color-dorado);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .nombres-novios-tarjeta {
-            color: var(--color-cafe);
-            font-size: 1.8em;
-            margin-bottom: 5px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        
-        .fecha-tarjeta {
-            color: var(--color-dorado);
-            font-size: 1.1em;
-            font-style: italic;
-        }
-        
-        .nombre-invitado {
-            font-size: 2.2em;
-            color: var(--color-cafe);
-            margin: 40px 0;
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-            line-height: 1.2;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 20px;
-        }
-        
-        .espacio-nota {
-            border-top: 1px dashed var(--color-dorado);
-            padding-top: 30px;
-            margin-top: 30px;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            color: #999;
-            font-size: 1.1em;
-        }
-        
-        .linea-separadora {
-            width: 80px;
-            height: 2px;
-            background: var(--color-dorado);
-            margin: 30px auto;
-            opacity: 0.5;
-        }
-        
-        /* Estilos para impresión */
-        @media print {
-            body {
-                background: white;
-                padding: 10px;
-            }
-            
-            .header, .controles {
-                display: none;
-            }
-            
-            .grid-tarjetas {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .tarjeta {
-                box-shadow: none;
-                border: 1px solid #ddd;
-                margin: 0;
-                padding: 30px 25px;
-                min-height: 450px;
-                page-break-inside: avoid;
-            }
-            
-            .tarjeta::before {
-                opacity: 0.1;
-            }
-        }
-        
-        .instrucciones {
-            background: #f8f5f0;
             padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            text-align: center;
-            font-family: 'Source Sans Pro', sans-serif;
-            border: 1px dashed var(--color-dorado);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 40px;
         }
         
-        .loading {
-            text-align: center;
-            padding: 60px;
-            font-size: 1.3em;
-            color: var(--color-cafe);
-            grid-column: 1 / -1;
+        .image-section {
+            flex: 0 0 600px;
         }
         
-        .error {
-            background: #ffe6e6;
-            color: #d63031;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 20px 0;
-            grid-column: 1 / -1;
+        .image-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        @media (max-width: 768px) {
-            .grid-tarjetas {
-                grid-template-columns: 1fr;
+        .content-section {
+            flex: 1;
+            min-width: 300px;
+            padding-top: 20px;
+        }
+        
+        .names {
+            font-size: 3.5rem;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: #8b6b4c;
+            text-align: center;
+        }
+        
+        .date {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #666;
+            border-bottom: 1px solid #e0d6c9;
+            padding-bottom: 20px;
+        }
+        
+        .guest-name {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #8b6b4c;
+            font-style: italic;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            background-color: #f5f0e9;
+            padding: 25px;
+            border-radius: 5px;
+            border-left: 4px solid #d4c2a7;
+        }
+        
+        @media (max-width: 1100px) {
+            .container {
+                justify-content: center;
             }
             
-            .tarjeta {
-                padding: 30px 20px;
+            .image-section {
+                flex: 0 0 100%;
+                max-width: 600px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .names {
+                font-size: 2.5rem;
             }
             
-            .nombre-invitado {
-                font-size: 1.8em;
+            .guest-name {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1 class="titulo-principal">Tarjetas de Lugar</h1>
-            <p class="subtitulo">Tania & Manuel · 7 de Marzo 2026</p>
+        <div class="image-section">
+            <!-- Imagen de placeholder - reemplaza con tu imagen real -->
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Tania y Manuel">
         </div>
         
-        <div class="controles">
-            <button class="boton" onclick="generarTarjetas()">🎴 Generar Tarjetas</button>
-            <button class="boton" onclick="imprimirTarjetas()">🖨️ Imprimir</button>
-        </div>
-        
-        <div class="instrucciones">
-            <p>💫 <strong>Diseño limpio y elegante</strong> · Cada tarjeta tiene espacio para tu mensaje personalizado a mano</p>
-        </div>
-        
-        <div class="grid-tarjetas" id="grid-tarjetas">
-            <div class="loading">Cargando lista de invitados...</div>
+        <div class="content-section">
+            <h1 class="names">Tania & Manuel</h1>
+            
+            <div class="date">7 de Marzo 2026</div>
+            
+            <h2 class="guest-name">Jovito Rodriguez</h2>
+            
+            <div class="message">
+                <p>Querido Jovito,</p>
+                <p>Nos complace enormemente invitarte a compartir con nosotros el día más especial de nuestras vidas. Después de un hermoso camino juntos, hemos decidido unir nuestras vidas para siempre y nos encantaría que formes parte de este momento tan significativo.</p>
+                <p>La ceremonia tendrá lugar en la Hacienda Santa María a las 4:00 de la tarde, seguida de una recepción y cena. Esperamos poder celebrar contigo este día lleno de amor y alegría.</p>
+                <p>Con todo nuestro cariño,</p>
+                <p><strong>Tania & Manuel</strong></p>
+            </div>
         </div>
     </div>
-
-    <script>
-        let invitados = [];
-
-        async function cargarInvitados() {
-            try {
-                const response = await fetch('invitados-mesa.json');
-                if (!response.ok) throw new Error('Error al cargar los datos');
-                invitados = await response.json();
-                return invitados;
-            } catch (error) {
-                document.getElementById('grid-tarjetas').innerHTML = 
-                    '<div class="error">Error al cargar la lista de invitados.</div>';
-                return [];
-            }
-        }
-
-        function generarTarjetas() {
-            const grid = document.getElementById('grid-tarjetas');
-            if (invitados.length === 0) {
-                grid.innerHTML = '<div class="error">No hay datos de invitados.</div>';
-                return;
-            }
-            
-            grid.innerHTML = '';
-            
-            invitados.forEach(invitado => {
-                const tarjeta = document.createElement('div');
-                tarjeta.className = 'tarjeta';
-                
-                tarjeta.innerHTML = `
-                    <div class="encabezado-tarjeta">
-                        <div class="nombres-novios-tarjeta">Tania & Manuel</div>
-                        <div class="fecha-tarjeta">7 de Marzo 2026</div>
-                    </div>
-                    
-                    <div class="linea-separadora"></div>
-                    
-                    <div class="nombre-invitado">${invitado.nombre}</div>
-                    
-                    <div class="linea-separadora"></div>
-                    
-                    <div class="espacio-nota">
-                        ✍️ Escribe aquí tu mensaje especial...
-                    </div>
-                `;
-                grid.appendChild(tarjeta);
-            });
-        }
-
-        function imprimirTarjetas() {
-            window.print();
-        }
-
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', async function() {
-            await cargarInvitados();
-            generarTarjetas();
-        });
-    </script>
 </body>
 </html>
