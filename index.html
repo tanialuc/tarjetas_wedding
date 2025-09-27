@@ -81,7 +81,7 @@
             text-align: center;
         }
         
-        .guest-name {
+        .guest-name-floral {
             color: #8b6b4c;
             font-weight: normal;
             letter-spacing: 1px;
@@ -104,11 +104,25 @@
         .name-side {
             flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
             background: linear-gradient(to right, #faf7f2, white);
             min-width: 0;
+        }
+        
+        .guest-name-main {
+            color: #8b6b4c;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            font-size: 2.8rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin: 0;
+            text-align: center;
+            width: 100%;
         }
         
         .controls {
@@ -162,8 +176,12 @@
                 height: 150px;
             }
             
-            .guest-name {
+            .guest-name-floral {
                 font-size: 1.8rem;
+            }
+            
+            .guest-name-main {
+                font-size: 2rem;
             }
             
             h1 {
@@ -184,8 +202,12 @@
                 height: 120px;
             }
             
-            .guest-name {
+            .guest-name-floral {
                 font-size: 1.6rem;
+            }
+            
+            .guest-name-main {
+                font-size: 1.8rem;
             }
             
             .controls {
@@ -221,8 +243,12 @@
                 display: none;
             }
             
-            .guest-name {
+            .guest-name-floral {
                 font-size: 2rem;
+            }
+            
+            .guest-name-main {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -248,38 +274,47 @@
         
         // Función para crear un cartel
         function createSeatCard(name) {
-            // Dividir el nombre en partes si es necesario
-            const nameParts = splitLongName(name);
+            // Dividir el nombre para la versión floral
+            const floralName = formatNameForFloral(name);
             
             return `
                 <div class="seat-card">
                     <div class="flower-side">
                         <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
                         <div class="name-overlay">
-                            <h2 class="guest-name">${nameParts}</h2>
+                            <h2 class="guest-name-floral">${floralName}</h2>
                             <div class="placeholder-text">colocar</div>
                         </div>
                     </div>
                     <div class="name-side">
-                        <h2 class="guest-name">${name}</h2>
+                        <h2 class="guest-name-main">${name}</h2>
                     </div>
                 </div>
             `;
         }
         
-        // Función para dividir nombres largos
-        function splitLongName(name) {
-            if (name.length <= 15) return name;
-            
+        // Función para formatear el nombre para la sección floral
+        function formatNameForFloral(name) {
             const words = name.split(' ');
-            if (words.length > 1) {
-                return words.join('<br>');
+            
+            if (words.length === 1) {
+                // Si es un solo nombre, dividirlo si es muy largo
+                if (name.length > 10) {
+                    const mid = Math.ceil(name.length / 2);
+                    return name.substring(0, mid) + '<br>' + name.substring(mid);
+                }
+                return name;
             }
             
-            // Para nombres muy largos sin espacios, dividir manualmente
-            if (name.length > 15) {
-                const mid = Math.floor(name.length / 2);
-                return name.substring(0, mid) + '<br>' + name.substring(mid);
+            if (words.length === 2) {
+                return words[0] + '<br>' + words[1];
+            }
+            
+            // Para 3 o más palabras
+            if (words.length >= 3) {
+                const firstPart = words.slice(0, Math.ceil(words.length/2)).join(' ');
+                const secondPart = words.slice(Math.ceil(words.length/2)).join(' ');
+                return firstPart + '<br>' + secondPart;
             }
             
             return name;
@@ -292,10 +327,10 @@
                 "María González", 
                 "Carlos López Martínez",
                 "Ana Martínez",
-                "Pedro Sánchez",
-                "Laura Fernández",
+                "Pedro Sánchez Rodríguez",
+                "Laura Fernández García",
                 "Miguel Torres",
-                "Elena Vargas"
+                "Elena Vargas Moreno"
             ];
             
             const container = document.getElementById('cardsContainer');
