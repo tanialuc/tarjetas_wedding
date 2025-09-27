@@ -47,6 +47,7 @@
             cursor: pointer;
             transition: all 0.3s;
             background: white;
+            font-family: 'Georgia', serif;
         }
         
         .font-option:hover {
@@ -111,7 +112,7 @@
             overflow-wrap: break-word;
             margin: 0;
             text-align: center;
-            font-family: 'Playfair Display', serif; /* Fuente por defecto */
+            font-family: 'Playfair Display', serif;
         }
         
         /* Estilos de fuentes elegantes */
@@ -122,7 +123,7 @@
         
         .font-dancing {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.2rem; /* Un poco más grande para script */
+            font-size: 3.2rem;
         }
         
         .font-greatvibes {
@@ -141,15 +142,21 @@
             font-size: 3rem;
         }
         
-        .name-side {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: linear-gradient(to right, #faf7f2, white);
-            min-width: 0;
-            display: none;
+        .loading {
+            font-size: 1.2rem;
+            color: #8b6b4c;
+            font-style: italic;
+            margin: 20px 0;
+        }
+        
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 500px;
         }
         
         .controls {
@@ -287,15 +294,18 @@
         <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
     </div>
     
+    <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
+    <div id="errorMessage" class="error" style="display: none;"></div>
+    
     <div class="cards-container" id="cardsContainer">
-        <!-- Los carteles se generarán automáticamente -->
+        <!-- Los carteles se generarán automáticamente desde el JSON -->
     </div>
     
     <div class="controls">
         <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
         <button onclick="addCard()">Agregar Cartel</button>
+        <button onclick="loadFromJSON()">Recargar desde JSON</button>
         <button onclick="printCards()">Imprimir Carteles</button>
-        <button onclick="loadExampleGuests()">Cargar Ejemplos</button>
         <button onclick="clearAll()">Limpiar Todo</button>
     </div>
 
@@ -317,7 +327,7 @@
             // Actualizar fuentes en los nombres
             const guestNames = document.querySelectorAll('.guest-name');
             guestNames.forEach(name => {
-                name.className = 'guest-name'; // Reset classes
+                name.className = 'guest-name';
                 name.classList.add('font-' + fontName);
             });
         }
@@ -339,7 +349,62 @@
             `;
         }
         
-        // Cargar invitados de ejemplo
+        // Función para cargar desde el JSON
+        async function loadFromJSON() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const container = document.getElementById('cardsContainer');
+            
+            loadingMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+            container.innerHTML = '';
+            
+            try {
+                const response = await fetch('invitados-mesa.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Error al cargar el JSON: ${response.status}`);
+                }
+                
+                const guests = await response.json();
+                
+                if (!Array.isArray(guests)) {
+                    throw new Error('El formato del JSON no es válido');
+                }
+                
+                if (guests.length === 0) {
+                    throw new Error('El archivo JSON está vacío');
+                }
+                
+                guests.forEach(guest => {
+                    if (guest.nombre && guest.nombre.trim() !== '') {
+                        container.innerHTML += createSeatCard(guest.nombre.trim());
+                    }
+                });
+                
+                loadingMessage.style.display = 'none';
+                
+                if (container.innerHTML === '') {
+                    throw new Error('No se encontraron nombres válidos en el JSON');
+                }
+                
+            } catch (error) {
+                loadingMessage.style.display = 'none';
+                errorMessage.style.display = 'block';
+                errorMessage.innerHTML = `
+                    <strong>Error:</strong> ${error.message}<br><br>
+                    <small>
+                        Asegúrate de que el archivo "invitados-mesa.json" esté en el mismo directorio<br>
+                        y tenga el formato correcto: [{"nombre": "Jovito Rodríguez"}, ...]
+                    </small>
+                `;
+                
+                // Cargar ejemplos como fallback
+                loadExampleGuests();
+            }
+        }
+        
+        // Función de respaldo con ejemplos
         function loadExampleGuests() {
             const exampleGuests = [
                 "Jovito Rodriguez",
@@ -396,9 +461,9 @@
             }
         });
         
-        // Cargar algunos carteles de ejemplo al iniciar
+        // Cargar automáticamente desde el JSON al iniciar
         window.onload = function() {
-            loadExampleGuests();
+            loadFromJSON();
         };
     </script>
 </body>
