@@ -1,87 +1,176 @@
 [
   {
     "nombre": "Jovito Rodríguez",
-    "mesa": "1",
-    "nota": ""
+    "posicion": "Cabecera",
+    "tipo": "Padre de la novia",
+    "lado": "izquierda"
   },
   {
     "nombre": "Rosa Alba Rodríguez",
-    "mesa": "2",
-    "nota": ""
+    "posicion": "Cabecera", 
+    "tipo": "Madre de la novia",
+    "lado": "izquierda"
   },
   {
-    "nombre": "Rosaura Rodríguez",
-    "mesa": "3",
-    "nota": ""
-  },
-  {
-    "nombre": "Camila Rodríguez",
-    "mesa": "4",
-    "nota": ""
-  },
-  {
-    "nombre": "Valeria Rodríguez",
-    "mesa": "5",
-    "nota": ""
-  },  
-  {
-    "nombre": "Jakeline Rodríguez",
-    "mesa": "6",
-    "nota": ""
-  },
-  {
-    "nombre": "Diego Rojas",
-    "mesa": "7",
-    "nota": ""
-  },
-  {
-    "nombre": "Vicente Rojas",
-    "mesa": "8",
-    "nota": ""
-  },  
-  {
-    "nombre": "Marisol Rodríguez",
-    "mesa": "9",
-    "nota": ""
-  },
-  {
-    "nombre": "Stepanie Rodríguez y David Alvaro", 
-    "mesa": "10",
-    "nota": ""
-  },
-  {
-    "nombre": "David Alvaro", 
-    "mesa": "11",
-    "nota": ""
-  },  
-  {
-    "nombre": "Manuel Moraga",
-    "mesa": "12",
-    "nota": ""
+    "nombre": "Manuel Moraga M",
+    "posicion": "Cabecera",
+    "tipo": "Padre del novio",
+    "lado": "derecha"
   },
   {
     "nombre": "Ligia Salazar",
-    "mesa": "13",
-    "nota": ""
+    "posicion": "Cabecera",
+    "tipo": "Madre del novio",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Rosaura Rodríguez",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Camila Rodríguez",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Valeria Rodríguez",
+    "posicion": "Centro", 
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Jakeline Rodríguez",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Diego Rojas",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Vicente Rojas", 
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Marisol Rodríguez",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Stepanie Rodríguez",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "David Alvaro",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "izquierda"
   },
   {
     "nombre": "Seily Moraga",
-    "mesa": "14",
-    "nota": ""
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "derecha"
   },
   {
     "nombre": "Maureen Moraga",
-    "mesa": "15",
-    "nota": ""
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "derecha"
   },
   {
-    "nombre": "Ana Julia Moraga y Miguel",
-    "mesa": "16",
-    "nota": ""
+    "nombre": "Ana Julia Moraga",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Miguel",
+    "posicion": "Centro",
+    "tipo": "Familia",
+    "lado": "derecha"
   },
   {
     "nombre": "Daniel Barrantes",
-    "mesa": "17",
-    "nota": ""
+    "posicion": "Cabecera",
+    "tipo": "Padrino",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Daniel Murillo",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Marlon Villalobos",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Andrés Marin",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Marco Boniche",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Jeffrey Torres",
+    "posicion": "Final",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Gustavo Torres",
+    "posicion": "Final",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Marie Barquero",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Viviana Chevez",
+    "posicion": "Centro",
+    "tipo": "Amigos",
+    "lado": "izquierda"
+  },
+  {
+    "nombre": "Bryan Zuñiga",
+    "posicion": "Final",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "José Salas",
+    "posicion": "Final",
+    "tipo": "Amigos",
+    "lado": "derecha"
+  },
+  {
+    "nombre": "Marlon Dailey",
+    "posicion": "Final",
+    "tipo": "Amigos",
+    "lado": "derecha"
   }
 ]
