@@ -9,93 +9,142 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Georgia', serif;
         }
         
         body {
-            background-color: #f9f5f0;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            background-color: #faf9f7;
+            color: #5a4a3a;
             display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        .image-section {
-            flex: 0 0 600px;
-        }
-        
-        .image-section img {
+        .invitation-card {
             width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .flower-section {
+            flex: 0 0 600px;
+            background: linear-gradient(135deg, #f9f3e9 0%, #f5ebdc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .flower-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800"><path fill="%23e8d9c5" d="M300,150 C400,50 500,100 500,250 C500,400 400,450 300,350 C200,450 100,400 100,250 C100,100 200,50 300,150 Z"/><path fill="%23d4c2a7" d="M200,400 C250,350 350,350 400,400 C450,450 400,550 300,600 C200,550 150,450 200,400 Z"/><path fill="%23c5af91" d="M150,600 C200,550 250,550 300,600 C350,650 300,700 250,750 C200,700 150,650 150,600 Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.7;
         }
         
         .content-section {
             flex: 1;
-            min-width: 300px;
-            padding-top: 20px;
+            padding: 60px 40px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
-        .names {
-            font-size: 3.5rem;
-            font-weight: normal;
-            letter-spacing: 2px;
+        .couple-names {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-align: center;
             margin-bottom: 30px;
             color: #8b6b4c;
-            text-align: center;
+            position: relative;
+        }
+        
+        .couple-names::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 2px;
+            background-color: #d4c2a7;
+            margin: 15px auto;
         }
         
         .date {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
             text-align: center;
-            color: #666;
-            border-bottom: 1px solid #e0d6c9;
-            padding-bottom: 20px;
-        }
-        
-        .guest-name {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #8b6b4c;
+            margin-bottom: 50px;
+            color: #7a6855;
             font-style: italic;
         }
         
-        .message {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
-            background-color: #f5f0e9;
-            padding: 25px;
-            border-radius: 5px;
-            border-left: 4px solid #d4c2a7;
+        .guest-name {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #8b6b4c;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
         
-        @media (max-width: 1100px) {
-            .container {
-                justify-content: center;
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #5a4a3a;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .ornament {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2rem;
+            color: #d4c2a7;
+        }
+        
+        @media (max-width: 950px) {
+            .invitation-card {
+                flex-direction: column;
             }
             
-            .image-section {
-                flex: 0 0 100%;
-                max-width: 600px;
+            .flower-section {
+                flex: 0 0 400px;
+            }
+            
+            .couple-names {
+                font-size: 2.5rem;
+            }
+            
+            .guest-name {
+                font-size: 1.8rem;
             }
         }
         
         @media (max-width: 600px) {
-            .names {
-                font-size: 2.5rem;
+            .flower-section {
+                flex: 0 0 300px;
+            }
+            
+            .content-section {
+                padding: 40px 20px;
+            }
+            
+            .couple-names {
+                font-size: 2rem;
             }
             
             .guest-name {
@@ -105,26 +154,26 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-section">
-            <!-- Imagen de placeholder - reemplaza con tu imagen real -->
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Tania y Manuel">
+    <div class="invitation-card">
+        <div class="flower-section">
+            <!-- Sección floral decorativa -->
         </div>
         
         <div class="content-section">
-            <h1 class="names">Tania & Manuel</h1>
+            <h1 class="couple-names">Tania & Manuel</h1>
             
             <div class="date">7 de Marzo 2026</div>
+            
+            <div class="ornament">❦</div>
             
             <h2 class="guest-name">Jovito Rodriguez</h2>
             
             <div class="message">
-                <p>Querido Jovito,</p>
-                <p>Nos complace enormemente invitarte a compartir con nosotros el día más especial de nuestras vidas. Después de un hermoso camino juntos, hemos decidido unir nuestras vidas para siempre y nos encantaría que formes parte de este momento tan significativo.</p>
-                <p>La ceremonia tendrá lugar en la Hacienda Santa María a las 4:00 de la tarde, seguida de una recepción y cena. Esperamos poder celebrar contigo este día lleno de amor y alegría.</p>
-                <p>Con todo nuestro cariño,</p>
-                <p><strong>Tania & Manuel</strong></p>
+                <p>Nos complace invitarte a celebrar nuestra unión</p>
+                <p style="margin-top: 15px;">Esperamos compartir contigo este día tan especial</p>
             </div>
+            
+            <div class="ornament">❦</div>
         </div>
     </div>
 </body>
