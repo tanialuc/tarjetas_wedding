@@ -47,6 +47,7 @@
             border-radius: 8px;
             overflow: hidden;
             background-color: white;
+            position: relative;
         }
         
         .flower-side {
@@ -66,6 +67,40 @@
             opacity: 0.15;
         }
         
+        .name-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .guest-name {
+            color: #8b6b4c;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            font-size: 2.2rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .placeholder-text {
+            color: #ff0000;
+            font-size: 1rem;
+            margin-top: 10px;
+            font-style: italic;
+            opacity: 0.7;
+        }
+        
         .name-side {
             flex: 1;
             display: flex;
@@ -73,29 +108,7 @@
             align-items: center;
             padding: 20px;
             background: linear-gradient(to right, #faf7f2, white);
-            min-width: 0; /* Importante para que el texto no se desborde */
-        }
-        
-        .guest-name-container {
-            width: 100%;
-            max-width: 100%;
-            text-align: center;
-            padding: 10px;
-        }
-        
-        .guest-name {
-            color: #8b6b4c;
-            font-weight: normal;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            width: 100%;
-            display: block;
-            font-size: 2.5rem; /* Tamaño reducido para mejor ajuste */
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-            margin: 0 auto;
-            max-width: 100%;
+            min-width: 0;
         }
         
         .controls {
@@ -144,8 +157,13 @@
                 flex: 0 0 150px;
             }
             
+            .name-overlay {
+                width: 100%;
+                height: 150px;
+            }
+            
             .guest-name {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             h1 {
@@ -162,9 +180,12 @@
                 flex: 0 0 120px;
             }
             
+            .name-overlay {
+                height: 120px;
+            }
+            
             .guest-name {
-                font-size: 1.8rem;
-                padding: 5px;
+                font-size: 1.6rem;
             }
             
             .controls {
@@ -196,8 +217,12 @@
                 margin-bottom: 20px;
             }
             
+            .placeholder-text {
+                display: none;
+            }
+            
             .guest-name {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
         }
     </style>
@@ -223,31 +248,54 @@
         
         // Función para crear un cartel
         function createSeatCard(name) {
+            // Dividir el nombre en partes si es necesario
+            const nameParts = splitLongName(name);
+            
             return `
                 <div class="seat-card">
                     <div class="flower-side">
                         <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
+                        <div class="name-overlay">
+                            <h2 class="guest-name">${nameParts}</h2>
+                            <div class="placeholder-text">colocar</div>
+                        </div>
                     </div>
                     <div class="name-side">
-                        <div class="guest-name-container">
-                            <h2 class="guest-name">${name}</h2>
-                        </div>
+                        <h2 class="guest-name">${name}</h2>
                     </div>
                 </div>
             `;
+        }
+        
+        // Función para dividir nombres largos
+        function splitLongName(name) {
+            if (name.length <= 15) return name;
+            
+            const words = name.split(' ');
+            if (words.length > 1) {
+                return words.join('<br>');
+            }
+            
+            // Para nombres muy largos sin espacios, dividir manualmente
+            if (name.length > 15) {
+                const mid = Math.floor(name.length / 2);
+                return name.substring(0, mid) + '<br>' + name.substring(mid);
+            }
+            
+            return name;
         }
         
         // Cargar invitados de ejemplo
         function loadExampleGuests() {
             const exampleGuests = [
                 "Jovito Rodriguez",
-                "María González de la Fuente", 
+                "María González", 
                 "Carlos López Martínez",
-                "Ana Martínez Sánchez",
-                "Pedro Sánchez Rodríguez",
-                "Laura Fernández García",
-                "Miguel Torres Hernández",
-                "Elena Vargas Moreno"
+                "Ana Martínez",
+                "Pedro Sánchez",
+                "Laura Fernández",
+                "Miguel Torres",
+                "Elena Vargas"
             ];
             
             const container = document.getElementById('cardsContainer');
