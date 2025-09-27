@@ -22,10 +22,11 @@
         }
         
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Source Sans Pro', sans-serif;
             background: #f5f0eb;
             color: var(--color-texto);
             padding: 20px;
+            line-height: 1.6;
         }
         
         .container {
@@ -36,35 +37,39 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px;
+            padding: 30px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--color-dorado);
         }
         
         .titulo-principal {
             color: var(--color-cafe);
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
         }
         
         .subtitulo {
             color: var(--color-dorado);
-            font-size: 1.2em;
+            font-size: 1.3em;
+            font-style: italic;
         }
         
         .controles {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--color-dorado);
         }
         
         .botones {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
         
@@ -72,76 +77,136 @@
             background: var(--color-dorado);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1em;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
         
         .boton:hover {
             background: var(--color-cafe);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .boton-secundario {
+            background: #6c757d;
+        }
+        
+        .boton-secundario:hover {
+            background: #545b62;
+        }
+        
+        .estadisticas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .estadistica {
+            background: var(--color-beige);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--color-dorado);
         }
         
         .grid-tarjetas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
         
         .tarjeta {
             background: white;
-            border: 2px solid var(--color-dorado);
-            border-radius: 10px;
-            padding: 25px;
+            border: 3px solid var(--color-dorado);
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             page-break-inside: avoid;
             break-inside: avoid;
+            transition: transform 0.3s ease;
+        }
+        
+        .tarjeta:hover {
+            transform: translateY(-5px);
         }
         
         .encabezado-tarjeta {
-            border-bottom: 1px dashed var(--color-dorado);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--color-dorado);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
         
         .nombres-novios-tarjeta {
             color: var(--color-cafe);
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
         }
         
         .fecha-tarjeta {
             color: var(--color-dorado);
-            font-size: 0.9em;
+            font-size: 1em;
+            font-weight: 500;
         }
         
         .nombre-invitado {
-            font-size: 1.4em;
+            font-size: 1.5em;
             color: var(--color-cafe);
-            margin: 20px 0;
-            min-height: 60px;
+            margin: 25px 0;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        
+        .info-mesa {
+            background: var(--color-beige);
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-weight: 600;
+            color: var(--color-cafe);
+            border: 1px solid var(--color-dorado);
         }
         
         .mensaje-agradecimiento {
-            border-top: 1px dashed var(--color-dorado);
-            padding-top: 20px;
-            margin-top: 20px;
-            min-height: 100px;
+            border-top: 2px dashed var(--color-dorado);
+            padding-top: 25px;
+            margin-top: 25px;
+            min-height: 120px;
             font-style: italic;
             color: #666;
             font-family: 'Source Sans Pro', sans-serif;
+            text-align: left;
         }
         
         .placeholder-nota {
-            color: #ccc;
-            font-size: 0.9em;
+            color: #999;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .tipo-invitado {
+            display: inline-block;
+            background: var(--color-dorado);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+            font-weight: 600;
         }
         
         /* Estilos para impresión */
@@ -151,29 +216,67 @@
                 padding: 0;
             }
             
-            .header, .controles {
+            .header, .controles, .instrucciones {
                 display: none;
             }
             
             .grid-tarjetas {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 15px;
             }
             
             .tarjeta {
                 box-shadow: none;
-                border: 1px solid #ddd;
+                border: 2px solid #ddd;
                 margin: 0;
-                padding: 20px;
+                padding: 25px;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .tarjeta:hover {
+                transform: none;
             }
         }
         
         .instrucciones {
             background: #e8f4f8;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
             font-family: 'Source Sans Pro', sans-serif;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: var(--color-cafe);
+        }
+        
+        .error {
+            background: #ffe6e6;
+            color: #d63031;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            border-left: 4px solid #d63031;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-tarjetas {
+                grid-template-columns: 1fr;
+            }
+            
+            .botones {
+                flex-direction: column;
+            }
+            
+            .boton {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -181,76 +284,104 @@
     <div class="container">
         <div class="header">
             <h1 class="titulo-principal">Tarjetas de Lugar</h1>
-            <p class="subtitulo">Boda Tania & Manuel - 7 de Marzo 2026</p>
+            <p class="subtitulo">Boda Tania & Manuel · 7 de Marzo 2026 · Hotel Los Lagos, La Fortuna</p>
         </div>
         
         <div class="controles">
             <div class="botones">
-                <button class="boton" onclick="generarTarjetas()">Generar Todas las Tarjetas</button>
-                <button class="boton" onclick="imprimirTarjetas()">Imprimir Tarjetas</button>
-                <button class="boton" onclick="descargarJSON()">Descargar Lista</button>
+                <button class="boton" onclick="generarTarjetas()">🎴 Generar Tarjetas</button>
+                <button class="boton" onclick="imprimirTarjetas()">🖨️ Imprimir Tarjetas</button>
+                <button class="boton boton-secundario" onclick="mostrarEstadisticas()">📊 Ver Estadísticas</button>
             </div>
-            <p><strong>Instrucciones:</strong> Genera las tarjetas, imprímelas y escribe tu mensaje personalizado a mano en cada una.</p>
+            
+            <div class="estadisticas" id="estadisticas" style="display: none;">
+                <div class="estadistica">
+                    <div>Total Invitados</div>
+                    <div id="total-invitados">0</div>
+                </div>
+                <div class="estadistica">
+                    <div>Total Mesas</div>
+                    <div id="total-mesas">0</div>
+                </div>
+                <div class="estadistica">
+                    <div>Familia</div>
+                    <div id="total-familia">0</div>
+                </div>
+                <div class="estadistica">
+                    <div>Amigos</div>
+                    <div id="total-amigos">0</div>
+                </div>
+            </div>
         </div>
         
         <div class="instrucciones">
-            <h3>💡 Consejos para imprimir:</h3>
+            <h3>💡 Instrucciones de Uso:</h3>
             <ul>
-                <li>Usa papel grueso o cartulina para mejor calidad</li>
-                <li>Configura la impresora en modo "alta calidad"</li>
-                <li>Recomendado: Papel de 200-250 g/m²</li>
-                <li>Puedes usar papel perlado o con textura para elegancia</li>
+                <li><strong>Generar Tarjetas:</strong> Crea todas las tarjetas automáticamente</li>
+                <li><strong>Imprimir:</strong> Configura la impresora en modo horizontal y alta calidad</li>
+                <li><strong>Papel recomendado:</strong> Cartulina de 200-250 g/m²</li>
+                <li><strong>Notas personalizadas:</strong> Escribe tu mensaje a mano en el espacio designado</li>
             </ul>
         </div>
         
         <div class="grid-tarjetas" id="grid-tarjetas">
-            <!-- Las tarjetas se generarán aquí -->
+            <div class="loading">Cargando invitados...</div>
         </div>
     </div>
 
     <script>
-        // Datos de los invitados (puedes cargarlos desde un JSON externo también)
-        const invitados = [
-            { nombre: "Jovito Rodríguez y Rosa Alba Rodríguez", mesa: "" },
-            { nombre: "Rosaura Rodríguez, Camila Rodríguez, Valeria Rodríguez", mesa: "" },
-            { nombre: "Jakeline Rodríguez, Diego Rojas, Vicente Rojas", mesa: "" },
-            { nombre: "Marisol Rodríguez", mesa: "" },
-            { nombre: "Stepanie Rodríguez y David Alvaro", mesa: "" },
-            { nombre: "Manuel Moraga y Ligia Salazar", mesa: "" },
-            { nombre: "Seily Moraga", mesa: "" },
-            { nombre: "Maureen Moraga", mesa: "" },
-            { nombre: "Ana Julia Moraga y Miguel", mesa: "" },
-            { nombre: "Daniel Barrantes", mesa: "" },
-            { nombre: "Daniel Murillo", mesa: "" },
-            { nombre: "Marlon Villalobos", mesa: "" },
-            { nombre: "Andres Marin", mesa: "" },
-            { nombre: "Marco Boniche", mesa: "" },
-            { nombre: "Jeffrey Torres", mesa: "" },
-            { nombre: "Gustavo Torres", mesa: "" },
-            { nombre: "Marie Barquero", mesa: "" },
-            { nombre: "Viviana Cheves", mesa: "" },
-            { nombre: "Bryan Zuñiga", mesa: "" },
-            { nombre: "José Salas", mesa: "" },
-            { nombre: "Marlon Dailey", mesa: "" }
-        ];
+        let invitados = [];
+
+        // Cargar datos del JSON externo
+        async function cargarInvitados() {
+            try {
+                const response = await fetch('invitados-mesa.json');
+                if (!response.ok) {
+                    throw new Error('Error al cargar los datos de invitados');
+                }
+                invitados = await response.json();
+                return invitados;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('grid-tarjetas').innerHTML = 
+                    '<div class="error">Error al cargar la lista de invitados. Verifica que el archivo invitados-mesa.json exista.</div>';
+                return [];
+            }
+        }
 
         function generarTarjetas() {
             const grid = document.getElementById('grid-tarjetas');
+            
+            if (invitados.length === 0) {
+                grid.innerHTML = '<div class="error">No hay datos de invitados cargados.</div>';
+                return;
+            }
+            
             grid.innerHTML = '';
             
-            invitados.forEach(invitado => {
+            invitados.forEach((invitado, index) => {
                 const tarjeta = document.createElement('div');
                 tarjeta.className = 'tarjeta';
                 tarjeta.innerHTML = `
                     <div class="encabezado-tarjeta">
                         <div class="nombres-novios-tarjeta">Tania & Manuel</div>
-                        <div class="fecha-tarjeta">7 de Marzo 2026</div>
+                        <div class="fecha-tarjeta">7 de Marzo 2026 · Hotel Los Lagos</div>
                     </div>
                     
                     <div class="nombre-invitado">${invitado.nombre}</div>
                     
+                    <div class="info-mesa">
+                        📍 ${invitado.mesa}
+                        <div class="tipo-invitado">${invitado.tipo || 'Invitado'}</div>
+                    </div>
+                    
                     <div class="mensaje-agradecimiento">
-                        <div class="placeholder-nota">Escribe aquí tu mensaje personalizado...</div>
+                        <div class="placeholder-nota">
+                            Querido/a ${invitado.nombre.split(' ')[0]},<br><br>
+                            Gracias por acompañarnos en este día tan especial. Tu presencia significa mucho para nosotros.<br><br>
+                            Con todo nuestro cariño,<br>
+                            Tania y Manuel 💕
+                        </div>
                     </div>
                 `;
                 grid.appendChild(tarjeta);
@@ -261,18 +392,35 @@
             window.print();
         }
 
-        function descargarJSON() {
-            const dataStr = JSON.stringify(invitados, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        function mostrarEstadisticas() {
+            const estadisticasDiv = document.getElementById('estadisticas');
+            const isVisible = estadisticasDiv.style.display !== 'none';
             
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = 'lista-invitados-mesa.json';
-            link.click();
+            if (!isVisible && invitados.length > 0) {
+                // Calcular estadísticas
+                const mesasUnicas = [...new Set(invitados.map(i => i.mesa))];
+                const familia = invitados.filter(i => i.tipo === 'Familia').length;
+                const amigos = invitados.filter(i => i.tipo === 'Amigos').length;
+                const padrinos = invitados.filter(i => i.tipo === 'Padrino').length;
+                
+                document.getElementById('total-invitados').textContent = invitados.length;
+                document.getElementById('total-mesas').textContent = mesasUnicas.length;
+                document.getElementById('total-familia').textContent = familia;
+                document.getElementById('total-amigos').textContent = amigos + padrinos;
+                
+                estadisticasDiv.style.display = 'grid';
+            } else {
+                estadisticasDiv.style.display = 'none';
+            }
         }
 
-        // Generar tarjetas automáticamente al cargar la página
-        document.addEventListener('DOMContentLoaded', generarTarjetas);
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', async function() {
+            await cargarInvitados();
+            if (invitados.length > 0) {
+                generarTarjetas();
+            }
+        });
     </script>
 </body>
 </html>
