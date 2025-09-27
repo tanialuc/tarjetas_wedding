@@ -3,178 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tania & Manuel - Invitación de Boda</title>
+    <title>Carteles de Asiento - Tania & Manuel</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Georgia', serif;
         }
         
         body {
-            font-family: 'Playfair Display', serif;
-            background-color: #faf9f7;
+            background-color: #f9f5f0;
             color: #5a4a3a;
+            padding: 40px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
         }
         
-        .invitation-card {
-            width: 100%;
-            max-width: 900px;
+        h1 {
+            color: #8b6b4c;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        
+        .cards-container {
             display: flex;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+        }
+        
+        .seat-card {
+            width: 700px;
+            height: 300px;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             border-radius: 8px;
             overflow: hidden;
+            background-color: white;
         }
         
-        .flower-section {
-            flex: 0 0 600px;
-            background: linear-gradient(135deg, #f9f3e9 0%, #f5ebdc 100%);
+        .flower-side {
+            flex: 0 0 500px;
+            background-color: #faf7f2;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            position: relative;
         }
         
-        .flower-section::before {
+        .flower-side::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800"><path fill="%23e8d9c5" d="M300,150 C400,50 500,100 500,250 C500,400 400,450 300,350 C200,450 100,400 100,250 C100,100 200,50 300,150 Z"/><path fill="%23d4c2a7" d="M200,400 C250,350 350,350 400,400 C450,450 400,550 300,600 C200,550 150,450 200,400 Z"/><path fill="%23c5af91" d="M150,600 C200,550 250,550 300,600 C350,650 300,700 250,750 C200,700 150,650 150,600 Z"/></svg>');
+            background-image: url('https://i.imgur.com/KjyYl3C.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.7;
+            opacity: 0.15;
         }
         
-        .content-section {
+        .name-side {
             flex: 1;
-            padding: 60px 40px;
-            background-color: white;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-        }
-        
-        .couple-names {
-            font-size: 3.2rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #8b6b4c;
-            position: relative;
-        }
-        
-        .couple-names::after {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 2px;
-            background-color: #d4c2a7;
-            margin: 15px auto;
-        }
-        
-        .date {
-            font-size: 1.4rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #7a6855;
-            font-style: italic;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, #faf7f2, white);
         }
         
         .guest-name {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 40px;
+            font-size: 2.8rem;
             color: #8b6b4c;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-        
-        .message {
-            font-size: 1.1rem;
-            line-height: 1.8;
             text-align: center;
-            color: #5a4a3a;
-            max-width: 400px;
-            margin: 0 auto;
+            font-weight: normal;
+            letter-spacing: 1px;
         }
         
-        .ornament {
-            text-align: center;
-            margin: 30px 0;
-            font-size: 2rem;
-            color: #d4c2a7;
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
-        @media (max-width: 950px) {
-            .invitation-card {
-                flex-direction: column;
+        button {
+            background-color: #8b6b4c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #7a5a3c;
+        }
+        
+        input {
+            padding: 10px;
+            border: 1px solid #d4c2a7;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 250px;
+        }
+        
+        @media (max-width: 750px) {
+            .seat-card {
+                width: 100%;
+                max-width: 500px;
+                height: 200px;
             }
             
-            .flower-section {
-                flex: 0 0 400px;
-            }
-            
-            .couple-names {
-                font-size: 2.5rem;
+            .flower-side {
+                flex: 0 0 200px;
             }
             
             .guest-name {
-                font-size: 1.8rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .flower-section {
-                flex: 0 0 300px;
-            }
-            
-            .content-section {
-                padding: 40px 20px;
-            }
-            
-            .couple-names {
                 font-size: 2rem;
             }
+        }
+        
+        @media (max-width: 500px) {
+            .seat-card {
+                flex-direction: column;
+                height: auto;
+            }
             
-            .guest-name {
-                font-size: 1.5rem;
+            .flower-side {
+                flex: 0 0 150px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="invitation-card">
-        <div class="flower-section">
-            <!-- Sección floral decorativa -->
+    <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
+    
+    <div class="cards-container">
+        <div class="seat-card">
+            <div class="flower-side"></div>
+            <div class="name-side">
+                <h2 class="guest-name">Jovito Rodriguez</h2>
+            </div>
         </div>
         
-        <div class="content-section">
-            <h1 class="couple-names">Tania & Manuel</h1>
-            
-            <div class="date">7 de Marzo 2026</div>
-            
-            <div class="ornament">❦</div>
-            
-            <h2 class="guest-name">Jovito Rodriguez</h2>
-            
-            <div class="message">
-                <p>Nos complace invitarte a celebrar nuestra unión</p>
-                <p style="margin-top: 15px;">Esperamos compartir contigo este día tan especial</p>
+        <div class="seat-card">
+            <div class="flower-side"></div>
+            <div class="name-side">
+                <h2 class="guest-name">María González</h2>
             </div>
-            
-            <div class="ornament">❦</div>
+        </div>
+        
+        <div class="seat-card">
+            <div class="flower-side"></div>
+            <div class="name-side">
+                <h2 class="guest-name">Carlos López</h2>
+            </div>
+        </div>
+        
+        <div class="seat-card">
+            <div class="flower-side"></div>
+            <div class="name-side">
+                <h2 class="guest-name">Ana Martínez</h2>
+            </div>
         </div>
     </div>
+    
+    <div class="controls">
+        <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
+        <button onclick="addCard()">Agregar Cartel</button>
+        <button onclick="printCards()">Imprimir Carteles</button>
+    </div>
+
+    <script>
+        function addCard() {
+            const nameInput = document.getElementById('guestName');
+            const name = nameInput.value.trim();
+            
+            if (name === '') {
+                alert('Por favor, escribe un nombre');
+                return;
+            }
+            
+            const cardsContainer = document.querySelector('.cards-container');
+            const newCard = document.createElement('div');
+            newCard.className = 'seat-card';
+            newCard.innerHTML = `
+                <div class="flower-side"></div>
+                <div class="name-side">
+                    <h2 class="guest-name">${name}</h2>
+                </div>
+            `;
+            
+            cardsContainer.appendChild(newCard);
+            nameInput.value = '';
+        }
+        
+        function printCards() {
+            window.print();
+        }
+        
+        // Permitir agregar con la tecla Enter
+        document.getElementById('guestName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addCard();
+            }
+        });
+    </script>
 </body>
 </html>
