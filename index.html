@@ -28,6 +28,7 @@
             text-align: center;
             font-weight: normal;
             letter-spacing: 2px;
+            font-size: 2.5rem;
         }
         
         .cards-container {
@@ -70,19 +71,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 20px;
             background: linear-gradient(to right, #faf7f2, white);
+            min-width: 0; /* Importante para que el texto no se desborde */
+        }
+        
+        .guest-name-container {
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            padding: 10px;
         }
         
         .guest-name {
-            font-size: 2.8rem;
             color: #8b6b4c;
-            text-align: center;
             font-weight: normal;
             letter-spacing: 1px;
             line-height: 1.2;
+            width: 100%;
+            display: block;
+            font-size: 2.5rem; /* Tamaño reducido para mejor ajuste */
             word-wrap: break-word;
             overflow-wrap: break-word;
+            hyphens: auto;
+            margin: 0 auto;
             max-width: 100%;
         }
         
@@ -92,17 +104,19 @@
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
         }
         
         button {
             background-color: #8b6b4c;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s;
+            white-space: nowrap;
         }
         
         button:hover {
@@ -110,11 +124,12 @@
         }
         
         input {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #d4c2a7;
             border-radius: 4px;
             font-size: 1rem;
             width: 250px;
+            max-width: 100%;
         }
         
         @media (max-width: 750px) {
@@ -122,21 +137,7 @@
                 width: 100%;
                 max-width: 500px;
                 height: 200px;
-            }
-            
-            .flower-side {
-                flex: 0 0 200px;
-            }
-            
-            .guest-name {
-                font-size: 2rem;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .seat-card {
                 flex-direction: column;
-                height: auto;
             }
             
             .flower-side {
@@ -144,8 +145,36 @@
             }
             
             .guest-name {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .seat-card {
+                height: auto;
+            }
+            
+            .flower-side {
+                flex: 0 0 120px;
+            }
+            
+            .guest-name {
                 font-size: 1.8rem;
-                padding: 10px;
+                padding: 5px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            input, button {
+                width: 100%;
+                max-width: 300px;
             }
         }
         
@@ -166,6 +195,10 @@
                 page-break-inside: avoid;
                 margin-bottom: 20px;
             }
+            
+            .guest-name {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
@@ -181,6 +214,7 @@
         <button onclick="addCard()">Agregar Cartel</button>
         <button onclick="printCards()">Imprimir Carteles</button>
         <button onclick="loadExampleGuests()">Cargar Ejemplos</button>
+        <button onclick="clearAll()">Limpiar Todo</button>
     </div>
 
     <script>
@@ -195,7 +229,9 @@
                         <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
                     </div>
                     <div class="name-side">
-                        <h2 class="guest-name">${name}</h2>
+                        <div class="guest-name-container">
+                            <h2 class="guest-name">${name}</h2>
+                        </div>
                     </div>
                 </div>
             `;
@@ -205,13 +241,13 @@
         function loadExampleGuests() {
             const exampleGuests = [
                 "Jovito Rodriguez",
-                "María González", 
-                "Carlos López",
-                "Ana Martínez",
-                "Pedro Sánchez",
-                "Laura Fernández",
-                "Miguel Torres",
-                "Elena Vargas"
+                "María González de la Fuente", 
+                "Carlos López Martínez",
+                "Ana Martínez Sánchez",
+                "Pedro Sánchez Rodríguez",
+                "Laura Fernández García",
+                "Miguel Torres Hernández",
+                "Elena Vargas Moreno"
             ];
             
             const container = document.getElementById('cardsContainer');
@@ -235,6 +271,15 @@
             const container = document.getElementById('cardsContainer');
             container.innerHTML += createSeatCard(name);
             nameInput.value = '';
+            nameInput.focus();
+        }
+        
+        // Limpiar todos los carteles
+        function clearAll() {
+            if (confirm('¿Estás seguro de que quieres eliminar todos los carteles?')) {
+                const container = document.getElementById('cardsContainer');
+                container.innerHTML = '';
+            }
         }
         
         // Imprimir carteles
