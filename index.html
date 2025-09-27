@@ -51,7 +51,7 @@
         }
         
         .flower-side {
-            flex: 0 0 500px;
+            flex: 0 0 300px;
             background-color: #faf7f2;
             position: relative;
             overflow: hidden;
@@ -66,7 +66,7 @@
         
         .name-container {
             position: absolute;
-            top: 50%;
+            top: 35%; /* Más cerca de la parte superior */
             left: 50%;
             transform: translate(-50%, -50%);
             width: 90%;
@@ -93,7 +93,6 @@
             padding: 20px;
             background: linear-gradient(to right, #faf7f2, white);
             min-width: 0;
-            /* Ocultar esta sección ya que el nombre va solo en la imagen */
             display: none;
         }
         
@@ -139,7 +138,11 @@
             }
             
             .flower-side {
-                flex: 0 0 100%; /* Ocupa todo el ancho en móviles */
+                flex: 0 0 100%;
+            }
+            
+            .name-container {
+                top: 40%; /* Ajuste para móviles */
             }
             
             .guest-name {
@@ -149,15 +152,15 @@
             h1 {
                 font-size: 2rem;
             }
-            
-            .name-side {
-                display: none; /* Seguir oculto en móviles */
-            }
         }
         
         @media (max-width: 500px) {
             .seat-card {
                 height: 150px;
+            }
+            
+            .name-container {
+                top: 45%; /* Más alto en móviles pequeños */
             }
             
             .guest-name {
