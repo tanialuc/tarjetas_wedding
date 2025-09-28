@@ -409,6 +409,7 @@
         <button onclick="loadFromJSON()">Recargar desde JSON</button>
         <button onclick="printCards()">Imprimir Carteles</button>
         <button onclick="clearAll()">Limpiar Todo</button>
+        <button onclick="goToBingo()">🎲 Generar Cartones de Bingo</button> 
     </div>
 
     <script>
@@ -523,6 +524,10 @@
             if (confirm('¿Eliminar todos los carteles?')) {
                 document.getElementById('cardsContainer').innerHTML = '';
             }
+        }
+
+        function goToBingo() {
+            window.location.href = 'bingo.html';
         }
         
         function printCards() {
