@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartones de Bingo - Boda Tania & Manuel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+    <title>Carteles de Asiento - Tania & Manuel</title>
     <style>
         * {
             margin: 0;
@@ -13,381 +12,321 @@
         }
         
         body {
-            background-color: #f9f5f0;
-            color: #5a4a3a;
+            font-family: Arial, sans-serif;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Playfair Display', serif;
+            background-color: #f5f5f5;
         }
         
-        h1 {
-            color: #8b6b4c;
-            margin-bottom: 20px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
             text-align: center;
-            font-weight: normal;
-            letter-spacing: 2px;
-            font-size: 2.5rem;
-        }
-        
-        .subtitle {
-            color: #7a6855;
             margin-bottom: 30px;
-            text-align: center;
-            font-size: 1.2rem;
         }
         
-        .controls {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
         }
         
-        button {
-            background-color: #8b6b4c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            font-family: 'Playfair Display', serif;
+        .header .date {
+            font-size: 18px;
+            color: #666;
         }
         
-        button:hover {
-            background-color: #7a5a3c;
-        }
-        
-        .back-button {
-            background-color: #d4c2a7;
-            color: #5a4a3a;
-        }
-        
-        .back-button:hover {
-            background-color: #c5b298;
-        }
-        
-        .bingo-cards-container {
+        .cards-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            max-width: 1200px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
-        .bingo-card {
-            width: 380px;
-            height: 265px;
-            background: white;
-            border: 2px solid #8b6b4c;
+        .card {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
         
-        .bingo-header {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            text-align: center;
-            margin-bottom: 8px;
-            border-bottom: 2px solid #8b6b4c;
-            padding-bottom: 6px;
-        }
-        
-        .bingo-letter {
-            font-size: 1.4rem;
+        .card-title {
+            font-size: 24px;
             font-weight: bold;
-            color: #8b6b4c;
+            margin-bottom: 15px;
+            text-align: center;
         }
         
-        .bingo-grid {
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card-date {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .bingo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .bingo-card {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 3px;
-            height: calc(100% - 40px);
+            grid-template-rows: 40px repeat(5, 1fr);
+            gap: 5px;
+        }
+        
+        .bingo-header {
+            grid-column: 1 / span 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
         }
         
         .bingo-cell {
-            border: 1px solid #d4c2a7;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            background: #faf7f2;
-            border-radius: 2px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 18px;
+            background-color: #f9f9f9;
         }
         
-        .free-space {
-            background: #8b6b4c;
-            color: white;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.1rem;
+        .bingo-cell.free {
+            background-color: #e6f7ff;
             font-weight: bold;
         }
         
-        .guest-name-bingo {
-            position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: #8b6b4c;
-            font-size: 0.9rem;
-            font-weight: 500;
-            background: white;
-            padding: 2px 0;
-            border-radius: 4px 4px 0 0;
-        }
-        
-        .loading {
-            font-size: 1.2rem;
-            color: #8b6b4c;
-            font-style: italic;
-            margin: 20px 0;
-        }
-        
-        .error {
-            color: #d32f2f;
-            background: #ffebee;
-            padding: 15px;
+        .print-button {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             border-radius: 4px;
-            margin: 20px 0;
-            text-align: center;
-            max-width: 500px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         
-        .print-info {
-            margin: 15px 0;
-            font-size: 0.9rem;
-            color: #8b6b4c;
-            text-align: center;
-            background: #f5f0e9;
-            padding: 10px 15px;
-            border-radius: 4px;
+        .print-button:hover {
+            background-color: #45a049;
         }
         
-        /* Estilos para impresión */
         @media print {
             body {
+                background-color: white;
                 padding: 0;
-                background: white;
-                margin: 0;
             }
             
-            .controls, .subtitle, h1, .print-info {
+            .print-button {
                 display: none;
             }
             
-            .bingo-cards-container {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0;
-                max-width: none;
-                width: 100%;
-            }
-            
-            .bingo-card {
-                width: 100%;
-                height: 7cm;
-                box-shadow: none;
-                border: 1px solid #8b6b4c;
+            .cards-container, .bingo-container {
                 page-break-inside: avoid;
-                margin: 0;
-                border-radius: 0;
-                break-inside: avoid;
             }
             
-            @page {
-                size: letter portrait;
-                margin: 1cm;
-            }
-        }
-        
-        @media (max-width: 750px) {
-            .bingo-card {
-                width: 100%;
-                max-width: 350px;
-                height: 245px;
-            }
-            
-            .bingo-cards-container {
-                grid-template-columns: 1fr;
+            .card, .bingo-card {
+                box-shadow: none;
+                border: 1px solid #000;
             }
         }
     </style>
 </head>
 <body>
-    <h1>🎲 Cartones de Bingo</h1>
-    <div class="subtitle">Boda Tania & Manuel · 07.03.2026</div>
-    
-    <div class="print-info">
-        💡 Mismo tamaño que los carteles de asiento - Imprimir y pegar espalda con espalda
-    </div>
-    
-    <div class="controls">
-        <button onclick="goBack()">← Volver a Carteles de Asiento</button>
-        <button onclick="generateBingoCards()">🔄 Regenerar Cartones</button>
-        <button onclick="printBingoCards()">🖨️ Imprimir Cartones</button>
-    </div>
-    
-    <div id="loadingMessage" class="loading">Generando cartones de bingo únicos...</div>
-    <div id="errorMessage" class="error" style="display: none;"></div>
-    
-    <div class="bingo-cards-container" id="bingoCardsContainer">
-        <!-- Los cartones de bingo se generarán aquí -->
-    </div>
-
-    <script>
-        // Rango de números para el bingo tradicional
-        const bingoRanges = {
-            'B': [1, 15],
-            'I': [16, 30],
-            'N': [31, 45],
-            'G': [46, 60],
-            'O': [61, 75]
-        };
+    <div class="container">
+        <div class="header">
+            <h1>Carteles de Asiento - Tania & Manuel</h1>
+            <div class="date">07.03.2026</div>
+        </div>
         
-        // Función para volver a los carteles de asiento
-        function goBack() {
-            window.location.href = 'index.html';
-        }
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-title">Jovito Rodríguez</div>
+                <div class="card-subtitle">T M · 07.03.2026</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Rosa Alba Rodríguez</div>
+                <div class="card-subtitle">T M · 07.03.2026</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Rosaura Rodríguez</div>
+                <div class="card-subtitle">T M · 07.03.2026</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Camila Rodríguez</div>
+                <div class="card-subtitle">M · 07.03.2026</div>
+            </div>
+        </div>
         
-        // Función para generar números únicos para una columna
-        function generateColumnNumbers(letter) {
-            const [min, max] = bingoRanges[letter];
-            const numbers = [];
-            
-            // Generar 5 números únicos para la columna
-            while (numbers.length < 5) {
-                const num = Math.floor(Math.random() * (max - min + 1)) + min;
-                if (!numbers.includes(num)) {
-                    numbers.push(num);
-                }
-            }
-            
-            return numbers.sort((a, b) => a - b);
-        }
-        
-        // Función para crear un cartón de bingo único
-        function createBingoCard(guestName) {
-            // Generar números para cada columna
-            const columns = {};
-            for (const letter of ['B', 'I', 'N', 'G', 'O']) {
-                columns[letter] = generateColumnNumbers(letter);
-            }
-            
-            // Crear la cuadrícula 5x5
-            let gridHTML = '';
-            for (let row = 0; row < 5; row++) {
-                for (let col = 0; col < 5; col++) {
-                    const letter = ['B', 'I', 'N', 'G', 'O'][col];
-                    
-                    // Espacio libre en el centro
-                    if (row === 2 && col === 2) {
-                        gridHTML += `<div class="bingo-cell free-space">T & M</div>`;
-                    } else {
-                        const number = columns[letter][row];
-                        gridHTML += `<div class="bingo-cell">${number}</div>`;
-                    }
-                }
-            }
-            
-            return `
-                <div class="bingo-card">
-                    <div class="guest-name-bingo">${guestName}</div>
-                    <div class="bingo-header">
-                        <div class="bingo-letter">B</div>
-                        <div class="bingo-letter">I</div>
-                        <div class="bingo-letter">N</div>
-                        <div class="bingo-letter">G</div>
-                        <div class="bingo-letter">O</div>
-                    </div>
-                    <div class="bingo-grid">
-                        ${gridHTML}
-                    </div>
+        <div class="bingo-container">
+            <div class="bingo-card">
+                <div class="bingo-header">
+                    <span>B</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>O</span>
                 </div>
-            `;
-        }
-        
-        // Función para cargar invitados y generar cartones
-        async function generateBingoCards() {
-            const loadingMessage = document.getElementById('loadingMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            const container = document.getElementById('bingoCardsContainer');
+                <!-- B column -->
+                <div class="bingo-cell">1</div>
+                <div class="bingo-cell">16</div>
+                <div class="bingo-cell">31</div>
+                <div class="bingo-cell">46</div>
+                <div class="bingo-cell">61</div>
+                
+                <!-- I column -->
+                <div class="bingo-cell">2</div>
+                <div class="bingo-cell">17</div>
+                <div class="bingo-cell">32</div>
+                <div class="bingo-cell">47</div>
+                <div class="bingo-cell">62</div>
+                
+                <!-- N column -->
+                <div class="bingo-cell">3</div>
+                <div class="bingo-cell">18</div>
+                <div class="bingo-cell free">FREE</div>
+                <div class="bingo-cell">48</div>
+                <div class="bingo-cell">63</div>
+                
+                <!-- G column -->
+                <div class="bingo-cell">4</div>
+                <div class="bingo-cell">19</div>
+                <div class="bingo-cell">34</div>
+                <div class="bingo-cell">49</div>
+                <div class="bingo-cell">64</div>
+                
+                <!-- O column -->
+                <div class="bingo-cell">5</div>
+                <div class="bingo-cell">20</div>
+                <div class="bingo-cell">35</div>
+                <div class="bingo-cell">50</div>
+                <div class="bingo-cell">65</div>
+            </div>
             
-            loadingMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-            container.innerHTML = '';
+            <div class="bingo-card">
+                <div class="bingo-header">
+                    <span>B</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>O</span>
+                </div>
+                <!-- B column -->
+                <div class="bingo-cell">6</div>
+                <div class="bingo-cell">21</div>
+                <div class="bingo-cell">36</div>
+                <div class="bingo-cell">51</div>
+                <div class="bingo-cell">66</div>
+                
+                <!-- I column -->
+                <div class="bingo-cell">7</div>
+                <div class="bingo-cell">22</div>
+                <div class="bingo-cell">37</div>
+                <div class="bingo-cell">52</div>
+                <div class="bingo-cell">67</div>
+                
+                <!-- N column -->
+                <div class="bingo-cell">8</div>
+                <div class="bingo-cell">23</div>
+                <div class="bingo-cell free">FREE</div>
+                <div class="bingo-cell">53</div>
+                <div class="bingo-cell">68</div>
+                
+                <!-- G column -->
+                <div class="bingo-cell">9</div>
+                <div class="bingo-cell">24</div>
+                <div class="bingo-cell">39</div>
+                <div class="bingo-cell">54</div>
+                <div class="bingo-cell">69</div>
+                
+                <!-- O column -->
+                <div class="bingo-cell">10</div>
+                <div class="bingo-cell">25</div>
+                <div class="bingo-cell">40</div>
+                <div class="bingo-cell">55</div>
+                <div class="bingo-cell">70</div>
+            </div>
             
-            try {
-                const response = await fetch('invitados-mesa.json');
+            <div class="bingo-card">
+                <div class="bingo-header">
+                    <span>B</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>O</span>
+                </div>
+                <!-- B column -->
+                <div class="bingo-cell">11</div>
+                <div class="bingo-cell">26</div>
+                <div class="bingo-cell">41</div>
+                <div class="bingo-cell">56</div>
+                <div class="bingo-cell">71</div>
                 
-                if (!response.ok) {
-                    throw new Error('Error al cargar los invitados');
-                }
+                <!-- I column -->
+                <div class="bingo-cell">12</div>
+                <div class="bingo-cell">27</div>
+                <div class="bingo-cell">42</div>
+                <div class="bingo-cell">57</div>
+                <div class="bingo-cell">72</div>
                 
-                const guests = await response.json();
+                <!-- N column -->
+                <div class="bingo-cell">13</div>
+                <div class="bingo-cell">28</div>
+                <div class="bingo-cell free">FREE</div>
+                <div class="bingo-cell">58</div>
+                <div class="bingo-cell">73</div>
                 
-                if (!Array.isArray(guests) || guests.length === 0) {
-                    throw new Error('No se encontraron invitados');
-                }
+                <!-- G column -->
+                <div class="bingo-cell">14</div>
+                <div class="bingo-cell">29</div>
+                <div class="bingo-cell">44</div>
+                <div class="bingo-cell">59</div>
+                <div class="bingo-cell">74</div>
                 
-                // Generar un cartón único para cada invitado
-                guests.forEach((guest) => {
-                    if (guest.nombre && guest.nombre.trim() !== '') {
-                        const cardHTML = createBingoCard(guest.nombre.trim());
-                        container.innerHTML += cardHTML;
-                    }
-                });
-                
-                loadingMessage.style.display = 'none';
-                
-            } catch (error) {
-                loadingMessage.style.display = 'none';
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = `Error: ${error.message}. Generando cartones de ejemplo...`;
-                
-                // Generar cartones de ejemplo
-                generateExampleCards();
-            }
-        }
+                <!-- O column -->
+                <div class="bingo-cell">15</div>
+                <div class="bingo-cell">30</div>
+                <div class="bingo-cell">45</div>
+                <div class="bingo-cell">60</div>
+                <div class="bingo-cell">75</div>
+            </div>
+        </div>
         
-        // Función de respaldo con ejemplos
-        function generateExampleCards() {
-            const exampleGuests = [
-                "Jovito Rodriguez",
-                "María González",
-                "Carlos López Martínez",
-                "Ana Martínez"
-            ];
-            
-            const container = document.getElementById('bingoCardsContainer');
-            container.innerHTML = '';
-            
-            exampleGuests.forEach((guest) => {
-                const cardHTML = createBingoCard(guest);
-                container.innerHTML += cardHTML;
-            });
-        }
-        
-        // Función para imprimir
-        function printBingoCards() {
-            window.print();
-        }
-        
-        // Generar cartones al cargar la página
-        window.onload = function() {
-            generateBingoCards();
-        };
-    </script>
+        <button class="print-button" onclick="window.print()">Imprimir</button>
+    </div>
 </body>
 </html>
