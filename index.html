@@ -297,7 +297,7 @@
             }
         }
         
-        /* ESTILOS CORREGIDOS PARA IMPRESIÓN */
+        /* ESTILOS CORREGIDOS PARA IMPRESIÓN - 4 TARJETAS POR PÁGINA */
         @media print {
             body {
                 padding: 0;
@@ -314,16 +314,17 @@
             .cards-container {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0 !important;
+                gap: 0.5cm !important;
                 max-width: 100% !important;
                 width: 100% !important;
-                margin: 0 !important;
+                margin: 0 auto !important;
                 padding: 0 !important;
+                page-break-after: always;
             }
             
             .seat-card {
                 width: 100% !important;
-                height: 7cm !important;
+                height: 6.5cm !important;
                 box-shadow: none !important;
                 border: 1px solid #e0e0e0 !important;
                 page-break-inside: avoid !important;
@@ -332,23 +333,34 @@
                 break-inside: avoid;
             }
             
-            /* Configuración de página para 4 tarjetas */
+            /* Configuración de página para 4 tarjetas (2x2) */
             @page {
                 size: letter portrait;
-                margin: 1cm;
+                margin: 1.5cm;
+            }
+            
+            /* Forzar salto de página después de cada 4 tarjetas */
+            .seat-card:nth-child(4n) {
+                page-break-after: always;
             }
             
             .guest-name {
-                font-size: 1.8rem !important;
+                font-size: 1.6rem !important;
+                padding: 0 10px;
             }
             
             .watermark {
                 opacity: 0.4;
                 font-size: 0.8rem !important;
+                bottom: 8px;
             }
             
             .floral-watermark {
                 opacity: 0.1 !important;
+            }
+            
+            .flower-side {
+                padding-top: 25px !important;
             }
         }
     </style>
@@ -405,12 +417,12 @@
         
         // Función para crear un cartel
         function createSeatCard(name, imageName) {
-            const imagePath = imageName ? `images/${imageName}` : 'flores-izquierda.png';
+            const imagePath = imageName ? `images/${imageName}` : 'images/flores-izquierda.png';
             
             return `
                 <div class="seat-card">
                     <div class="flower-side">
-                        <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='flores-izquierda.png'">
+                        <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='images/flores-izquierda.png'">
                         <div class="name-container">
                             <h2 class="guest-name font-${currentFont}">${name}</h2>
                         </div>
