@@ -1,1 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canto de Bingo - Tania & Manuel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            padding: 20px;
+            background-color: #f8f5f2;
+            color: #5a4a42;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 2px solid #d4a574;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #8b5a2b;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        
+        .header .date {
+            font-size: 18px;
+            color: #a78a7f;
+        }
+        
+        .navigation {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background-color: #a78a7f;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .control-panel {
+            background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
+            border: 1px solid #d4a574;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .current-number {
+            font-size: 80px;
+            font-weight: bold;
+            color: #8b5a2b;
+            margin: 20px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0e6d2;
+            border-radius: 8px;
+            border: 2px solid #d4a574;
+        }
+        
+        .control-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a78a7f;
+        }
+        
+        .btn-generar {
+            background-color: #5a8b2b;
+        }
+        
+        .btn-generar:hover {
+            background-color: #6a9b3b;
+        }
+        
+        .btn-limpiar {
+            background-color: #8b2b2b;
+        }
+        
+        .btn-limpiar:hover {
+            background-color: #9b3b3b;
+        }
+        
+        .called-numbers {
+            background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
+            border: 1px solid #d4a574;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        
+        .called-numbers h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8b5a2b;
+            font-size: 24px;
+        }
+        
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .number-item {
+            padding: 10px;
+            text-align: center;
+            background-color: #f0e6d2;
+            border: 1px solid #d4a574;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #5a4a42;
+        }
+        
+        .number-item.called {
+            background-color: #8b5a2b;
+            color: white;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0e6d2;
+            border-radius: 8px;
+            border: 1px solid #d4a574;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b5a2b;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #5a4a42;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .numbers-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="navigation">
+                <a href="index.html" class="nav-button">← Volver al Inicio</a>
+            </div>
+            <h1>Canto de Bingo</h1>
+            <div class="date">Tania & Manuel · 07.03.2026</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="control-panel">
+                <h2>Número Actual</h2>
+                <div class="current-number" id="currentNumber">
+                    -
+                </div>
+                <div class="control-buttons">
+                    <button class="btn btn-generar" id="generarNumero">
+                        Generar Nuevo Número
+                    </button>
+                    <button class="btn btn-limpiar" id="limpiarPartida">
+                        Limpiar Partida
+                    </button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalNumbers">0</div>
+                        <div class="stat-label">Cantados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="remainingNumbers">75</div>
+                        <div class="stat-label">Restantes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="called-numbers">
+                <h2>Números Cantados</h2>
+                <div class="numbers-grid" id="numbersGrid">
+                    <!-- Los números se generarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        class BingoCaller {
+            constructor() {
+                this.numbers = Array.from({length: 75}, (_, i) => i + 1);
+                this.calledNumbers = [];
+                this.remainingNumbers = [...this.numbers];
+                this.currentNumber = null;
+                
+                this.initializeGrid();
+                this.updateStats();
+            }
+            
+            initializeGrid() {
+                const grid = document.getElementById('numbersGrid');
+                grid.innerHTML = '';
+                
+                // Crear todos los números del 1 al 75
+                for (let i = 1; i <= 75; i++) {
+                    const numberItem = document.createElement('div');
+                    numberItem.className = 'number-item';
+                    numberItem.textContent = i;
+                    numberItem.id = `number-${i}`;
+                    grid.appendChild(numberItem);
+                }
+            }
+            
+            generateNumber() {
+                if (this.remainingNumbers.length === 0) {
+                    alert('¡Todos los números han sido cantados!');
+                    return;
+                }
+                
+                // Seleccionar un número aleatorio de los que quedan
+                const randomIndex = Math.floor(Math.random() * this.remainingNumbers.length);
+                this.currentNumber = this.remainingNumbers[randomIndex];
+                
+                // Mover el número de remaining a called
+                this.remainingNumbers.splice(randomIndex, 1);
+                this.calledNumbers.push(this.currentNumber);
+                
+                this.updateDisplay();
+                this.updateStats();
+            }
+            
+            updateDisplay() {
+                // Actualizar número actual
+                const currentNumberElement = document.getElementById('currentNumber');
+                currentNumberElement.textContent = this.currentNumber;
+                
+                // Resaltar número cantado en la grid
+                const numberElement = document.getElementById(`number-${this.currentNumber}`);
+                if (numberElement) {
+                    numberElement.classList.add('called');
+                }
+            }
+            
+            updateStats() {
+                document.getElementById('totalNumbers').textContent = this.calledNumbers.length;
+                document.getElementById('remainingNumbers').textContent = this.remainingNumbers.length;
+            }
+            
+            clearGame() {
+                this.calledNumbers = [];
+                this.remainingNumbers = [...this.numbers];
+                this.currentNumber = null;
+                
+                // Limpiar display
+                document.getElementById('currentNumber').textContent = '-';
+                
+                // Limpiar grid
+                const gridItems = document.querySelectorAll('.number-item');
+                gridItems.forEach(item => {
+                    item.classList.remove('called');
+                });
+                
+                this.updateStats();
+            }
+            
+            getCalledNumbers() {
+                return [...this.calledNumbers];
+            }
+            
+            getRemainingNumbers() {
+                return [...this.remainingNumbers];
+            }
+        }
+
+        // Inicializar el canto de bingo cuando la página cargue
+        let bingoCaller;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            bingoCaller = new BingoCaller();
+            
+            // Event listeners para los botones
+            document.getElementById('generarNumero').addEventListener('click', function() {
+                bingoCaller.generateNumber();
+            });
+            
+            document.getElementById('limpiarPartida').addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que quieres limpiar la partida actual?')) {
+                    bingoCaller.clearGame();
+                }
+            });
+            
+            // Permitir generar números con la barra espaciadora
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    event.preventDefault();
+                    bingoCaller.generateNumber();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
