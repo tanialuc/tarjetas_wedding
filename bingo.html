@@ -13,7 +13,7 @@
         
         body {
             font-family: 'Georgia', serif;
-            padding: 20px;
+            padding: 10px;
             background-color: #f8f5f2;
             color: #5a4a42;
         }
@@ -25,40 +25,40 @@
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
             border-bottom: 2px solid #d4a574;
         }
         
         .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 8px;
             color: #8b5a2b;
             font-weight: normal;
             letter-spacing: 1px;
         }
         
         .header .date {
-            font-size: 20px;
+            font-size: 18px;
             color: #a78a7f;
         }
         
         .bingo-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+            justify-items: center;
         }
         
         .bingo-card {
-            width: 280px;
-            height: 380px;
+            width: 270px;
+            height: 370px;
             border: 1px solid #d4a574;
-            border-radius: 12px;
-            padding: 25px 20px;
+            border-radius: 8px;
+            padding: 20px 15px;
             background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
-            box-shadow: 0 4px 12px rgba(139, 90, 43, 0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -71,10 +71,10 @@
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 12px;
             color: #8b5a2b;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #d4a574;
         }
         
@@ -82,10 +82,10 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(5, 1fr);
-            gap: 6px;
+            gap: 5px;
             width: 100%;
-            height: 240px;
-            margin-bottom: 15px;
+            height: 220px;
+            margin-bottom: 12px;
         }
         
         .bingo-cell {
@@ -93,10 +93,9 @@
             align-items: center;
             justify-content: center;
             border: 1px solid #d4a574;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 3px;
+            font-size: 14px;
             background-color: #fffaf0;
-            transition: all 0.2s ease;
         }
         
         .bingo-cell.free {
@@ -105,16 +104,16 @@
             color: #8b5a2b;
             display: flex;
             flex-direction: column;
-            font-size: 14px;
+            font-size: 12px;
         }
         
         .free-text {
-            font-size: 12px;
-            margin-top: 2px;
+            font-size: 10px;
+            margin-top: 1px;
         }
         
         .bingo-footer {
-            font-size: 16px;
+            font-size: 14px;
             color: #8b5a2b;
             text-align: center;
             margin-top: auto;
@@ -122,46 +121,82 @@
         
         .print-button {
             display: block;
-            margin: 30px auto;
-            padding: 12px 30px;
+            margin: 20px auto;
+            padding: 10px 25px;
             background-color: #8b5a2b;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 5px;
+            font-size: 14px;
             cursor: pointer;
-            transition: background-color 0.3s;
             font-family: 'Georgia', serif;
-        }
-        
-        .print-button:hover {
-            background-color: #a78a7f;
         }
         
         .loading {
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             color: #8b5a2b;
-            margin: 50px 0;
+            margin: 30px 0;
         }
         
+        /* ESTILOS CRÍTICOS PARA IMPRESIÓN */
         @media print {
             body {
                 background-color: white;
                 padding: 0;
+                margin: 0;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+            }
+            
+            .header {
+                margin-bottom: 15px;
+                padding: 10px;
+            }
+            
+            .bingo-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10mm; /* Espacio consistente para corte */
+                margin: 0 auto;
+                width: 190mm; /* Ancho A4 menos márgenes */
+                page-break-inside: avoid;
+            }
+            
+            .bingo-card {
+                width: 85mm !important; /* Mismo tamaño que tarjetas */
+                height: 115mm !important; /* Mismo tamaño que tarjetas */
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
             
             .print-button {
                 display: none;
             }
             
-            .bingo-container {
-                page-break-inside: avoid;
+            .loading {
+                display: none;
             }
             
+            /* Asegurar que cada grupo de 4 bingos esté en una página */
+            .bingo-container {
+                page-break-after: always;
+            }
+            
+            .bingo-container:last-child {
+                page-break-after: auto;
+            }
+        }
+
+        /* Para previsualización en pantalla */
+        @media screen {
             .bingo-card {
-                box-shadow: none;
-                border: 1px solid #8b5a2b;
+                box-shadow: 0 3px 8px rgba(139, 90, 43, 0.15);
             }
         }
     </style>
@@ -185,80 +220,44 @@
     <script>
         // Función para generar números aleatorios para el bingo
         function generarNumerosBingo() {
-            const numeros = [];
+            const carton = [];
             
             // Generar números para cada columna según las reglas del bingo
-            // B: 1-15, I: 16-30, N: 31-45, G: 46-60, O: 61-75
-            for (let i = 0; i < 5; i++) {
-                // Columna B (1-15)
-                const columnaB = [];
-                while (columnaB.length < 5) {
-                    const num = Math.floor(Math.random() * 15) + 1;
-                    if (!columnaB.includes(num)) {
-                        columnaB.push(num);
+            const rangos = [
+                {min: 1, max: 15},   // B
+                {min: 16, max: 30},  // I
+                {min: 31, max: 45},  // N
+                {min: 46, max: 60},  // G
+                {min: 61, max: 75}   // O
+            ];
+            
+            // Para cada columna
+            for (let col = 0; col < 5; col++) {
+                const columna = [];
+                const rango = rangos[col];
+                
+                // Generar 5 números únicos para la columna
+                while (columna.length < 5) {
+                    const num = Math.floor(Math.random() * (rango.max - rango.min + 1)) + rango.min;
+                    if (!columna.includes(num)) {
+                        columna.push(num);
                     }
                 }
-                columnaB.sort((a, b) => a - b);
                 
-                // Columna I (16-30)
-                const columnaI = [];
-                while (columnaI.length < 5) {
-                    const num = Math.floor(Math.random() * 15) + 16;
-                    if (!columnaI.includes(num)) {
-                        columnaI.push(num);
-                    }
+                // Ordenar la columna
+                columna.sort((a, b) => a - b);
+                
+                // Añadir a la matriz
+                for (let fila = 0; fila < 5; fila++) {
+                    if (!carton[fila]) carton[fila] = [];
+                    carton[fila][col] = columna[fila];
                 }
-                columnaI.sort((a, b) => a - b);
-                
-                // Columna N (31-45)
-                const columnaN = [];
-                while (columnaN.length < 5) {
-                    const num = Math.floor(Math.random() * 15) + 31;
-                    if (!columnaN.includes(num)) {
-                        columnaN.push(num);
-                    }
-                }
-                columnaN.sort((a, b) => a - b);
-                
-                // Columna G (46-60)
-                const columnaG = [];
-                while (columnaG.length < 5) {
-                    const num = Math.floor(Math.random() * 15) + 46;
-                    if (!columnaG.includes(num)) {
-                        columnaG.push(num);
-                    }
-                }
-                columnaG.sort((a, b) => a - b);
-                
-                // Columna O (61-75)
-                const columnaO = [];
-                while (columnaO.length < 5) {
-                    const num = Math.floor(Math.random() * 15) + 61;
-                    if (!columnaO.includes(num)) {
-                        columnaO.push(num);
-                    }
-                }
-                columnaO.sort((a, b) => a - b);
-                
-                // Combinar todas las columnas en una matriz 5x5
-                const carton = [];
-                for (let j = 0; j < 5; j++) {
-                    carton.push([
-                        columnaB[j],
-                        columnaI[j],
-                        columnaN[j],
-                        columnaG[j],
-                        columnaO[j]
-                    ]);
-                }
-                
-                // El espacio central es FREE
-                carton[2][2] = 'free';
-                
-                numeros.push(carton);
             }
             
-            return numeros;
+            // El espacio central es FREE
+            carton[2][2] = 'free';
+            
+            return carton;
         }
 
         // Función para crear el HTML de una tarjeta de bingo
@@ -273,8 +272,8 @@
                         <span>O</span>
                     </div>
                     <div class="bingo-grid">
-                        ${numeros.map((fila, filaIndex) => 
-                            fila.map((numero, colIndex) => 
+                        ${numeros.map(fila => 
+                            fila.map(numero => 
                                 numero === 'free' 
                                     ? `<div class="bingo-cell free">
                                             T & M
@@ -300,17 +299,15 @@
                 const bingosContainer = document.getElementById('bingo-container');
                 const loadingElement = document.getElementById('loading');
                 
-                // Generar números de bingo únicos para cada invitado
                 invitados.forEach(invitado => {
                     const numerosBingo = generarNumerosBingo();
-                    // Usar el primer cartón de números generados
-                    const bingoHTML = crearBingoHTML(invitado.nombre, numerosBingo[0]);
+                    const bingoHTML = crearBingoHTML(invitado.nombre, numerosBingo);
                     bingosContainer.innerHTML += bingoHTML;
                 });
                 
                 // Ocultar loading y mostrar bingos
                 loadingElement.style.display = 'none';
-                bingosContainer.style.display = 'flex';
+                bingosContainer.style.display = 'grid';
                 
             } catch (error) {
                 console.error('Error al cargar los invitados:', error);
