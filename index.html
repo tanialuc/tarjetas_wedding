@@ -70,8 +70,9 @@
         
         .seat-card {
             width: 600px;
-            height: 300px;
+            height: 350px; /* Más larga como solicitaste */
             display: flex;
+            flex-direction: column; /* Cambiado a columna para centrado vertical */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             border-radius: 8px;
             overflow: hidden;
@@ -80,10 +81,13 @@
         }
         
         .flower-side {
-            flex: 0 0 400px;
-            background-color: #faf7f2;
+            flex: 1;
+            background-color: white;
             position: relative;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .floral-watermark {
@@ -91,15 +95,15 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.15;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         
         .name-container {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
             text-align: center;
+            z-index: 2;
+            width: 100%;
         }
         
         .guest-name {
@@ -113,6 +117,19 @@
             margin: 0;
             text-align: center;
             font-family: 'Playfair Display', serif;
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #d4c2a7;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
         }
         
         /* Estilos de fuentes elegantes */
@@ -199,15 +216,7 @@
             .seat-card {
                 width: 100%;
                 max-width: 400px;
-                height: 200px;
-            }
-            
-            .flower-side {
-                flex: 0 0 100%;
-            }
-            
-            .name-container {
-                top: 40%;
+                height: 300px;
             }
             
             .guest-name {
@@ -222,6 +231,11 @@
                 font-size: 2.2rem;
             }
             
+            .watermark {
+                font-size: 1rem;
+                bottom: 15px;
+            }
+            
             h1 {
                 font-size: 2rem;
             }
@@ -229,11 +243,7 @@
         
         @media (max-width: 500px) {
             .seat-card {
-                height: 150px;
-            }
-            
-            .name-container {
-                top: 45%;
+                height: 250px;
             }
             
             .guest-name {
@@ -246,6 +256,11 @@
             
             .font-cormorant {
                 font-size: 1.8rem;
+            }
+            
+            .watermark {
+                font-size: 0.9rem;
+                bottom: 10px;
             }
             
             .controls {
@@ -272,13 +287,17 @@
             
             .seat-card {
                 box-shadow: none;
-                border: 1px solid #e0d6c9;
+                border: 1px solid #e0e0e0;
                 page-break-inside: avoid;
                 margin-bottom: 20px;
             }
             
             .guest-name {
                 font-size: 2.5rem;
+            }
+            
+            .watermark {
+                opacity: 0.4;
             }
         }
     </style>
@@ -333,7 +352,6 @@
         
         // Función para crear un cartel
         function createSeatCard(name, imageName) {
-            // Si no se proporciona imagen, usar una por defecto o aleatoria
             const imagePath = imageName ? `images/${imageName}` : 'flores-izquierda.png';
             
             return `
@@ -343,9 +361,7 @@
                         <div class="name-container">
                             <h2 class="guest-name font-${currentFont}">${name}</h2>
                         </div>
-                    </div>
-                    <div class="name-side">
-                        <!-- Esta sección está oculta -->
+                        <div class="watermark">T & M · 07.03.2026</div>
                     </div>
                 </div>
             `;
@@ -402,7 +418,6 @@
                     </small>
                 `;
                 
-                // Cargar ejemplos como fallback
                 loadExampleGuests();
             }
         }
