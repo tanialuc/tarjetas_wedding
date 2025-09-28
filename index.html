@@ -80,7 +80,7 @@
         }
         
         .flower-side {
-            flex: 0 0 300px;
+            flex: 0 0 400px;
             background-color: #faf7f2;
             position: relative;
             overflow: hidden;
@@ -303,6 +303,7 @@
     
     <div class="controls">
         <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
+        <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
         <button onclick="addCard()">Agregar Cartel</button>
         <button onclick="loadFromJSON()">Recargar desde JSON</button>
         <button onclick="printCards()">Imprimir Carteles</button>
@@ -310,8 +311,6 @@
     </div>
 
     <script>
-        // URL de la imagen en tu repositorio de GitHub
-        const floralImageUrl = 'flores-izquierda.png';
         let currentFont = 'playfair';
         
         // Función para cambiar la fuente
@@ -333,11 +332,14 @@
         }
         
         // Función para crear un cartel
-        function createSeatCard(name) {
+        function createSeatCard(name, imageName) {
+            // Si no se proporciona imagen, usar una por defecto o aleatoria
+            const imagePath = imageName ? `images/${imageName}` : 'flores-izquierda.png';
+            
             return `
                 <div class="seat-card">
                     <div class="flower-side">
-                        <img src="${floralImageUrl}" alt="Flores decorativas" class="floral-watermark">
+                        <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='flores-izquierda.png'">
                         <div class="name-container">
                             <h2 class="guest-name font-${currentFont}">${name}</h2>
                         </div>
@@ -378,7 +380,8 @@
                 
                 guests.forEach(guest => {
                     if (guest.nombre && guest.nombre.trim() !== '') {
-                        container.innerHTML += createSeatCard(guest.nombre.trim());
+                        const imageName = guest.imagen || '';
+                        container.innerHTML += createSeatCard(guest.nombre.trim(), imageName);
                     }
                 });
                 
@@ -395,7 +398,7 @@
                     <strong>Error:</strong> ${error.message}<br><br>
                     <small>
                         Asegúrate de que el archivo "invitados-mesa.json" esté en el mismo directorio<br>
-                        y tenga el formato correcto: [{"nombre": "Jovito Rodríguez"}, ...]
+                        y tenga el formato correcto: [{"nombre": "Jovito Rodríguez", "imagen": "flores-izquierda1.png"}, ...]
                     </small>
                 `;
                 
@@ -407,28 +410,26 @@
         // Función de respaldo con ejemplos
         function loadExampleGuests() {
             const exampleGuests = [
-                "Jovito Rodriguez",
-                "María González", 
-                "Carlos López Martínez",
-                "Ana Martínez",
-                "Pedro Sánchez Rodríguez",
-                "Laura Fernández García",
-                "Miguel Torres",
-                "Elena Vargas Moreno"
+                {nombre: "Jovito Rodriguez", imagen: "flores-izquierda1.png"},
+                {nombre: "María González", imagen: "flores-izquierda2.png"}, 
+                {nombre: "Carlos López Martínez", imagen: "flores-izquierda3.png"},
+                {nombre: "Ana Martínez", imagen: "flores-izquierda4.png"}
             ];
             
             const container = document.getElementById('cardsContainer');
             container.innerHTML = '';
             
             exampleGuests.forEach(guest => {
-                container.innerHTML += createSeatCard(guest);
+                container.innerHTML += createSeatCard(guest.nombre, guest.imagen);
             });
         }
         
         // Agregar un cartel manualmente
         function addCard() {
             const nameInput = document.getElementById('guestName');
+            const imageInput = document.getElementById('guestImage');
             const name = nameInput.value.trim();
+            const image = imageInput.value.trim();
             
             if (name === '') {
                 alert('Por favor, escribe un nombre');
@@ -436,8 +437,9 @@
             }
             
             const container = document.getElementById('cardsContainer');
-            container.innerHTML += createSeatCard(name);
+            container.innerHTML += createSeatCard(name, image);
             nameInput.value = '';
+            imageInput.value = '';
             nameInput.focus();
         }
         
