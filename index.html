@@ -297,7 +297,7 @@
             }
         }
         
-        /* ESTILOS CORREGIDOS PARA IMPRESIÓN - 4 TARJETAS POR PÁGINA */
+        /* ESTILOS CORREGIDOS PARA IMPRESIÓN - TARJETAS MÁS GRANDES */
         @media print {
             body {
                 padding: 0;
@@ -314,7 +314,7 @@
             .cards-container {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.5cm !important;
+                gap: 0.3cm !important;
                 max-width: 100% !important;
                 width: 100% !important;
                 margin: 0 auto !important;
@@ -324,7 +324,7 @@
             
             .seat-card {
                 width: 100% !important;
-                height: 6.5cm !important;
+                height: 9.5cm !important; /* Más altas */
                 box-shadow: none !important;
                 border: 1px solid #e0e0e0 !important;
                 page-break-inside: avoid !important;
@@ -333,10 +333,10 @@
                 break-inside: avoid;
             }
             
-            /* Configuración de página para 4 tarjetas (2x2) */
+            /* Configuración de página con menos margen */
             @page {
                 size: letter portrait;
-                margin: 1.5cm;
+                margin: 1cm; /* Menos margen para más espacio */
             }
             
             /* Forzar salto de página después de cada 4 tarjetas */
@@ -345,22 +345,27 @@
             }
             
             .guest-name {
-                font-size: 1.6rem !important;
-                padding: 0 10px;
+                font-size: 2.2rem !important; /* Texto más grande */
+                padding: 0 15px;
+                margin-top: 15px;
             }
             
             .watermark {
                 opacity: 0.4;
-                font-size: 0.8rem !important;
-                bottom: 8px;
+                font-size: 1rem !important; /* Watermark más grande */
+                bottom: 15px;
             }
             
             .floral-watermark {
-                opacity: 0.1 !important;
+                opacity: 0.15 !important;
             }
             
             .flower-side {
-                padding-top: 25px !important;
+                padding-top: 40px !important; /* Más espacio para el nombre */
+            }
+            
+            .name-container {
+                padding: 0 20px;
             }
         }
     </style>
