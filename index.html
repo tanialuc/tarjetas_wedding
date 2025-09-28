@@ -70,9 +70,9 @@
         
         .seat-card {
             width: 600px;
-            height: 350px; /* Más larga como solicitaste */
+            height: 450px;
             display: flex;
-            flex-direction: column; /* Cambiado a columna para centrado vertical */
+            flex-direction: column;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             border-radius: 8px;
             overflow: hidden;
@@ -87,7 +87,8 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Cambiado para alinear arriba */
+            padding-top: 60px; /* Espacio desde la parte superior */
         }
         
         .floral-watermark {
@@ -219,6 +220,10 @@
                 height: 300px;
             }
             
+            .flower-side {
+                padding-top: 40px; /* Menos espacio en móviles */
+            }
+            
             .guest-name {
                 font-size: 2.2rem;
             }
@@ -244,6 +249,10 @@
         @media (max-width: 500px) {
             .seat-card {
                 height: 250px;
+            }
+            
+            .flower-side {
+                padding-top: 30px; /* Aún menos espacio en móviles pequeños */
             }
             
             .guest-name {
