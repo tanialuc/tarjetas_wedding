@@ -70,8 +70,8 @@
         }
         
         .seat-card {
-            width: 380px;  /* ≈10cm a 96dpi */
-            height: 265px; /* ≈7cm a 96dpi */
+            width: 380px;
+            height: 265px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
@@ -89,7 +89,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding-top: 45px; /* Ajustado para el nuevo tamaño */
+            padding-top: 45px;
         }
         
         .floral-watermark {
@@ -114,7 +114,7 @@
             font-weight: normal;
             letter-spacing: 1px;
             line-height: 1.2;
-            font-size: 2rem; /* Reducido para el nuevo tamaño */
+            font-size: 2rem;
             word-wrap: break-word;
             overflow-wrap: break-word;
             margin: 0;
@@ -124,12 +124,12 @@
         
         .watermark {
             position: absolute;
-            bottom: 12px; /* Ajustado para el nuevo tamaño */
+            bottom: 12px;
             left: 0;
             width: 100%;
             text-align: center;
             color: #d4c2a7;
-            font-size: 0.9rem; /* Reducido */
+            font-size: 0.9rem;
             opacity: 0.6;
             font-family: 'Playfair Display', serif;
             letter-spacing: 0.5px;
@@ -143,23 +143,23 @@
         
         .font-dancing {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem; /* Ajustado */
+            font-size: 2.2rem;
         }
         
         .font-greatvibes {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem; /* Ajustado */
+            font-size: 2.2rem;
         }
         
         .font-parisienne {
             font-family: 'Parisienne', cursive;
-            font-size: 2.2rem; /* Ajustado */
+            font-size: 2.2rem;
         }
         
         .font-cormorant {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
-            font-size: 1.9rem; /* Ajustado */
+            font-size: 1.9rem;
         }
         
         .loading {
@@ -297,49 +297,58 @@
             }
         }
         
-        /* Estilos para impresión - OPTIMIZADO PARA 4 POR HOJA */
+        /* ESTILOS CORREGIDOS PARA IMPRESIÓN */
         @media print {
             body {
                 padding: 0;
                 background: white;
                 margin: 0;
+                width: 100%;
             }
             
-            .controls, .font-selector, .print-info, h1 {
-                display: none;
+            .controls, .font-selector, .print-info, h1,
+            .loading, .error {
+                display: none !important;
             }
             
             .cards-container {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0;
-                max-width: none;
-                width: 100%;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
             
             .seat-card {
-                width: 100%;
-                height: 7cm; /* Tamaño fijo para impresión */
-                box-shadow: none;
-                border: 1px solid #e0e0e0;
-                page-break-inside: avoid;
-                margin: 0;
-                border-radius: 0;
+                width: 100% !important;
+                height: 7cm !important;
+                box-shadow: none !important;
+                border: 1px solid #e0e0e0 !important;
+                page-break-inside: avoid !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                break-inside: avoid;
             }
             
-            /* Asegurar que caben exactamente 4 por hoja */
+            /* Configuración de página para 4 tarjetas */
             @page {
-                size: letter;
-                margin: 0.5cm;
+                size: letter portrait;
+                margin: 1cm;
             }
             
             .guest-name {
-                font-size: 1.8rem;
+                font-size: 1.8rem !important;
             }
             
             .watermark {
                 opacity: 0.4;
-                font-size: 0.8rem;
+                font-size: 0.8rem !important;
+            }
+            
+            .floral-watermark {
+                opacity: 0.1 !important;
             }
         }
     </style>
@@ -348,7 +357,7 @@
     <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
     
     <div class="print-info">
-        💡 Tamaño optimizado para 4 tarjetas por hoja carta
+        💡 Tamaño optimizado para 4 tarjetas por hoja carta - Imprimir en VERTICAL
     </div>
     
     <div class="font-selector">
@@ -382,13 +391,11 @@
         function changeFont(fontName) {
             currentFont = fontName;
             
-            // Actualizar botones activos
             document.querySelectorAll('.font-option').forEach(option => {
                 option.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // Actualizar fuentes en los nombres
             const guestNames = document.querySelectorAll('.guest-name');
             guestNames.forEach(name => {
                 name.className = 'guest-name';
@@ -449,32 +456,18 @@
                 
                 loadingMessage.style.display = 'none';
                 
-                if (container.innerHTML === '') {
-                    throw new Error('No se encontraron nombres válidos en el JSON');
-                }
-                
             } catch (error) {
                 loadingMessage.style.display = 'none';
                 errorMessage.style.display = 'block';
-                errorMessage.innerHTML = `
-                    <strong>Error:</strong> ${error.message}<br><br>
-                    <small>
-                        Asegúrate de que el archivo "invitados-mesa.json" esté en el mismo directorio<br>
-                        y tenga el formato correcto: [{"nombre": "Jovito Rodríguez", "imagen": "flores-izquierda1.png"}, ...]
-                    </small>
-                `;
-                
+                errorMessage.innerHTML = `Error cargando el JSON. Cargando ejemplos...`;
                 loadExampleGuests();
             }
         }
         
-        // Función de respaldo con ejemplos
         function loadExampleGuests() {
             const exampleGuests = [
                 {nombre: "Jovito Rodriguez", imagen: "flores-izquierda1.png"},
-                {nombre: "María González", imagen: "flores-izquierda2.png"}, 
-                {nombre: "Carlos López Martínez", imagen: "flores-izquierda3.png"},
-                {nombre: "Ana Martínez", imagen: "flores-izquierda4.png"}
+                {nombre: "María González", imagen: "flores-izquierda2.png"}
             ];
             
             const container = document.getElementById('cardsContainer');
@@ -485,46 +478,34 @@
             });
         }
         
-        // Agregar un cartel manualmente
         function addCard() {
             const nameInput = document.getElementById('guestName');
             const imageInput = document.getElementById('guestImage');
             const name = nameInput.value.trim();
             const image = imageInput.value.trim();
             
-            if (name === '') {
-                alert('Por favor, escribe un nombre');
-                return;
-            }
+            if (name === '') return;
             
             const container = document.getElementById('cardsContainer');
             container.innerHTML += createSeatCard(name, image);
             nameInput.value = '';
             imageInput.value = '';
-            nameInput.focus();
         }
         
-        // Limpiar todos los carteles
         function clearAll() {
-            if (confirm('¿Estás seguro de que quieres eliminar todos los carteles?')) {
-                const container = document.getElementById('cardsContainer');
-                container.innerHTML = '';
+            if (confirm('¿Eliminar todos los carteles?')) {
+                document.getElementById('cardsContainer').innerHTML = '';
             }
         }
         
-        // Imprimir carteles
         function printCards() {
             window.print();
         }
         
-        // Permitir agregar con la tecla Enter
         document.getElementById('guestName').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addCard();
-            }
+            if (e.key === 'Enter') addCard();
         });
         
-        // Cargar automáticamente desde el JSON al iniciar
         window.onload = function() {
             loadFromJSON();
         };
