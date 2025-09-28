@@ -28,6 +28,7 @@
             margin-bottom: 30px;
             padding: 15px;
             border-bottom: 2px solid #d4a574;
+            position: relative;
         }
         
         .header h1 {
@@ -43,21 +44,46 @@
             color: #a78a7f;
         }
         
+        .navigation {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .nav-button {
+            padding: 8px 16px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background-color: #a78a7f;
+        }
+        
         .bingo-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 20px;
             margin-bottom: 30px;
             width: 100%;
             justify-items: center;
         }
         
         .bingo-card {
-            width: 270px;
-            height: 370px;
+            width: 280px;
+            height: 380px;
             border: 1px solid #d4a574;
             border-radius: 8px;
-            padding: 20px 15px;
+            padding: 15px 10px;
             background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
             display: flex;
             flex-direction: column;
@@ -72,9 +98,9 @@
             align-items: center;
             font-weight: bold;
             font-size: 24px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #8b5a2b;
-            padding-bottom: 8px;
+            padding-bottom: 5px;
             border-bottom: 2px solid #d4a574;
         }
         
@@ -82,10 +108,11 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(5, 1fr);
-            gap: 5px;
+            gap: 4px;
             width: 100%;
-            height: 220px;
-            margin-bottom: 12px;
+            height: 260px; /* Más espacio para los números */
+            margin-bottom: 10px;
+            flex-grow: 1;
         }
         
         .bingo-cell {
@@ -94,34 +121,34 @@
             justify-content: center;
             border: 1px solid #d4a574;
             border-radius: 3px;
-            font-size: 14px;
+            font-size: 16px; /* Texto más grande */
             background-color: #fffaf0;
+            font-weight: 500;
         }
         
         .bingo-cell.free {
             background-color: #f0e6d2;
             font-weight: bold;
             color: #8b5a2b;
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-        }
-        
-        .free-text {
-            font-size: 10px;
-            margin-top: 1px;
+            font-size: 18px; /* T&M más grande */
         }
         
         .bingo-footer {
-            font-size: 14px;
+            font-size: 16px;
             color: #8b5a2b;
             text-align: center;
-            margin-top: auto;
+            font-weight: 500;
+            margin-top: 5px;
         }
         
-        .print-button {
-            display: block;
-            margin: 20px auto;
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .print-button, .nav-button-main {
             padding: 10px 25px;
             background-color: #8b5a2b;
             color: white;
@@ -130,6 +157,13 @@
             font-size: 14px;
             cursor: pointer;
             font-family: 'Georgia', serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        
+        .print-button:hover, .nav-button-main:hover {
+            background-color: #a78a7f;
         }
         
         .loading {
@@ -153,29 +187,48 @@
             }
             
             .header {
-                margin-bottom: 15px;
-                padding: 10px;
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+            
+            .navigation, .actions {
+                display: none;
             }
             
             .bingo-container {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10mm; /* Espacio consistente para corte */
+                gap: 15mm;
                 margin: 0 auto;
-                width: 190mm; /* Ancho A4 menos márgenes */
+                width: 190mm;
                 page-break-inside: avoid;
             }
             
             .bingo-card {
-                width: 85mm !important; /* Mismo tamaño que tarjetas */
-                height: 115mm !important; /* Mismo tamaño que tarjetas */
+                width: 85mm !important;
+                height: 115mm !important;
                 border: 1px solid #000 !important;
                 box-shadow: none !important;
                 page-break-inside: avoid;
                 break-inside: avoid;
+                padding: 12mm 8mm;
             }
             
-            .print-button {
+            .bingo-grid {
+                height: 75mm !important;
+                gap: 2mm;
+            }
+            
+            .bingo-cell {
+                font-size: 14px !important;
+                border: 1px solid #000 !important;
+            }
+            
+            .bingo-cell.free {
+                font-size: 16px !important;
+            }
+            
+            .print-button, .nav-button-main {
                 display: none;
             }
             
@@ -183,7 +236,6 @@
                 display: none;
             }
             
-            /* Asegurar que cada grupo de 4 bingos esté en una página */
             .bingo-container {
                 page-break-after: always;
             }
@@ -204,6 +256,9 @@
 <body>
     <div class="container">
         <div class="header">
+            <div class="navigation">
+                <a href="index.html" class="nav-button">← Volver a Tarjetas</a>
+            </div>
             <h1>Tarjetas de Bingo - Tania & Manuel</h1>
             <div class="date">07.03.2026</div>
         </div>
@@ -214,7 +269,10 @@
             <!-- Los bingos se generarán aquí dinámicamente -->
         </div>
         
-        <button class="print-button" onclick="window.print()">Imprimir Bingos</button>
+        <div class="actions">
+            <button class="print-button" onclick="window.print()">Imprimir Bingos</button>
+            <a href="index.html" class="nav-button-main">Volver a Tarjetas de Asiento</a>
+        </div>
     </div>
 
     <script>
@@ -254,7 +312,7 @@
                 }
             }
             
-            // El espacio central es FREE
+            // El espacio central es T & M (sin FREE)
             carton[2][2] = 'free';
             
             return carton;
@@ -275,10 +333,7 @@
                         ${numeros.map(fila => 
                             fila.map(numero => 
                                 numero === 'free' 
-                                    ? `<div class="bingo-cell free">
-                                            T & M
-                                            <span class="free-text">FREE</span>
-                                       </div>`
+                                    ? `<div class="bingo-cell free">T & M</div>`
                                     : `<div class="bingo-cell">${numero}</div>`
                             ).join('')
                         ).join('')}
