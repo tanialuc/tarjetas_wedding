@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-    <link rel="stylesheet" href="print.css" media="print">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteles de Asiento - Tania & Manuel</title>
+    <link rel="stylesheet" href="print-shared.css">
+    <link rel="stylesheet" href="print.css" media="print">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -70,79 +71,10 @@
             max-width: 1000px;
         }
         
-        /* TAMAÑO MÁS GRANDE PARA PANTALLA */
-        .seat-card {
-            width: 320px;  /* Aumentado de 270px */
-            height: 475px; /* Aumentado de 370px */
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border-radius: 0;
-            overflow: hidden;
-            background-color: white;
-            position: relative;
-            border: 1px solid #d4a574;
-        }
-        
-        .flower-side {
-            flex: 1;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center; /* Centrado vertical */
-            padding-top: 0;
-        }
-        
-        .floral-watermark {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        
-        .name-container {
-            text-align: center;
-            z-index: 2;
-            width: 100%;
-            padding: 0 25px;
-        }
-        
-        .guest-name {
-            color: #935d29;
-            font-weight: normal;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            font-size: 2.8rem; /* Aumentado de 2.4rem */
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            margin: 0;
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .watermark {
-            position: absolute;
-            bottom: 25px; /* Más espacio */
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: #935d29;
-            font-size: 1.1rem; /* Más grande */
-            opacity: 1;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Estilos de fuentes elegantes - TEXTO MÁS GRANDE */
+        /* Estilos de fuentes elegantes - Se mantienen los tamaños personalizados */
         .font-playfair {
             font-family: 'Playfair Display', serif;
             font-weight: 500;
-            font-size: 2.8rem; /* Añadido para consistencia */
         }
         
         .font-dancing {
@@ -230,13 +162,6 @@
             border-radius: 4px;
         }
         
-        /* ESTILOS DE PANTALLA (no impresión) */
-        @media screen {
-            .seat-card {
-                box-shadow: 0 2px 5px rgba(139, 90, 43, 0.15);
-            }
-        }
-        
         /* RESPONSIVE PARA PANTALLAS PEQUEÑAS */
         @media (max-width: 750px) {
             .seat-card {
@@ -308,8 +233,6 @@
                 max-width: 250px;
             }
         }
-        
-        /* ELIMINAR TODOS LOS ESTILOS DE IMPRESIÓN DE AQUÍ - SE USARÁ print.css */
     </style>
 </head>
 <body>
