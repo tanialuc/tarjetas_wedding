@@ -70,16 +70,18 @@
             max-width: 1000px;
         }
         
+        /* TAMAÑO IDÉNTICO AL BINGO - AUMENTADO */
         .seat-card {
-            width: 380px;
-            height: 265px;
+            width: 270px;  /* MISMO que bingo.html (270px) */
+            height: 370px; /* MISMO que bingo.html (370px) */
             display: flex;
             flex-direction: column;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border-radius: 6px;
+            border-radius: 0; /* Sin bordes redondeados - igual que bingo */
             overflow: hidden;
             background-color: white;
             position: relative;
+            border: 1px solid #d4a574; /* MISMO borde que bingo */
         }
         
         .flower-side {
@@ -90,7 +92,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding-top: 45px;
+            padding-top: 70px; /* Más espacio para texto más grande */
         }
         
         .floral-watermark {
@@ -107,7 +109,7 @@
             text-align: center;
             z-index: 2;
             width: 100%;
-            padding: 0 15px;
+            padding: 0 25px;
         }
         
         .guest-name {
@@ -115,7 +117,7 @@
             font-weight: normal;
             letter-spacing: 1px;
             line-height: 1.2;
-            font-size: 2rem;
+            font-size: 2.4rem; /* TEXTO MÁS GRANDE */
             word-wrap: break-word;
             overflow-wrap: break-word;
             margin: 0;
@@ -125,18 +127,18 @@
         
         .watermark {
             position: absolute;
-            bottom: 12px;
+            bottom: 20px;
             left: 0;
             width: 100%;
             text-align: center;
             color: #935d29;
-            font-size: 0.9rem;
+            font-size: 1rem;
             opacity: 1;
             font-family: 'Playfair Display', serif;
             letter-spacing: 0.5px;
         }
         
-        /* Estilos de fuentes elegantes */
+        /* Estilos de fuentes elegantes - TEXTO MÁS GRANDE */
         .font-playfair {
             font-family: 'Playfair Display', serif;
             font-weight: 500;
@@ -144,23 +146,23 @@
         
         .font-dancing {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+            font-size: 2.8rem; /* Aumentado */
         }
         
         .font-greatvibes {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
+            font-size: 2.8rem; /* Aumentado */
         }
         
         .font-parisienne {
             font-family: 'Parisienne', cursive;
-            font-size: 2.2rem;
+            font-size: 2.8rem; /* Aumentado */
         }
         
         .font-cormorant {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
-            font-size: 1.9rem;
+            font-size: 2.5rem; /* Aumentado */
         }
         
         .loading {
@@ -227,165 +229,21 @@
             border-radius: 4px;
         }
         
-        @media (max-width: 750px) {
+        /* ESTILOS DE PANTALLA (no impresión) */
+        @media screen {
             .seat-card {
-                width: 100%;
-                max-width: 300px;
-                height: 210px;
-            }
-            
-            .flower-side {
-                padding-top: 35px;
-            }
-            
-            .guest-name {
-                font-size: 1.6rem;
-            }
-            
-            .font-dancing, .font-greatvibes, .font-parisienne {
-                font-size: 1.8rem;
-            }
-            
-            .font-cormorant {
-                font-size: 1.6rem;
-            }
-            
-            .watermark {
-                font-size: 0.8rem;
-                bottom: 10px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
+                box-shadow: 0 2px 5px rgba(139, 90, 43, 0.15);
             }
         }
         
-        @media (max-width: 500px) {
-            .seat-card {
-                height: 180px;
-                max-width: 250px;
-            }
-            
-            .flower-side {
-                padding-top: 30px;
-            }
-            
-            .guest-name {
-                font-size: 1.4rem;
-            }
-            
-            .font-dancing, .font-greatvibes, .font-parisienne {
-                font-size: 1.5rem;
-            }
-            
-            .font-cormorant {
-                font-size: 1.4rem;
-            }
-            
-            .watermark {
-                font-size: 0.7rem;
-                bottom: 8px;
-            }
-            
-            .controls {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            input, button {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-        
-        /* ESTILOS CORREGIDOS PARA IMPRESIÓN - TARJETAS MÁS GRANDES CON MÁRGENES SEGUROS */
-        @media print {
-            body {
-                padding: 0;
-                background: white;
-                margin: 0;
-                width: 100%;
-                height: 100%;
-            }
-            
-            .controls, .font-selector, .print-info, h1,
-            .loading, .error {
-                display: none !important;
-            }
-            
-            .cards-container {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.4cm !important;
-                max-width: 100% !important;
-                width: 100% !important;
-                margin: 0 auto !important;
-                padding: 0.5cm 0.8cm !important; /* Más espacio en bordes */
-                page-break-after: always;
-                height: 100%;
-                box-sizing: border-box;
-            }
-            
-            .seat-card {
-                width: 100% !important;
-                height: 10.5cm !important; /* Aún más altas */
-                box-shadow: none !important;
-                border: 1px solid #e0e0e0 !important;
-                page-break-inside: avoid !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                break-inside: avoid;
-            }
-            
-            /* Configuración de página con márgenes seguros para impresión */
-            @page {
-                size: letter portrait;
-                margin: 2.0cm 1.5cm 1.2cm 1.8cm; /* Más margen arriba e izquierda */
-                /* top, right, bottom, left */
-            }
-            
-            /* Forzar salto de página después de cada 4 tarjetas */
-            .seat-card:nth-child(4n) {
-                page-break-after: always;
-            }
-            
-            .guest-name {
-                font-size: 2.4rem !important; /* Texto aún más grande */
-                padding: 0 20px;
-                margin-top: 20px;
-            }
-            
-            .watermark {
-                opacity: 0.4;
-                font-size: 1.1rem !important;
-                bottom: 20px;
-            }
-            
-            .floral-watermark {
-                opacity: 0.4 !important;
-            }
-            
-            .flower-side {
-                padding-top: 50px !important; /* Más espacio para el nombre */
-            }
-            
-            .name-container {
-                padding: 0 25px;
-            }
-            
-            /* Asegurar que las tarjetas no se corten */
-            .seat-card {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-        }
+        /* ELIMINAR TODOS LOS ESTILOS DE IMPRESIÓN DE AQUÍ - SE USARÁ print.css */
     </style>
 </head>
 <body>
     <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
     
     <div class="print-info">
-        💡 Tamaño optimizado para 4 tarjetas por hoja carta - Imprimir en VERTICAL
+        💡 Tamaño igual a los cartones de bingo - Doble cara perfecta
     </div>
     
     <div class="font-selector">
@@ -399,7 +257,7 @@
     <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
     <div id="errorMessage" class="error" style="display: none;"></div>
     
-    <div class="cards-container" id="cardsContainer">
+    <div class="cards-container print-sheet" id="cardsContainer">
         <!-- Los carteles se generarán automáticamente desde el JSON -->
     </div>
     
@@ -407,10 +265,9 @@
         <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
         <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
         <button onclick="addCard()">Agregar Tarjeta</button> 
-        <button onclick="printCards()">Imprimir Tarjeta</button>
+        <button onclick="printCards()">Imprimir Tarjetas</button>
         <button onclick="goToBingo()">Generar Cartones de Bingo</button> 
         <button onclick="goToCantoBingo()">Cantar Bingo</button>
-</a>
     </div>
 
     <script>
@@ -437,7 +294,7 @@
             const imagePath = imageName ? `images/${imageName}` : 'images/flores-izquierda.png';
             
             return `
-                <div class="seat-card">
+                <div class="seat-card print-card">
                     <div class="flower-side">
                         <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='images/flores-izquierda.png'">
                         <div class="name-container">
@@ -547,19 +404,5 @@
             loadFromJSON();
         };
     </script>
-    <script>
-  // Small runtime helper to add print classes without changing many template strings
-  document.addEventListener('DOMContentLoaded', function(){
-    try {
-      var cards = document.querySelector('.cards-container');
-      if (cards) cards.classList.add('print-sheet');
-      var bingoContainer = document.getElementById('bingo-container');
-      if (bingoContainer) bingoContainer.classList.add('print-sheet');
-
-      document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
-      document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
-    } catch(e) { console.warn('print helper:', e); }
-  });
-</script>
 </body>
 </html>
