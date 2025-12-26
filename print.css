@@ -1,87 +1,151 @@
-/* Contenido de print.css (añádelo y enlázalo con media="print") */
+/* print.css - ESTILOS UNIFICADOS PARA IMPRESIÓN DOBLE CARA */
+/* TARJETAS DE NOMBRE Y BINGO DEBEN SER IDÉNTICAS */
 
-/* Página y márgenes */
 @page {
-  size: A4 portrait;
-  margin: 15mm; /* ajusta si tu impresora requiere más espacio */
+    size: A4 portrait;
+    margin: 20mm 15mm; /* 20mm arriba/abajo, 15mm izquierda/derecha */
 }
 
-/* Forzar ajustes de impresión */
 @media print {
-  html, body {
-    width: 210mm;
-    height: 297mm;
-    margin: 0;
-    background: #fff !important;
-    color: #000 !important;
-  }
-
-  /* Evitar encabezados/pies añadidos por navegador (pero deben desactivarse en diálogo de impresión) */
-  @top-left { content: none; }
-  @top-right { content: none; }
-  @bottom-left { content: none; }
-  @bottom-right { content: none; }
-
-  /* Contenedor imprimible: ancho = 210 - 2*margin = 180mm */
-  .print-sheet, .bingo-print-sheet {
-    /* Usa la misma clase en ambas páginas para consistencia */
-    width: calc(210mm - 30mm); /* 180mm si margin:15mm */
-    height: calc(297mm - 30mm); /* no estrictamente necesario, pero útil */
-    margin: 0 auto;
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: auto;
-    column-gap: 15mm; /* espacio entre columnas, igual que en diseño de corte */
-    row-gap: 10mm;
-    align-items: start;
-    justify-items: center;
-    page-break-after: auto;
-  }
-
-  /* DIMENSIONES EXACTAS DE CADA TARJETA */
-  .print-card, .bingo-card {
-    width: 82.5mm !important;   /* ancho tarjeta real */
-    height: 112.5mm !important; /* alto tarjeta real */
-    box-sizing: border-box !important;
-    padding: 8mm 6mm !important;
-    border: 1px solid #000 !important;
-    background: transparent !important; /* evitar gradientes */
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Forzar texto y bordes en negro para ahorrar tinta */
-  .print-card *,
-  .bingo-card * {
-    color: #000 !important;
-    background: transparent !important;
-    -webkit-print-color-adjust: economy;
-    print-color-adjust: economy;
-  }
-
-  /* Ocultar controles UI no imprimibles */
-  .print-button,
-  .nav-button,
-  .nav-button-main,
-  .loading,
-  .navigation,
-  .actions {
-    display: none !important;
-  }
-
-  /* Quitar imágenes decorativas en impresión si quieres ahorrar tinta;
-     si prefieres imágenes en lomo también puedes mantenerlas. */
-  .floral-watermark,
-  img.decorative {
-    display: none !important;
-  }
-
-  /* Asegurar que el grid no se reescale */
-  .print-sheet, .bingo-print-sheet, .print-card {
-    transform: none !important;
-    zoom: 1 !important;
-  }
+    /* RESET COMPLETO */
+    body, html {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        font-family: 'Georgia', serif !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* OCULTAR TODO LO QUE NO SEA LAS TARJETAS */
+    .controls, 
+    .font-selector, 
+    .print-info, 
+    h1,
+    .loading, 
+    .error,
+    .header,
+    .navigation,
+    .actions,
+    .nav-button,
+    .print-button,
+    .nav-button-main {
+        display: none !important;
+    }
+    
+    /* CONTENEDOR PRINCIPAL - MISMO PARA AMBAS PÁGINAS */
+    .print-sheet,
+    .cards-container,
+    .bingo-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15mm !important; /* ESPACIO PARA CORTE - IGUAL EN AMBAS */
+        width: 180mm !important; /* 210 - 15 - 15 = 180mm */
+        height: auto !important;
+        margin: 20mm auto !important; /* Centrado verticalmente */
+        padding: 0 !important;
+        position: relative;
+        page-break-after: always;
+        box-sizing: border-box;
+    }
+    
+    /* TARJETAS - TAMAÑO IDÉNTICO EN MILÍMETROS */
+    .print-card,
+    .seat-card,
+    .bingo-card {
+        /* TAMAÑO EXACTO EN MILÍMETROS - IGUAL EN AMBAS PÁGINAS */
+        width: 82.5mm !important;   /* ANCHO FIJO */
+        height: 112.5mm !important; /* ALTO FIJO */
+        
+        /* ESTILOS DE IMPRESIÓN */
+        border: 1px solid #000 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: white !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        position: relative;
+        overflow: hidden;
+        margin: 0 !important;
+        padding: 8mm 6mm !important; /* MARGEN INTERNO IGUAL */
+        box-sizing: border-box !important;
+    }
+    
+    /* ESTILOS ESPECÍFICOS PARA TARJETAS DE NOMBRE */
+    .seat-card .guest-name {
+        font-size: 32px !important; /* TEXTO GRANDE PARA IMPRESIÓN */
+        line-height: 1.2 !important;
+        color: #000 !important;
+        text-align: center !important;
+        margin: 15mm 0 10mm 0 !important;
+        font-weight: normal !important;
+    }
+    
+    .seat-card .watermark {
+        position: absolute !important;
+        bottom: 10mm !important;
+        left: 0 !important;
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 14px !important;
+        color: #666 !important;
+        opacity: 0.7 !important;
+    }
+    
+    .seat-card .floral-watermark {
+        opacity: 0.15 !important; /* MUY SUAVE PARA AHORRAR TINTA */
+    }
+    
+    /* ESTILOS ESPECÍFICOS PARA CARTONES DE BINGO */
+    .bingo-card .bingo-header {
+        font-size: 20px !important;
+        margin-bottom: 5mm !important;
+        color: #000 !important;
+        border-bottom: 1px solid #000 !important;
+        padding-bottom: 2mm !important;
+    }
+    
+    .bingo-card .bingo-grid {
+        height: 75mm !important; /* ALTURA FIJA PARA LA CUADRICULA */
+        gap: 1.5mm !important;
+    }
+    
+    .bingo-card .bingo-cell {
+        font-size: 16px !important;
+        border: 1px solid #000 !important;
+        font-weight: bold !important;
+        color: #000 !important;
+        background: white !important;
+    }
+    
+    .bingo-card .bingo-cell.free {
+        font-size: 12px !important;
+        background: #f0f0f0 !important;
+    }
+    
+    .bingo-card .bingo-footer {
+        font-size: 14px !important;
+        color: #000 !important;
+        margin-top: 3mm !important;
+        text-align: center !important;
+    }
+    
+    /* GARANTIZAR QUE NO HAYA PÁGINAS EN BLANCO */
+    .print-sheet:last-child {
+        page-break-after: auto !important;
+    }
+    
+    /* EVITAR QUE LAS TARJETAS SE CORTEN */
+    .seat-card, .bingo-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        -webkit-region-break-inside: avoid;
+    }
+    
+    /* FORZAR 4 TARJETAS POR PÁGINA */
+    .print-sheet {
+        min-height: 257mm !important; /* 297 - 20 - 20 = 257mm */
+    }
 }
