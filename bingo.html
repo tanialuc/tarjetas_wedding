@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+    <link rel="stylesheet" href="print.css" media="print">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -390,5 +391,19 @@
         // Ejecutar cuando la página cargue
         document.addEventListener('DOMContentLoaded', cargarInvitadosYGenerarBingos);
     </script>
+    <script>
+  // Small runtime helper to add print classes without changing many template strings
+  document.addEventListener('DOMContentLoaded', function(){
+    try {
+      var cards = document.querySelector('.cards-container');
+      if (cards) cards.classList.add('print-sheet');
+      var bingoContainer = document.getElementById('bingo-container');
+      if (bingoContainer) bingoContainer.classList.add('print-sheet');
+
+      document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
+      document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
+    } catch(e) { console.warn('print helper:', e); }
+  });
+</script>
 </body>
 </html>
