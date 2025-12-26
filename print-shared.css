@@ -9,7 +9,6 @@
   --card-height: 133.5mm;
   --card-gap: 10mm;
   --card-font: 'Georgia', serif;
-  --accent-color: #8b5a2b;
 }
 
 .print-sheet,
@@ -99,7 +98,7 @@
 @media screen {
   .print-card,
   .seat-card {
-    box-shadow: none !important;
-    border-radius: 0 !important;
+    box-shadow: none;
+    border-radius: 0;
   }
 }
