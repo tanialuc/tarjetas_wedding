@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-    <link rel="stylesheet" href="print.css" media="print">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteles de Asiento - Tania & Manuel</title>
+    <link rel="stylesheet" href="print.css" media="print">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -437,7 +437,7 @@
             const imagePath = imageName ? `images/${imageName}` : 'images/flores-izquierda.png';
             
             return `
-                <div class="seat-card">
+                <div class="seat-card print-card">
                     <div class="flower-side">
                         <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='images/flores-izquierda.png'">
                         <div class="name-container">
@@ -484,6 +484,7 @@
                 });
                 
                 loadingMessage.style.display = 'none';
+                addPrintClasses();
                 
             } catch (error) {
                 loadingMessage.style.display = 'none';
@@ -505,6 +506,8 @@
             exampleGuests.forEach(guest => {
                 container.innerHTML += createSeatCard(guest.nombre, guest.imagen);
             });
+            
+            addPrintClasses();
         }
         
         function addCard() {
@@ -519,6 +522,8 @@
             container.innerHTML += createSeatCard(name, image);
             nameInput.value = '';
             imageInput.value = '';
+            
+            addPrintClasses();
         }
         
         function clearAll() {
@@ -539,6 +544,18 @@
             window.print();
         }
         
+        function addPrintClasses(){
+            try {
+                var cards = document.querySelector('.cards-container');
+                if (cards) cards.classList.add('print-sheet');
+                var bingoContainer = document.getElementById('bingo-container');
+                if (bingoContainer) bingoContainer.classList.add('print-sheet');
+
+                document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
+                document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
+            } catch(e) { console.warn('print helper:', e); }
+        }
+        
         document.getElementById('guestName').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') addCard();
         });
@@ -547,19 +564,5 @@
             loadFromJSON();
         };
     </script>
-    <script>
-  // Small runtime helper to add print classes without changing many template strings
-  document.addEventListener('DOMContentLoaded', function(){
-    try {
-      var cards = document.querySelector('.cards-container');
-      if (cards) cards.classList.add('print-sheet');
-      var bingoContainer = document.getElementById('bingo-container');
-      if (bingoContainer) bingoContainer.classList.add('print-sheet');
-
-      document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
-      document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
-    } catch(e) { console.warn('print helper:', e); }
-  });
-</script>
 </body>
 </html>

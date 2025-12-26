@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-    <link rel="stylesheet" href="print.css" media="print">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjetas de Bingo - Tania & Manuel</title>
+    <link rel="stylesheet" href="print.css" media="print">
     <style>
         * {
             margin: 0;
@@ -335,7 +335,7 @@
         // Función para crear el HTML de una tarjeta de bingo
         function crearBingoHTML(nombre, numeros) {
             return `
-                <div class="bingo-card">
+                <div class="bingo-card print-card">
                     <div class="bingo-header">
                         <span>B</span>
                         <span>I</span>
@@ -381,6 +381,8 @@
                 loadingElement.style.display = 'none';
                 bingosContainer.style.display = 'grid';
                 
+                addPrintClasses();
+                
             } catch (error) {
                 console.error('Error al cargar los invitados:', error);
                 document.getElementById('loading').textContent = 
@@ -388,22 +390,20 @@
             }
         }
 
+        function addPrintClasses(){
+            try {
+                var cards = document.querySelector('.cards-container');
+                if (cards) cards.classList.add('print-sheet');
+                var bingoContainer = document.getElementById('bingo-container');
+                if (bingoContainer) bingoContainer.classList.add('print-sheet');
+
+                document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
+                document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
+            } catch(e) { console.warn('print helper:', e); }
+        }
+
         // Ejecutar cuando la página cargue
         document.addEventListener('DOMContentLoaded', cargarInvitadosYGenerarBingos);
     </script>
-    <script>
-  // Small runtime helper to add print classes without changing many template strings
-  document.addEventListener('DOMContentLoaded', function(){
-    try {
-      var cards = document.querySelector('.cards-container');
-      if (cards) cards.classList.add('print-sheet');
-      var bingoContainer = document.getElementById('bingo-container');
-      if (bingoContainer) bingoContainer.classList.add('print-sheet');
-
-      document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
-      document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
-    } catch(e) { console.warn('print helper:', e); }
-  });
-</script>
 </body>
 </html>
