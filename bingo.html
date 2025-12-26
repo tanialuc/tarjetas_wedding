@@ -209,40 +209,69 @@
                 left: 15mm;
             }
             
+            /* TAMAÑO MÁS GRANDE PARA PANTALLA */
             .bingo-card {
-                width: 82.5mm !important; /* Mismo tamaño exacto que tarjetas */
-                height: 112.5mm !important; /* Mismo tamaño exacto que tarjetas */
-                border: 1px solid #000 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                padding: 8mm 6mm;
-                page-break-inside: avoid;
-                break-inside: avoid;
+                width: 320px;  /* Aumentado de 270px */
+                height: 475px; /* Aumentado de 370px */
+                border: 1px solid #d4a574;
+                border-radius: 0;
+                padding: 15px 12px; /* Más padding */
+                background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
             }
             
             .bingo-grid {
-                height: 85mm !important;
-                gap: 2mm;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                gap: 4px; /* Más espacio */
+                width: 100%;
+                height: 350px; /* Más alto */
+                margin-bottom: 12px;
+                flex-grow: 1;
             }
             
             .bingo-cell {
-                font-size: 18px !important;
-                border: 1px solid #000 !important;
-                border-radius: 0 !important;
-                font-weight: bold !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #d4a574;
+                border-radius: 0;
+                font-size: 20px; /* Más grande */
+                font-weight: bold;
+                background-color: #fffaf0;
+                font-weight: 500;
             }
             
             .bingo-cell.free {
-                font-size: 12px !important; /* T&M pequeño para impresión */
+                background-color: #f0e6d2;
+                font-weight: bold;
+                color: #8b5a2b;
+                font-size: 16px; /* Más grande */
             }
             
             .bingo-header {
-                font-size: 18px !important;
-                margin-bottom: 5mm;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: bold;
+                font-size: 24px; /* Más grande */
+                margin-bottom: 12px;
+                color: #8b5a2b;
+                padding-bottom: 6px;
+                border-bottom: 2px solid #d4a574;
             }
             
             .bingo-footer {
-                font-size: 12px !important;
+                font-size: 16px; /* Más grande */
+                color: #8b5a2b;
+                text-align: center;
+                font-weight: 500;
+                margin-top: 5px;
             }
             
             .print-button, .nav-button-main, .loading {
