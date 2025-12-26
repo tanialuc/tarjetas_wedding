@@ -1,4 +1,4 @@
-/* print.css - VERSIÓN CON TARJETAS MÁXIMAS */
+/* print.css - VERSIÓN CON TARJETAS MÁXIMAS PARA IMPRESIÓN DOBLE CARA */
 
 @page {
     size: A4 portrait;
@@ -6,7 +6,7 @@
 }
 
 @media print {
-    /* RESET Y POSICIÓN */
+    /* ===== RESET COMPLETO Y POSICIÓN ===== */
     body, html {
         width: 210mm !important;
         height: 297mm !important;
@@ -16,33 +16,46 @@
         position: relative;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
+        font-family: 'Georgia', serif !important;
     }
     
-    /* OCULTAR INTERFAZ */
-    .controls, .font-selector, .print-info, h1,
-    .loading, .error, .header, .navigation,
-    .actions, .nav-button, .print-button, .nav-button-main {
+    /* ===== OCULTAR INTERFAZ DE USUARIO ===== */
+    .controls, 
+    .font-selector, 
+    .print-info, 
+    h1,
+    .loading, 
+    .error, 
+    .header, 
+    .navigation,
+    .actions, 
+    .nav-button, 
+    .print-button, 
+    .nav-button-main,
+    #loadingMessage,
+    #errorMessage,
+    .font-option {
         display: none !important;
     }
     
-    /* CONTENEDOR PRINCIPAL - TAMAÑO MÁXIMO */
+    /* ===== CONTENEDOR PRINCIPAL - TAMAÑO MÁXIMO ===== */
     .print-sheet,
     .cards-container,
     .bingo-container {
-        /* POSICIÓN CON MÁRGENES MÍNIMOS */
+        /* POSICIÓN CON MÁRGENES MÍNIMOS PARA MÁXIMO APROVECHAMIENTO */
         position: absolute !important;
-        top: 10mm !important;    /* Mínimo margen superior */
-        left: 10mm !important;   /* Mínimo margen izquierdo */
+        top: 10mm !important;    /* Mínimo margen superior (3.9% de 297mm) */
+        left: 10mm !important;   /* Mínimo margen izquierdo (4.8% de 210mm) */
         
         /* ÁREA DE IMPRESIÓN MÁXIMA */
-        width: 190mm !important;  /* 210 - 10 - 10 = 190mm */
-        height: 277mm !important; /* 297 - 10 - 10 = 277mm */
+        width: 190mm !important;  /* 210mm - 10mm - 10mm = 190mm (90.5% del ancho) */
+        height: 277mm !important; /* 297mm - 10mm - 10mm = 277mm (93.3% del alto) */
         
         /* GRID DE 2x2 CON ESPACIO PARA CORTE */
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         grid-template-rows: repeat(2, 1fr) !important;
-        gap: 10mm !important;     /* Espacio suficiente para corte */
+        gap: 10mm !important;     /* Espacio suficiente para corte (5.3% del ancho) */
         
         margin: 0 !important;
         padding: 0 !important;
@@ -50,15 +63,15 @@
         page-break-after: always;
     }
     
-    /* TARJETAS - TAMAÑO MÁXIMO CALCULADO */
+    /* ===== TARJETAS - TAMAÑO MÁXIMO CALCULADO ===== */
     .print-card,
     .seat-card,
     .bingo-card {
-        /* TAMAÑO MÁXIMO: (190-10)/2 = 90mm, (277-10)/2 = 133.5mm */
-        width: 90mm !important;
-        height: 133.5mm !important;
+        /* TAMAÑO MÁXIMO: (190mm-10mm)/2 = 90mm, (277mm-10mm)/2 = 133.5mm */
+        width: 90mm !important;      /* 42.9% del ancho de página */
+        height: 133.5mm !important;  /* 44.9% del alto de página */
         
-        /* ESTILOS COMUNES */
+        /* ESTILOS COMUNES PARA AMBAS CARAS */
         border: 1px solid #000 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
@@ -66,64 +79,75 @@
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         margin: 0 !important;
-        padding: 10mm 8mm !important; /* Más padding interno */
+        padding: 10mm 8mm !important; /* Generoso padding interno */
         box-sizing: border-box !important;
         position: relative;
         overflow: hidden;
+        -webkit-region-break-inside: avoid !important;
     }
     
-    /* ===== TARJETAS DE NOMBRE (GRANDES) ===== */
+    /* ===== TARJETAS DE NOMBRE (CARA DELANTERA) ===== */
     .seat-card .flower-side {
         height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
+        justify-content: center !important;  /* Centrado vertical perfecto */
+        align-items: center !important;      /* Centrado horizontal */
         padding-top: 0 !important;
     }
     
     .seat-card .name-container {
         width: 100% !important;
-        padding: 0 8mm !important;
+        padding: 0 8mm !important;           /* Padding lateral igual al del card */
         text-align: center !important;
+        z-index: 2 !important;
     }
     
     .seat-card .guest-name {
-        font-size: 36px !important; /* MUCHO MÁS GRANDE */
+        font-size: 36px !important;          /* TEXTO MUY GRANDE (1.4cm de alto) */
         line-height: 1.3 !important;
         color: #000 !important;
         text-align: center !important;
-        margin: 0 0 15mm 0 !important; /* Más espacio abajo */
+        margin: 0 0 15mm 0 !important;       /* Espacio generoso para el watermark */
         font-weight: normal !important;
         width: 100% !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     .seat-card .watermark {
         position: absolute !important;
-        bottom: 8mm !important;
+        bottom: 8mm !important;              /* Bien posicionado desde el fondo */
         left: 0 !important;
         width: 100% !important;
         text-align: center !important;
-        font-size: 14px !important;
+        font-size: 14px !important;          /* 5.3mm de alto */
         color: #666 !important;
         opacity: 0.7 !important;
+        font-family: 'Playfair Display', serif !important;
+        letter-spacing: 0.5px !important;
+        z-index: 3 !important;
     }
     
     .seat-card .floral-watermark {
-        opacity: 0.1 !important;
+        opacity: 0.1 !important;             /* Muy suave para ahorrar tinta */
         object-fit: cover !important;
         width: 100% !important;
         height: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
     }
     
-    /* ===== CARTONES DE BINGO (AJUSTADOS AL NUEVO TAMAÑO) ===== */
+    /* ===== CARTONES DE BINGO (CARA TRASERA) ===== */
     .bingo-card {
         display: flex !important;
         flex-direction: column !important;
     }
     
     .bingo-card .bingo-header {
-        font-size: 22px !important; /* Más grande */
+        font-size: 22px !important;          /* 8.3mm de alto */
         margin-bottom: 4mm !important;
         color: #000 !important;
         border-bottom: 1px solid #000 !important;
@@ -132,74 +156,163 @@
         display: flex !important;
         justify-content: space-between !important;
         padding: 0 3mm 2mm 3mm !important;
+        font-weight: bold !important;
+        letter-spacing: 1px !important;
     }
     
     .bingo-card .bingo-grid {
-        flex: 1 !important;
+        flex: 1 !important;                   /* Ocupa todo el espacio disponible */
         display: grid !important;
         grid-template-columns: repeat(5, 1fr) !important;
         grid-template-rows: repeat(5, 1fr) !important;
-        gap: 1.5mm !important; /* Más espacio entre celdas */
+        gap: 1.5mm !important;                /* Buen espacio entre celdas */
         margin-bottom: 3mm !important;
+        min-height: 0 !important;             /* Permite que el grid se reduzca */
     }
     
     .bingo-card .bingo-cell {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 16px !important; /* Más grande */
+        font-size: 16px !important;           /* 6mm de alto - buena legibilidad */
         border: 1px solid #000 !important;
         font-weight: bold !important;
         color: #000 !important;
         background: white !important;
+        min-height: 0 !important;             /* Flexibilidad en altura */
+        padding: 1mm !important;
     }
     
     .bingo-card .bingo-cell.free {
-        font-size: 12px !important;
+        font-size: 12px !important;           /* 4.5mm de alto */
         background: #f0f0f0 !important;
         flex-direction: column !important;
         padding: 2mm !important;
+        font-weight: bold !important;
     }
     
     .bingo-card .bingo-footer {
-        font-size: 14px !important;
+        font-size: 14px !important;           /* 5.3mm de alto */
         color: #000 !important;
         text-align: center !important;
         margin-top: 2mm !important;
         padding-top: 2mm !important;
         border-top: 1px dashed #ccc !important;
+        font-weight: 500 !important;
     }
     
-    /* ===== FUENTES ELEGANTES MÁS GRANDES ===== */
+    /* ===== FUENTES ELEGANTES PARA TARJETAS DE NOMBRE ===== */
     .font-dancing {
-        font-size: 40px !important;
+        font-family: 'Dancing Script', cursive !important;
+        font-size: 40px !important;           /* 15mm de alto - muy elegante */
     }
     
     .font-greatvibes {
-        font-size: 40px !important;
+        font-family: 'Great Vibes', cursive !important;
+        font-size: 40px !important;           /* 15mm de alto */
     }
     
     .font-parisienne {
-        font-size: 40px !important;
+        font-family: 'Parisienne', cursive !important;
+        font-size: 40px !important;           /* 15mm de alto */
     }
     
     .font-cormorant {
-        font-size: 36px !important;
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 300 !important;
+        font-size: 36px !important;           /* 13.5mm de alto */
     }
     
     .font-playfair {
-        font-size: 38px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        font-size: 38px !important;           /* 14.3mm de alto */
     }
     
-    /* EVITAR PÁGINAS EN BLANCO */
+    /* ===== CONTROL DE PAGINACIÓN ===== */
     .print-sheet:last-child {
         page-break-after: auto !important;
     }
     
-    /* EVITAR CORTE DE TARJETAS */
-    .seat-card, .bingo-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        -webkit-region-break-inside: avoid;
+    /* Forzar exactamente 4 tarjetas por página */
+    .cards-container > .seat-card:nth-child(4n) {
+        page-break-after: always;
+    }
+    
+    .bingo-container > .bingo-card:nth-child(4n) {
+        page-break-after: always;
+    }
+    
+    /* ===== MARCAS DE REGISTRO (OPCIONAL - PARA ALINEACIÓN PERFECTA) ===== */
+    /*
+    .print-sheet::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 190mm;
+        height: 277mm;
+        border: 0.5mm dashed rgba(255,0,0,0.3);
+        pointer-events: none;
+        z-index: 9999;
+    }
+    
+    .seat-card::after,
+    .bingo-card::after {
+        content: "✂";
+        position: absolute;
+        top: 1mm;
+        right: 1mm;
+        font-size: 8px;
+        color: blue;
+        opacity: 0.5;
+    }
+    */
+    
+    /* ===== AJUSTES PARA IMPRESORAS PROBLEMÁTICAS ===== */
+    
+    /* Si tu impresora corta los bordes, usa esta versión con más margen: */
+    /*
+    .print-sheet,
+    .cards-container,
+    .bingo-container {
+        top: 15mm !important;
+        left: 15mm !important;
+        width: 180mm !important;
+        height: 267mm !important;
+    }
+    
+    .print-card,
+    .seat-card,
+    .bingo-card {
+        width: 85mm !important;
+        height: 128.5mm !important;
+    }
+    */
+    
+    /* ===== INSTRUCCIONES DE IMPRESIÓN (SOLO VISIBLE EN VISTA PREVIA) ===== */
+    body::before {
+        content: "IMPRESIÓN DOBLE CARA - Configuración: Papel A4, Vertical, Escala 100%, Sin márgenes adicionales, Sin encabezados/pies";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: yellow;
+        color: black;
+        padding: 5px;
+        font-size: 10px;
+        text-align: center;
+        z-index: 10000;
+        display: none; /* Solo se mostrará en vista previa si descomentas */
+    }
+}
+
+/* ===== ESTILOS PARA VISTA PREVIA EN PANTALLA ===== */
+@media screen and (min-width: 1000px) {
+    /* Ayuda visual para ver el tamaño real */
+    .cards-container.print-sheet,
+    .bingo-container.print-sheet {
+        border: 1px dashed #ccc;
+        background: #f9f9f9;
     }
 }
