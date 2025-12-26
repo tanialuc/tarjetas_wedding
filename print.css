@@ -1,0 +1,87 @@
+/* Contenido de print.css (añádelo y enlázalo con media="print") */
+
+/* Página y márgenes */
+@page {
+  size: A4 portrait;
+  margin: 15mm; /* ajusta si tu impresora requiere más espacio */
+}
+
+/* Forzar ajustes de impresión */
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Evitar encabezados/pies añadidos por navegador (pero deben desactivarse en diálogo de impresión) */
+  @top-left { content: none; }
+  @top-right { content: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+
+  /* Contenedor imprimible: ancho = 210 - 2*margin = 180mm */
+  .print-sheet, .bingo-print-sheet {
+    /* Usa la misma clase en ambas páginas para consistencia */
+    width: calc(210mm - 30mm); /* 180mm si margin:15mm */
+    height: calc(297mm - 30mm); /* no estrictamente necesario, pero útil */
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    column-gap: 15mm; /* espacio entre columnas, igual que en diseño de corte */
+    row-gap: 10mm;
+    align-items: start;
+    justify-items: center;
+    page-break-after: auto;
+  }
+
+  /* DIMENSIONES EXACTAS DE CADA TARJETA */
+  .print-card, .bingo-card {
+    width: 82.5mm !important;   /* ancho tarjeta real */
+    height: 112.5mm !important; /* alto tarjeta real */
+    box-sizing: border-box !important;
+    padding: 8mm 6mm !important;
+    border: 1px solid #000 !important;
+    background: transparent !important; /* evitar gradientes */
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Forzar texto y bordes en negro para ahorrar tinta */
+  .print-card *,
+  .bingo-card * {
+    color: #000 !important;
+    background: transparent !important;
+    -webkit-print-color-adjust: economy;
+    print-color-adjust: economy;
+  }
+
+  /* Ocultar controles UI no imprimibles */
+  .print-button,
+  .nav-button,
+  .nav-button-main,
+  .loading,
+  .navigation,
+  .actions {
+    display: none !important;
+  }
+
+  /* Quitar imágenes decorativas en impresión si quieres ahorrar tinta;
+     si prefieres imágenes en lomo también puedes mantenerlas. */
+  .floral-watermark,
+  img.decorative {
+    display: none !important;
+  }
+
+  /* Asegurar que el grid no se reescale */
+  .print-sheet, .bingo-print-sheet, .print-card {
+    transform: none !important;
+    zoom: 1 !important;
+  }
+}
