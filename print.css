@@ -44,18 +44,18 @@
     .bingo-container {
         /* POSICIÓN CON MÁRGENES MÍNIMOS PARA MÁXIMO APROVECHAMIENTO */
         position: absolute !important;
-        top: 10mm !important;    /* Mínimo margen superior (3.9% de 297mm) */
-        left: 10mm !important;   /* Mínimo margen izquierdo (4.8% de 210mm) */
+        top: 10mm !important;
+        left: 10mm !important;
         
         /* ÁREA DE IMPRESIÓN MÁXIMA */
-        width: 190mm !important;  /* 210mm - 10mm - 10mm = 190mm (90.5% del ancho) */
-        height: 277mm !important; /* 297mm - 10mm - 10mm = 277mm (93.3% del alto) */
+        width: 190mm !important;
+        height: 277mm !important;
         
         /* GRID DE 2x2 CON ESPACIO PARA CORTE */
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         grid-template-rows: repeat(2, 1fr) !important;
-        gap: 10mm !important;     /* Espacio suficiente para corte (5.3% del ancho) */
+        gap: 10mm !important;
         
         margin: 0 !important;
         padding: 0 !important;
@@ -67,9 +67,8 @@
     .print-card,
     .seat-card,
     .bingo-card {
-        /* TAMAÑO MÁXIMO: (190mm-10mm)/2 = 90mm, (277mm-10mm)/2 = 133.5mm */
-        width: 90mm !important;      /* 42.9% del ancho de página */
-        height: 133.5mm !important;  /* 44.9% del alto de página */
+        width: 90mm !important;
+        height: 133.5mm !important;
         
         /* ESTILOS COMUNES PARA AMBAS CARAS */
         border: 1px solid #000 !important;
@@ -79,7 +78,7 @@
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         margin: 0 !important;
-        padding: 10mm 8mm !important; /* Generoso padding interno */
+        padding: 0 !important; /* SIN PADDING - lo manejamos internamente */
         box-sizing: border-box !important;
         position: relative;
         overflow: hidden;
@@ -91,34 +90,33 @@
         height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important; /* Cambiado de center a flex-start */
+        justify-content: center !important; /* CENTRADO VERTICAL */
         align-items: center !important;
-        padding-top: 5mm !important; /* Espacio en la parte superior */
+        padding: 15mm 8mm 25mm 8mm !important; /* 25mm abajo para espacio para escribir */
+        box-sizing: border-box !important;
     }
     
     .seat-card .name-container {
         width: 100% !important;
-        padding: 0 8mm !important;
         text-align: center !important;
         z-index: 2 !important;
         position: relative !important;
-        margin-top: 15mm !important; /* Espacio desde la flor */
+        margin-bottom: 15mm !important; /* ESPACIO DESPUÉS DEL NOMBRE */
     }
     
     .seat-card .guest-name {
-        font-size: 32px !important; /* Reducido ligeramente para mejor ajuste */
-        line-height: 1.4 !important;
+        font-size: 36px !important; /* Tamaño original */
+        line-height: 1.3 !important;
         color: #000 !important;
         text-align: center !important;
-        margin: 0 0 20mm !important; /* ESPACIO EN BLANCO DESPUÉS DEL NOMBRE */
+        margin: 0 !important;
         font-weight: normal !important;
         width: 100% !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
         position: relative !important;
         z-index: 2 !important;
-        hyphens: auto !important; /* Permite separación silábica */
-        min-height: 25mm !important; /* Altura mínima para el nombre */
+        hyphens: auto !important;
     }
     
     .seat-card .watermark {
@@ -135,23 +133,24 @@
         z-index: 3 !important;
     }
     
-    /* FLORES COMO MARCA DE AGUA - OCUPANDO TODA LA ALTURA */
+    /* FLORES COMO MARCA DE AGUA - VERSIÓN VISIBLE PERO SUAVE */
     .seat-card .floral-watermark {
-        opacity: 0.15 !important; /* MUY SUAVE como marca de agua */
-        object-fit: cover !important; /* Cubre todo el espacio */
-        width: 100% !important; /* Ocupa todo el ancho */
-        height: 100% !important; /* Ocupa toda la altura */
+        opacity: 0.4 !important; /* AUMENTADO - más visible pero sutil */
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100% !important;
         position: absolute !important;
         top: 0 !important;
         left: 0 !important;
         z-index: 1 !important;
-        filter: grayscale(50%) brightness(1.1) !important; /* Más sutil */
+        filter: grayscale(30%) brightness(1.2) contrast(0.9) !important;
     }
     
     /* ===== CARTONES DE BINGO (CARA TRASERA) ===== */
     .bingo-card {
         display: flex !important;
         flex-direction: column !important;
+        padding: 10mm 8mm !important; /* Padding para bingo */
     }
     
     .bingo-card .bingo-header {
@@ -212,29 +211,29 @@
     /* ===== FUENTES ELEGANTES PARA TARJETAS DE NOMBRE ===== */
     .font-dancing {
         font-family: 'Dancing Script', cursive !important;
-        font-size: 38px !important; /* Ajustado */
+        font-size: 40px !important;
     }
     
     .font-greatvibes {
         font-family: 'Great Vibes', cursive !important;
-        font-size: 38px !important; /* Ajustado */
+        font-size: 40px !important;
     }
     
     .font-parisienne {
         font-family: 'Parisienne', cursive !important;
-        font-size: 38px !important; /* Ajustado */
+        font-size: 40px !important;
     }
     
     .font-cormorant {
         font-family: 'Cormorant Garamond', serif !important;
         font-weight: 300 !important;
-        font-size: 34px !important; /* Ajustado */
+        font-size: 36px !important;
     }
     
     .font-playfair {
         font-family: 'Playfair Display', serif !important;
         font-weight: 500 !important;
-        font-size: 36px !important; /* Ajustado */
+        font-size: 38px !important;
     }
     
     /* ===== CONTROL DE PAGINACIÓN ===== */
@@ -251,7 +250,7 @@
         page-break-after: always;
     }
     
-    /* ===== MARCAS DE REGISTRO (OPCIONAL - PARA ALINEACIÓN PERFECTA) ===== */
+    /* ===== MARCAS DE REGISTRO (OPCIONAL) ===== */
     .print-sheet::before {
         content: "";
         position: absolute;
@@ -264,7 +263,6 @@
         z-index: 9999;
     }
     
-    /* Marcas de recorte en cada tarjeta */
     .seat-card::after,
     .bingo-card::after {
         content: "✂";
@@ -276,7 +274,6 @@
         opacity: 0.5;
     }
     
-    /* Línea central para ayudar en doble cara */
     .print-sheet::after {
         content: "";
         position: absolute;
@@ -288,57 +285,18 @@
         pointer-events: none;
         z-index: 9998;
     }
-    
-    /* ===== AJUSTES PARA IMPRESORAS PROBLEMÁTICAS ===== */
-    
-    /* Si tu impresora corta los bordes, usa esta versión con más margen: */
-    /*
-    .print-sheet,
-    .cards-container,
-    .bingo-container {
-        top: 15mm !important;
-        left: 15mm !important;
-        width: 180mm !important;
-        height: 267mm !important;
-    }
-    
-    .print-card,
-    .seat-card,
-    .bingo-card {
-        width: 85mm !important;
-        height: 128.5mm !important;
-    }
-    */
-    
-    /* ===== INSTRUCCIONES DE IMPRESIÓN (SOLO VISIBLE EN VISTA PREVIA) ===== */
-    body::before {
-        content: "IMPRESIÓN DOBLE CARA - Configuración: Papel A4, Vertical, Escala 100%, Sin márgenes adicionales, Sin encabezados/pies";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: yellow;
-        color: black;
-        padding: 5px;
-        font-size: 10px;
-        text-align: center;
-        z-index: 10000;
-        display: none; /* Solo se mostrará en vista previa si descomentas */
-    }
 }
 
 /* ===== ESTILOS PARA VISTA PREVIA EN PANTALLA ===== */
 @media screen and (min-width: 1000px) {
-    /* Ayuda visual para ver el tamaño real */
     .cards-container.print-sheet,
     .bingo-container.print-sheet {
         border: 1px dashed #ccc;
         background: #f9f9f9;
     }
     
-    /* FLORES EN VISTA PREVIA */
     .seat-card .floral-watermark {
-        opacity: 0.15;
+        opacity: 0.4;
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -346,10 +304,9 @@
         top: 0;
         left: 0;
         z-index: 1;
-        filter: grayscale(50%) brightness(1.1);
+        filter: grayscale(30%) brightness(1.2) contrast(0.9);
     }
 
-    /* Asegurar que el contenedor del nombre quede por encima */
     .seat-card .name-container,
     .seat-card .guest-name {
         position: relative;
