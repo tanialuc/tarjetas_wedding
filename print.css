@@ -412,9 +412,9 @@
         height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         align-items: center !important;
-        padding: 0 !important;
+        padding: 25mm 8mm 35mm 8mm !important;
         box-sizing: border-box !important;
     }
     
@@ -423,11 +423,8 @@
         padding: 0 8mm !important;
         text-align: center !important;
         z-index: 2 !important;
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        margin-top: -10mm !important;
+        position: relative !important;
+        margin-bottom: 30mm !important; /* ESPACIO PARA ESCRIBIR A MANO */
     }
     
     .seat-card .guest-name {
@@ -435,7 +432,7 @@
         line-height: 1.3 !important;
         color: #000 !important;
         text-align: center !important;
-        margin: 0 0 25mm 0 !important;
+        margin: 0 !important;
         font-weight: normal !important;
         width: 100% !important;
         word-wrap: break-word !important;
@@ -443,11 +440,12 @@
         position: relative !important;
         z-index: 2 !important;
         hyphens: auto !important;
+        min-height: 25mm !important;
     }
     
     .seat-card .watermark {
         position: absolute !important;
-        bottom: 15mm !important;
+        bottom: 5mm !important; /* CASI AL BORDE INFERIOR */
         left: 0 !important;
         width: 100% !important;
         text-align: center !important;
@@ -460,19 +458,19 @@
         font-weight: 500 !important;
     }
     
-    /* FLORES EN IMPRESIÓN */
+    /* FLORES EN IMPRESIÓN - CUBRIENDO TODA LA ALTURA */
     .seat-card .floral-watermark {
-        opacity: 0.85 !important;
+        opacity: 0.25 !important;
         object-fit: cover !important;
-        width: 48mm !important;
-        height: auto !important;
+        width: 45mm !important; /* Ancho suficiente */
+        height: 100% !important; /* ALTURA COMPLETA DE LA TARJETA */
         position: absolute !important;
-        top: -10mm !important;
-        left: -8mm !important;
+        top: 0 !important; /* DESDE LA ESQUINA SUPERIOR */
+        left: 0 !important; /* DESDE LA ESQUINA IZQUIERDA */
         max-width: none !important;
         max-height: none !important;
         z-index: 1 !important;
-        filter: grayscale(20%) brightness(1.1) !important;
+        filter: grayscale(60%) brightness(1.3) contrast(0.8) !important;
     }
     
     /* ===== CARTONES DE BINGO (CARA TRASERA) ===== */
