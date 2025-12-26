@@ -140,6 +140,28 @@
         z-index: 1 !important;
     }
     
+    /* Ajuste para que la flor sea más grande y quede pegada al borde izquierdo
+       (compensa el padding interno de la tarjeta para que la flor toque el borde físico) */
+    .seat-card .floral-watermark {
+        opacity: 0.95 !important;            /* más visible */
+        object-fit: cover !important;
+        width: 48mm !important;              /* ancho mayor para que la flor sea más grande */
+        height: auto !important;
+        position: absolute !important;
+        top: -10mm !important;               /* compensa el padding-top (10mm) para alinearse con el borde superior */
+        left: -8mm !important;               /* compensa el padding-left (8mm) para que toque el borde izquierdo del card */
+        max-width: none !important;
+        max-height: none !important;
+        z-index: 1 !important;               /* detrás del nombre */
+    }
+
+    /* Asegurar que el contenedor del nombre quede por encima */
+    .seat-card .name-container,
+    .seat-card .guest-name {
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
     /* ===== CARTONES DE BINGO (CARA TRASERA) ===== */
     .bingo-card {
         display: flex !important;
