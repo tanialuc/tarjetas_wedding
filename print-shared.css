@@ -70,6 +70,7 @@
   align-items: center;
   justify-content: center;
   flex: 1 1 auto;
+  z-index: 2;
 }
 
 .floral-watermark {
@@ -80,14 +81,19 @@
   height: auto;
   max-width: 36mm;
   max-height: 36mm;
-  opacity: 1;
+  opacity: 0.85;
+  z-index: 1;
 }
 
 .watermark {
   position: absolute;
   bottom: 8mm;
+  left: 0;
+  width: 100%;
+  text-align: center;
   font-size: 0.9rem;
   color: #6b5a47;
+  z-index: 2;
 }
 
 @media screen {
