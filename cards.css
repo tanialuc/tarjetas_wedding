@@ -1,0 +1,192 @@
+/* Shared print and card sizing for both bingo cards and guest seat cards */
+
+/* Default non-print safe styles (kept minimal here) */
+.bingo-card, .seat-card {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Screen preview: make on-screen cards match printed dimensions */
+@media screen {
+  .bingo-container, .cards-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15mm !important;
+    justify-items: center !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .bingo-card, .seat-card {
+    width: 82.5mm !important;
+    height: 112.5mm !important;
+    padding: 8mm 6mm !important;
+    border: 1px solid #d4a574 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+    background: white !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin: 0 !important;
+  }
+
+
+  .bingo-grid {
+    height: 85mm !important;
+    gap: 2mm !important;
+  }
+
+  .guest-name {
+    font-size: 2.4rem !important;
+    padding: 0 10px !important;
+    margin-top: 10px !important;
+    color: #1a1a1a !important;
+    -webkit-text-stroke: 0.2px rgba(0,0,0,0.18);
+    text-shadow: 0.6px 0.6px 0 rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.02);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .bingo-cell.free { font-size: 12px !important; }
+
+  /* Keep UI controls visible on screen; only card area mimics print */
+}
+
+@media print {
+  /* page setup: use zero page margin as requested */
+  @page { margin: 0; }
+
+  /* Fallback for browsers that ignore @page: set html/body to zero margin */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+@page {
+    margin: 0;
+    size: A4;
+}
+
+body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    width: 210mm;
+    height: 297mm;
+}
+
+.container {
+    max-width: none;
+    margin: 0;
+    padding: 10mm 15mm;
+    width: 210mm;
+    height: 297mm;
+            }
+
+  /* Container grid that ensures two cards per row for printing */
+  .bingo-container, .cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5mm; /* Espacio exacto para corte */
+    margin: 0;
+    width: 210mm;
+    height: 297mm;
+    position: absolute;
+    /*top: 20mm;
+    left: 15mm;*/
+    align-content: start;
+    justify-items: center;
+    
+  }
+
+  /* Unified card size for printing (same physical dimensions) */
+  .bingo-card, .seat-card {
+    width: 95mm !important;
+    height: 134mm !important;
+    padding: 8mm 6mm;
+    border: 1px solid #e7e7e7 !important;
+    border-style: dashed !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin: 0 !important; 
+  }
+
+  .bingo-card{
+    background: none !important;
+    border: none !important;
+    border-style: none !important;
+  }
+
+  .seat-card{
+    padding: 0mm !important;
+  }
+
+  /* Bingo-specific: make grid area fit inside unified card */
+  .bingo-grid {
+    height: 85mm !important;
+    gap: 2mm !important;
+  }
+
+  /* Seat-card specifics: ensure name area doesn't overflow */
+  .guest-name {
+    font-size: 3.5rem !important;
+    padding:  50px !important;
+    padding-top: 10px !important;
+    margin-top: 10px !important;
+    /*color: #935d29 !important;*/
+    color: #634120;
+    color: #573514;
+    /*-webkit-text-stroke: 0.35px rgba(0,0,0,0.2);
+    text-shadow: 0.8px 0.8px 0 rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.02);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;*/
+
+  }
+
+  /* Smaller text for the bingo free cell when printing */
+  .bingo-cell.free { font-size: 12px !important; }
+
+  /* Hide UI controls in all pages */
+  .controls, .font-selector, .print-info, h1,
+  .loading, .error, .header, .navigation, .actions,
+  .print-button, .nav-button-main {
+    display: none !important;
+  }
+
+  /* Ensure header is fully ignored by print (no layout space) */
+  .header {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .header * {
+    display: none !important;
+  }
+
+  /* Remove any container top padding so cards align to page area */
+  .container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure grids use full available card area */
+  .cards-container, .bingo-container { height: auto !important; }
+
+  /* Forzar 4 tarjetas por página sin páginas en blanco */
+  /* Aplicable tanto a bingos como a seat cards */
+  .bingo-card:nth-child(4n), .seat-card:nth-child(4n) {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Evitar que el último elemento deje una página en blanco */
+  .bingo-card:last-child, .seat-card:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+}

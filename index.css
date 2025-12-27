@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f5f0;
+    color: #5a4a3a;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #935d29;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.font-selector {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.font-option {
+    padding: 6px 12px;
+    border: 1px solid #d4c2a7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+}
+
+.font-option:hover {
+    background: #f5f0e9;
+}
+
+.font-option.active {
+    background: #935d29;
+    color: white;
+    border-color: #935d29;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1000px;
+}
+
+.seat-card {
+    width: 380px;
+    height: 265px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+}
+
+.flower-side {
+    flex: 1;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 45px;
+}
+
+.floral-watermark {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.name-container {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.guest-name {
+    color: #935d29;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    font-size: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.watermark {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #935d29;
+    color: #573514;
+    font-size: 1rem;
+    opacity: 1;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    /*-webkit-text-stroke: 0.35px rgba(0,0,0,0.2);
+    text-shadow: 0.8px 0.8px 0 rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255,255,255,0.02);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;*/
+}
+
+/* Estilos de fuentes elegantes */
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+.font-dancing {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+}
+
+.font-greatvibes {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+}
+
+.font-parisienne {
+    font-family: 'Parisienne', cursive;
+    font-size: 2.2rem;
+}
+
+.font-cormorant {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.9rem;
+}
+
+.loading {
+    font-size: 1.1rem;
+    color: #935d29;
+    font-style: italic;
+    margin: 15px 0;
+}
+
+.error {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 15px 0;
+    text-align: center;
+    max-width: 400px;
+    font-size: 0.9rem;
+}
+
+.controls {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #935d29;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+    font-family: 'Georgia', serif;
+}
+
+button:hover {
+    background-color: #7a5a3c;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #d4c2a7;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 200px;
+    max-width: 100%;
+    font-family: 'Georgia', serif;
+}
+
+.print-info {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #935d29;
+    text-align: center;
+    background: #f5f0e9;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+@media (max-width: 750px) {
+    .seat-card {
+        width: 100%;
+        max-width: 300px;
+        height: 210px;
+    }
+    
+    .flower-side {
+        padding-top: 35px;
+    }
+    
+    .guest-name {
+        font-size: 1.6rem;
+    }
+    
+    .font-dancing, .font-greatvibes, .font-parisienne {
+        font-size: 1.8rem;
+    }
+    
+    .font-cormorant {
+        font-size: 1.6rem;
+    }
+    
+    .watermark {
+        font-size: 0.8rem;
+        bottom: 10px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .seat-card {
+        height: 180px;
+        max-width: 250px;
+    }
+    
+    .flower-side {
+        padding-top: 30px;
+    }
+    
+    .guest-name {
+        font-size: 1.4rem;
+    }
+    
+    .font-dancing, .font-greatvibes, .font-parisienne {
+        font-size: 1.5rem;
+    }
+    
+    .font-cormorant {
+        font-size: 1.4rem;
+    }
+    
+    .watermark {
+        font-size: 0.7rem;
+        bottom: 8px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    input, button {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* Print rules moved to cards.css (shared) */

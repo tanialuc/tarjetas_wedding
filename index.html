@@ -5,415 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteles de Asiento - Tania & Manuel</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: #f9f5f0;
-            color: #5a4a3a;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        h1 {
-            color: #935d29;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: normal;
-            letter-spacing: 2px;
-            font-size: 2rem;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .font-selector {
-            margin-bottom: 15px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .font-option {
-            padding: 6px 12px;
-            border: 1px solid #d4c2a7;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            font-family: 'Georgia', serif;
-            font-size: 0.9rem;
-        }
-        
-        .font-option:hover {
-            background: #f5f0e9;
-        }
-        
-        .font-option.active {
-            background: #935d29;
-            color: white;
-            border-color: #935d29;
-        }
-        
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            max-width: 1000px;
-        }
-        
-        .seat-card {
-            width: 380px;
-            height: 265px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            border-radius: 6px;
-            overflow: hidden;
-            background-color: white;
-            position: relative;
-        }
-        
-        .flower-side {
-            flex: 1;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 45px;
-        }
-        
-        .floral-watermark {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        
-        .name-container {
-            text-align: center;
-            z-index: 2;
-            width: 100%;
-            padding: 0 15px;
-        }
-        
-        .guest-name {
-            color: #935d29;
-            font-weight: normal;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            font-size: 2rem;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            margin: 0;
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .watermark {
-            position: absolute;
-            bottom: 12px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: #935d29;
-            font-size: 0.9rem;
-            opacity: 1;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Estilos de fuentes elegantes */
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-        }
-        
-        .font-dancing {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-        }
-        
-        .font-greatvibes {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-        }
-        
-        .font-parisienne {
-            font-family: 'Parisienne', cursive;
-            font-size: 2.2rem;
-        }
-        
-        .font-cormorant {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: 1.9rem;
-        }
-        
-        .loading {
-            font-size: 1.1rem;
-            color: #935d29;
-            font-style: italic;
-            margin: 15px 0;
-        }
-        
-        .error {
-            color: #d32f2f;
-            background: #ffebee;
-            padding: 12px;
-            border-radius: 4px;
-            margin: 15px 0;
-            text-align: center;
-            max-width: 400px;
-            font-size: 0.9rem;
-        }
-        
-        .controls {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        button {
-            background-color: #935d29;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-            white-space: nowrap;
-            font-family: 'Georgia', serif;
-        }
-        
-        button:hover {
-            background-color: #7a5a3c;
-        }
-        
-        input {
-            padding: 8px;
-            border: 1px solid #d4c2a7;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            width: 200px;
-            max-width: 100%;
-            font-family: 'Georgia', serif;
-        }
-        
-        .print-info {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #935d29;
-            text-align: center;
-            background: #f5f0e9;
-            padding: 8px 15px;
-            border-radius: 4px;
-        }
-        
-        @media (max-width: 750px) {
-            .seat-card {
-                width: 100%;
-                max-width: 300px;
-                height: 210px;
-            }
-            
-            .flower-side {
-                padding-top: 35px;
-            }
-            
-            .guest-name {
-                font-size: 1.6rem;
-            }
-            
-            .font-dancing, .font-greatvibes, .font-parisienne {
-                font-size: 1.8rem;
-            }
-            
-            .font-cormorant {
-                font-size: 1.6rem;
-            }
-            
-            .watermark {
-                font-size: 0.8rem;
-                bottom: 10px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .seat-card {
-                height: 180px;
-                max-width: 250px;
-            }
-            
-            .flower-side {
-                padding-top: 30px;
-            }
-            
-            .guest-name {
-                font-size: 1.4rem;
-            }
-            
-            .font-dancing, .font-greatvibes, .font-parisienne {
-                font-size: 1.5rem;
-            }
-            
-            .font-cormorant {
-                font-size: 1.4rem;
-            }
-            
-            .watermark {
-                font-size: 0.7rem;
-                bottom: 8px;
-            }
-            
-            .controls {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            input, button {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-        
-        /* ESTILOS CORREGIDOS PARA IMPRESIÓN - TARJETAS MÁS GRANDES CON MÁRGENES SEGUROS */
-        @media print {
-            body {
-                padding: 0;
-                background: white;
-                margin: 0;
-                width: 100%;
-                height: 100%;
-            }
-            
-            .controls, .font-selector, .print-info, h1,
-            .loading, .error {
-                display: none !important;
-            }
-            
-            .cards-container {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.4cm !important;
-                max-width: 100% !important;
-                width: 100% !important;
-                margin: 0 auto !important;
-                padding: 0.5cm 0.8cm !important; /* Más espacio en bordes */
-                page-break-after: always;
-                height: 100%;
-                box-sizing: border-box;
-            }
-            
-            .seat-card {
-                width: 100% !important;
-                height: 10.5cm !important; /* Aún más altas */
-                box-shadow: none !important;
-                border: 1px solid #e0e0e0 !important;
-                page-break-inside: avoid !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                break-inside: avoid;
-            }
-            
-            /* Configuración de página con márgenes seguros para impresión */
-            @page {
-                size: letter portrait;
-                margin: 2.0cm 1.5cm 1.2cm 1.8cm; /* Más margen arriba e izquierda */
-                /* top, right, bottom, left */
-            }
-            
-            /* Forzar salto de página después de cada 4 tarjetas */
-            .seat-card:nth-child(4n) {
-                page-break-after: always;
-            }
-            
-            .guest-name {
-                font-size: 2.4rem !important; /* Texto aún más grande */
-                padding: 0 20px;
-                margin-top: 20px;
-            }
-            
-            .watermark {
-                opacity: 0.4;
-                font-size: 1.1rem !important;
-                bottom: 20px;
-            }
-            
-            .floral-watermark {
-                opacity: 0.4 !important;
-            }
-            
-            .flower-side {
-                padding-top: 50px !important; /* Más espacio para el nombre */
-            }
-            
-            .name-container {
-                padding: 0 25px;
-            }
-            
-            /* Asegurar que las tarjetas no se corten */
-            .seat-card {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="cards.css">
 </head>
 <body>
-    <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
-    
-    <div class="print-info">
-        💡 Tamaño optimizado para 4 tarjetas por hoja carta - Imprimir en VERTICAL
-    </div>
-    
-    <div class="font-selector">
-        <div class="font-option active" onclick="changeFont('playfair')">Playfair Display</div>
-        <div class="font-option" onclick="changeFont('dancing')">Dancing Script</div>
-        <div class="font-option" onclick="changeFont('greatvibes')">Great Vibes</div>
-        <div class="font-option" onclick="changeFont('parisienne')">Parisienne</div>
-        <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
-    </div>
-    
-    <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
-    <div id="errorMessage" class="error" style="display: none;"></div>
-    
-    <div class="cards-container" id="cardsContainer">
-        <!-- Los carteles se generarán automáticamente desde el JSON -->
-    </div>
-    
-    <div class="controls">
-        <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
-        <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
-        <button onclick="addCard()">Agregar Tarjeta</button> 
-        <button onclick="printCards()">Imprimir Tarjeta</button>
-        <button onclick="goToBingo()">Generar Cartones de Bingo</button> 
-        <button onclick="goToCantoBingo()">Cantar Bingo</button>
-</a>
-    </div>
+    <div class="container">
+        <div class="header">
+            <div class="navigation">
+               
+            </div>
+            <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
+            <div class="date">07.03.2026</div>
 
+            <div class="print-info">
+                💡 Tamaño optimizado para 4 tarjetas por hoja carta - Imprimir en VERTICAL
+            </div>
+
+            <div class="font-selector">
+                <div class="font-option active" onclick="changeFont('greatvibes')">Great Vibes</div>
+                <div class="font-option" onclick="changeFont('playfair')">Playfair Display</div>
+                <div class="font-option" onclick="changeFont('dancing')">Dancing Script</div>
+                <div class="font-option" onclick="changeFont('parisienne')">Parisienne</div>
+                <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
+            </div>
+
+            <div class="controls">
+                <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
+                <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
+                <button onclick="addCard()">Agregar Tarjeta</button>
+                <button onclick="printCards()">Imprimir Tarjeta</button>
+                <button onclick="goToBingo()">Generar Cartones de Bingo</button>
+                <button onclick="goToCantoBingo()">Cantar Bingo</button>
+            </div>
+
+            <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
+            <div id="errorMessage" class="error" style="display: none;"></div>
+        </div>
+
+        <div class="cards-container" id="cardsContainer">
+            <!-- Los carteles se generarán automáticamente desde el JSON -->
+        </div>
+    </div>
     <script>
-        let currentFont = 'playfair';
+        let currentFont = 'greatvibes';
         
         // Función para cambiar la fuente
         function changeFont(fontName) {
