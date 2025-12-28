@@ -4,9 +4,297 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjetas de Bingo - Tania & Manuel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="bingo.css">
-    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="print.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            padding: 0;
+            background-color: #f8f5f2;
+            color: #5a4a42;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 2px solid #d4a574;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #8b5a2b;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        
+        .header .date {
+            font-size: 16px;
+            color: #a78a7f;
+        }
+        
+        .navigation {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .nav-button {
+            padding: 6px 12px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .bingo-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            justify-items: center;
+        }
+        
+        .bingo-card {
+            width: 270px;
+            height: 370px;
+            border: 1px solid #d4a574;
+            border-radius: 0; /* Sin bordes redondeados */
+            padding: 10px 8px;
+            background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .bingo-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #8b5a2b;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #d4a574;
+        }
+        
+        .bingo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 3px;
+            width: 100%;
+            height: 280px; /* Máximo espacio para números */
+            margin-bottom: 8px;
+            flex-grow: 1;
+        }
+        
+        .bingo-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d4a574;
+            border-radius: 0; /* Sin bordes redondeados */
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #fffaf0;
+            font-weight: 500;
+        }
+        
+        .bingo-cell.free {
+            background-color: #f0e6d2;
+            font-weight: bold;
+            color: #8b5a2b;
+            font-size: 14px; /* T&M más pequeño como pediste */
+        }
+        
+        .bingo-footer {
+            font-size: 14px;
+            color: #8b5a2b;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .print-button, .nav-button-main {
+            padding: 8px 20px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .loading {
+            text-align: center;
+            font-size: 14px;
+            color: #8b5a2b;
+            margin: 20px 0;
+        }
+        
+        /* ESTILOS CRÍTICOS PARA IMPRESIÓN */
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+            
+            body {
+                background-color: white;
+                padding: 0;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .container {
+                max-width: none;
+                margin: 0;
+                padding: 10mm 15mm;
+                width: 210mm;
+                height: 297mm;
+            }
+            
+            .header {
+                display: none; /* Ocultar header en impresión */
+            }
+            
+            .navigation, .actions {
+                display: none;
+            }
+            
+            .bingo-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15mm; /* Espacio exacto para corte */
+                margin: 0;
+                width: 180mm;
+                height: 257mm;
+                position: absolute;
+                top: 20mm;
+                left: 15mm;
+            }
+            
+            /* TAMAÑO MÁS GRANDE PARA PANTALLA */
+            .bingo-card {
+                width: 320px;  /* Aumentado de 270px */
+                height: 475px; /* Aumentado de 370px */
+                border: 1px solid #d4a574;
+                border-radius: 0;
+                padding: 15px 12px; /* Más padding */
+                background: linear-gradient(to bottom, #fffaf0, #f9f3e9);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+            }
+            
+            .bingo-grid {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                gap: 4px; /* Más espacio */
+                width: 100%;
+                height: 350px; /* Más alto */
+                margin-bottom: 12px;
+                flex-grow: 1;
+            }
+            
+            .bingo-cell {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #d4a574;
+                border-radius: 0;
+                font-size: 20px; /* Más grande */
+                font-weight: bold;
+                background-color: #fffaf0;
+                font-weight: 500;
+            }
+            
+            .bingo-cell.free {
+                background-color: #f0e6d2;
+                font-weight: bold;
+                color: #8b5a2b;
+                font-size: 16px; /* Más grande */
+            }
+            
+            .bingo-header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: bold;
+                font-size: 24px; /* Más grande */
+                margin-bottom: 12px;
+                color: #8b5a2b;
+                padding-bottom: 6px;
+                border-bottom: 2px solid #d4a574;
+            }
+            
+            .bingo-footer {
+                font-size: 16px; /* Más grande */
+                color: #8b5a2b;
+                text-align: center;
+                font-weight: 500;
+                margin-top: 5px;
+            }
+            
+            .print-button, .nav-button-main, .loading {
+                display: none;
+            }
+            
+            /* Forzar 4 bingos por página sin páginas en blanco */
+            .bingo-container {
+                page-break-after: always;
+            }
+            
+            .bingo-container:last-child {
+                page-break-after: auto;
+            }
+        }
+
+        /* Para previsualización en pantalla */
+        @media screen {
+            .bingo-card {
+                box-shadow: 0 2px 5px rgba(139, 90, 43, 0.15);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,8 +312,10 @@
                 <a href="index.html" class="nav-button-main">Volver a Tarjetas de Asiento</a>
             </div>
         </div>
-
-        <div id="bingo-container" class="bingo-container" style="display: none;">
+        
+        <div id="loading" class="loading">Cargando invitados y generando bingos...</div>
+        
+        <div id="bingo-container" class="bingo-container print-sheet" style="display: none;">
             <!-- Los bingos se generarán aquí dinámicamente -->
         </div>
     </div>
@@ -132,5 +422,19 @@
         // Ejecutar cuando la página cargue
         document.addEventListener('DOMContentLoaded', cargarInvitadosYGenerarBingos);
     </script>
+    <script>
+  // Small runtime helper to add print classes without changing many template strings
+  document.addEventListener('DOMContentLoaded', function(){
+    try {
+      var cards = document.querySelector('.cards-container');
+      if (cards) cards.classList.add('print-sheet');
+      var bingoContainer = document.getElementById('bingo-container');
+      if (bingoContainer) bingoContainer.classList.add('print-sheet');
+
+      document.querySelectorAll('.seat-card').forEach(function(el){ el.classList.add('print-card'); });
+      document.querySelectorAll('.bingo-card').forEach(function(el){ el.classList.add('print-card'); });
+    } catch(e) { console.warn('print helper:', e); }
+  });
+</script>
 </body>
 </html>

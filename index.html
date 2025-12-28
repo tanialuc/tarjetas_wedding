@@ -4,30 +4,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteles de Asiento - Tania & Manuel</title>
+    <link rel="stylesheet" href="print.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Dancing+Script:wght@400;500&family=Great+Vibes&family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="cards.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f9f5f0;
+            color: #5a4a3a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #935d29;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: normal;
+            letter-spacing: 2px;
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-selector {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .font-option {
+            padding: 6px 12px;
+            border: 1px solid #d4c2a7;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+        }
+        
+        .font-option:hover {
+            background: #f5f0e9;
+        }
+        
+        .font-option.active {
+            background: #935d29;
+            color: white;
+            border-color: #935d29;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1000px;
+        }
+        
+        /* Estilos de fuentes elegantes - Se mantienen los tamaños personalizados */
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+        
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem; /* Aumentado */
+        }
+        
+        .font-greatvibes {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem; /* Aumentado */
+        }
+        
+        .font-parisienne {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.2rem; /* Aumentado */
+        }
+        
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 2.9rem; /* Aumentado */
+        }
+        
+        .loading {
+            font-size: 1.1rem;
+            color: #935d29;
+            font-style: italic;
+            margin: 15px 0;
+        }
+        
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 15px 0;
+            text-align: center;
+            max-width: 400px;
+            font-size: 0.9rem;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        button {
+            background-color: #935d29;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            font-family: 'Georgia', serif;
+        }
+        
+        button:hover {
+            background-color: #7a5a3c;
+        }
+        
+        input {
+            padding: 8px;
+            border: 1px solid #d4c2a7;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            width: 200px;
+            max-width: 100%;
+            font-family: 'Georgia', serif;
+        }
+        
+        .print-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #935d29;
+            text-align: center;
+            background: #f5f0e9;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        /* RESPONSIVE PARA PANTALLAS PEQUEÑAS */
+        @media (max-width: 750px) {
+            .seat-card {
+                width: 100%;
+                max-width: 280px;
+                height: 415px;
+            }
+            
+            .guest-name {
+                font-size: 2.2rem;
+            }
+            
+            .font-dancing, .font-greatvibes, .font-parisienne {
+                font-size: 2.4rem;
+            }
+            
+            .font-cormorant {
+                font-size: 2.2rem;
+            }
+            
+            .font-playfair {
+                font-size: 2.2rem;
+            }
+            
+            .watermark {
+                font-size: 1rem;
+                bottom: 20px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .seat-card {
+                height: 380px;
+                max-width: 250px;
+            }
+            
+            .guest-name {
+                font-size: 1.9rem;
+            }
+            
+            .font-dancing, .font-greatvibes, .font-parisienne {
+                font-size: 2.1rem;
+            }
+            
+            .font-cormorant {
+                font-size: 1.9rem;
+            }
+            
+            .font-playfair {
+                font-size: 1.9rem;
+            }
+            
+            .watermark {
+                font-size: 0.9rem;
+                bottom: 15px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            input, button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="navigation">
-               
-            </div>
-            <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
-            <div class="date">07.03.2026</div>
-
-            <div class="print-info">
-                💡 Tamaño optimizado para 4 tarjetas por hoja carta - Imprimir en VERTICAL
-            </div>
-
-            <div class="font-selector">
-                <div class="font-option active" onclick="changeFont('greatvibes')">Great Vibes</div>
-                <div class="font-option" onclick="changeFont('playfair')">Playfair Display</div>
-                <div class="font-option" onclick="changeFont('dancing')">Dancing Script</div>
-                <div class="font-option" onclick="changeFont('parisienne')">Parisienne</div>
-                <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
-            </div>
+    <h1>Carteles de Asiento - Boda Tania & Manuel</h1>
+    
+    <div class="print-info">
+        💡 Tamaño máximo en hoja A4 - 4 tarjetas por página - Doble cara con BINGO
+    </div>
+    
+    <div class="font-selector">
+        <div class="font-option active" onclick="changeFont('playfair')">Playfair Display</div>
+        <div class="font-option" onclick="changeFont('dancing')">Dancing Script</div>
+        <div class="font-option" onclick="changeFont('greatvibes')">Great Vibes</div>
+        <div class="font-option" onclick="changeFont('parisienne')">Parisienne</div>
+        <div class="font-option" onclick="changeFont('cormorant')">Cormorant Garamond</div>
+    </div>
+    
+    <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
+    <div id="errorMessage" class="error" style="display: none;"></div>
+    
+    <div class="cards-container print-sheet" id="cardsContainer">
+        <!-- Los carteles se generarán automáticamente desde el JSON -->
+    </div>
+    
+    <div class="controls">
+        <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
+        <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
+        <button onclick="addCard()">Agregar Tarjeta</button> 
+        <button onclick="printCards()">Imprimir Tarjetas</button>
+        <button onclick="goToBingo()">Generar Cartones de Bingo</button> 
+        <button onclick="goToCantoBingo()">Cantar Bingo</button>
+    </div>
 
             <div class="controls">
                 <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
@@ -70,7 +306,7 @@
             const imagePath = imageName ? `images/${imageName}` : 'images/flores-izquierda.png';
             
             return `
-                <div class="seat-card">
+                <div class="seat-card print-card">
                     <div class="flower-side">
                         <img src="${imagePath}" alt="Flores decorativas" class="floral-watermark" onerror="this.src='images/flores-izquierda.png'">
                         <div class="name-container">
