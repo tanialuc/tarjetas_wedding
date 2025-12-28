@@ -265,8 +265,25 @@
         <button onclick="goToCantoBingo()">Cantar Bingo</button>
     </div>
 
+            <div class="controls">
+                <input type="text" id="guestName" placeholder="Escribe un nombre para agregar">
+                <input type="text" id="guestImage" placeholder="Nombre de imagen (ej: flores-izquierda1.png)">
+                <button onclick="addCard()">Agregar Tarjeta</button>
+                <button onclick="printCards()">Imprimir Tarjeta</button>
+                <button onclick="goToBingo()">Generar Cartones de Bingo</button>
+                <button onclick="goToCantoBingo()">Cantar Bingo</button>
+            </div>
+
+            <div id="loadingMessage" class="loading">Cargando lista de invitados...</div>
+            <div id="errorMessage" class="error" style="display: none;"></div>
+        </div>
+
+        <div class="cards-container" id="cardsContainer">
+            <!-- Los carteles se generarán automáticamente desde el JSON -->
+        </div>
+    </div>
     <script>
-        let currentFont = 'playfair';
+        let currentFont = 'greatvibes';
         
         // Función para cambiar la fuente
         function changeFont(fontName) {

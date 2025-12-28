@@ -304,17 +304,19 @@
             </div>
             <h1>Tarjetas de Bingo - Tania & Manuel</h1>
             <div class="date">07.03.2026</div>
+
+            <div id="loading" class="loading">Cargando invitados y generando bingos...</div>
+
+            <div class="actions">
+                <button class="print-button" onclick="window.print()">Imprimir Bingos</button>
+                <a href="index.html" class="nav-button-main">Volver a Tarjetas de Asiento</a>
+            </div>
         </div>
         
         <div id="loading" class="loading">Cargando invitados y generando bingos...</div>
         
         <div id="bingo-container" class="bingo-container print-sheet" style="display: none;">
             <!-- Los bingos se generarán aquí dinámicamente -->
-        </div>
-        
-        <div class="actions">
-            <button class="print-button" onclick="window.print()">Imprimir Bingos</button>
-            <a href="index.html" class="nav-button-main">Volver a Tarjetas de Asiento</a>
         </div>
     </div>
 
@@ -346,7 +348,7 @@
                 }
                 
                 // Ordenar la columna
-                columna.sort((a, b) => a - b);
+                //columna.sort((a, b) => a - b);
                 
                 // Añadir a la matriz
                 for (let fila = 0; fila < 5; fila++) {
@@ -381,7 +383,7 @@
                             ).join('')
                         ).join('')}
                     </div>
-                    <div class="bingo-footer">${nombre}</div>
+                    <div class="bingo-footer">¡Buena Suerte!</div>
                 </div>
             `;
         }
